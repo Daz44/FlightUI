@@ -115,32 +115,7 @@ public class ArtificialHorizon {
 		
 		
 		////////////////
-		Font TextFont = new Font("Verdana", Font.BOLD, 12);
-		
 
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(10, 10, 80, 1004);
-		
-		g.setColor(Color.black);
-		g.fillRect(15, 15, 70, 1000);
-		
-		g.setColor(Color.RED);
-		g.fillRect(0, 500-1, 300, 2);
-		
-		
-		g.setFont(TextFont);
-		FontMetrics fm = g.getFontMetrics();
-		Rectangle2D stringRect = TextFont.getStringBounds("1000", fm.getFontRenderContext());
-		
-		g.setColor(Color.WHITE);
-		
-		int alt = FLUIAircraft.AltFeet();
-		for(int i = -10; i < 10; i++){
-			
-				int offset = (alt - ((alt/100)*100))/2;
-				g.drawString("" + (((alt/100)*100)-(100*i)), (int) (15 + 35 - stringRect.getWidth()/2), (int) (15 - stringRect.getHeight()) + 1000/2 + (i * 1000/20) + offset);
-		}
-		
 		////////////////
 	}
 }

@@ -33,6 +33,12 @@ public class FLUI_GLOBAL {
 
 						indicatorSpeed = FLUI_READER.getInt(0x02BC)/128;
 						trueSpeed =  FLUI_READER.getInt(0x02B8)/128;
+						
+						try {
+							Thread.sleep(50);
+						} catch(Exception e){
+							e.printStackTrace();
+						}
 					}
 				}
 			});
