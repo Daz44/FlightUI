@@ -118,8 +118,8 @@ public class ArtificialHorizonPanel extends JPanel {
 
 		
 		try {
-			System.out.println("Tick time = " + (System.currentTimeMillis()-delta));
-			Thread.sleep(0);
+			
+			Thread.sleep(1000/120);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

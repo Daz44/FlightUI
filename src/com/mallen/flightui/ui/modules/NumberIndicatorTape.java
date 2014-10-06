@@ -55,12 +55,18 @@ public class NumberIndicatorTape {
 		
 		g.setColor(Theme.gForeground);
 		
-		for(int i = -4; i < 4; i++){
-				Rectangle2D stringRect = TextFont.getStringBounds("" + (((value/100)*100)-(stepVal*i)), fm.getFontRenderContext());
-				
-				int numberFromNextStep = ((value - ((value/100)*100)));
-				int offset = (int) ((int) numberFromNextStep + (y - stringRect.getHeight()) + height/2);
-				g.drawString("" + (((value/100)*100)-(stepVal*i)), (int) (x + width/2 - stringRect.getWidth()/2), i*height/8 + offset);
+		int tapeRange = 8;
+		
+		//TODO: Fix implementation for intervals other than 100
+		
+		for(int i = -tapeRange/2; i < tapeRange/2; i++){
+			Rectangle2D stringRect = TextFont.getStringBounds("" + (((value/100)*100)-(stepVal*i)), fm.getFontRenderContext());
+			int numberFromNextStep = ((value - ((value/100)*100)));
+			int offset = (int) ((int) numberFromNextStep + (y - stringRect.getHeight()) + height/2);
+			
+			if( i*height/tapeRange + offset < y+height &&  i*height/tapeRange + offset - stringRect.getHeight() > y && (((value/100)*100)-(stepVal*i)) >= 0){
+				g.drawString("" + (((value/100)*100)-(stepVal*i)), (int) (x + width/2 - stringRect.getWidth()/2), i*height/tapeRange + offset);
+			}
 		}
 		
 	}
