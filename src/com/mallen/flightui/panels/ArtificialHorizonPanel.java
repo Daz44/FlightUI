@@ -65,7 +65,7 @@ public class ArtificialHorizonPanel extends JPanel {
 		indicatorAltitude.draw(g);
 		
 		g.setColor(Theme.gForeground);
-		g.drawString("R" + Math.round(FLUI_READER.getInt(FLUI_MEMORY.FSUIPC_LOOKUP.get("RADIO_ALTITUDE"))/65536*3.28) + "FT", this.getSize().width-100, 365);
+		g.drawString("R" + FLUI_GLOBAL.radAlt + "FT", this.getSize().width-100, 365);
 		
 		//////TRUE AIRSPEED DISPLAY//////////////////////////////////////
 		
@@ -75,12 +75,12 @@ public class ArtificialHorizonPanel extends JPanel {
 		
 		//////HEADING DISPLAY//////////////////////////////////////
 		
-		int hdg =  (int) Math.round(360.0*FLUI_READER.getInt(0x0580)/(65536.0*65536.0));//Correcting the Heading Value given by FSUIPC
-		if(hdg < 0) hdg = 360+hdg;
+		int hdg =  FLUI_GLOBAL.hdg;
+		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;
 		
 		numIndHeading.draw(g, this);
 		numIndHeading.setLocation(this.getSize().width/2-180, 10); 
-		numIndHeading.update(hdg, (int) Math.toDegrees(FLUI_READER.getDouble(FLUI_MEMORY.FSUIPC_LOOKUP.get("GPS_WAYPOINT_HEADING"))));
+		numIndHeading.update(hdg, gps_waypoint);
 
 		///////////////////////////////////////////////////////////
 		
