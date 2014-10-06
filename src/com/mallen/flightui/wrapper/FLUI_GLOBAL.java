@@ -8,6 +8,9 @@ public class FLUI_GLOBAL {
 	public static int qnhAlt;
 	public static int radAlt;
 	
+	public static int indicatorSpeed;
+	public static int trueSpeed;
+	
 	public static int hdg;
 	public static int gps_waypoint;
 	
@@ -26,6 +29,8 @@ public class FLUI_GLOBAL {
 						hdg =  (int) Math.round(360.0*FLUI_READER.getInt(0x0580)/(65536.0*65536.0));//Correcting the Heading Value given by FSUIPC
 						if(hdg < 0) hdg = 360+hdg;
 						gps_waypoint = (int) Math.toDegrees(FLUI_READER.getDouble(FLUI_MEMORY.FSUIPC_LOOKUP.get("GPS_WAYPOINT_HEADING")));
+						
+						indicatorSpeed = FLUI_READER.getInt(0x02B8)/128;
 						
 						
 						try {

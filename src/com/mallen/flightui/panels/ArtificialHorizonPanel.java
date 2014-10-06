@@ -69,7 +69,7 @@ public class ArtificialHorizonPanel extends JPanel {
 		
 		//////TRUE AIRSPEED DISPLAY//////////////////////////////////////
 		
-		indicatorSpeed.update("" + FLUI_READER.getInt(0x02B8)/128);
+		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
 		indicatorSpeed.draw(g);
 	
 		
