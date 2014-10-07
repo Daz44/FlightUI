@@ -14,7 +14,7 @@ public class Test extends JPanel{
 	NumberIndicatorVerticalTape nit = new NumberIndicatorVerticalTape(10, 10, 100, 500, 100);
 
 	public static void main(String[] args){
-		Theme.setTheme(new Color(50, 100, 250), new Color(80, 50, 50), new Color(250, 250, 250), new Color(205, 205, 205), new Color(55, 55, 55), new Color(50, 190, 90), new Color(220, 200, 0),new Color(190, 50, 50));
+	//	Theme.setTheme(new Color(50, 100, 250), new Color(80, 50, 50), new Color(250, 250, 250), new Color(205, 205, 205), new Color(55, 55, 55), new Color(50, 190, 90), new Color(220, 200, 0),new Color(190, 50, 50));
 		Theme.vhGround = new Color(126, 92, 52);
 		Theme.vhSky = new Color(0, 102, 253);
 		

@@ -45,9 +45,9 @@ public class NumberIndicatorHorizontalTape {
 		Font TextFont = new Font("Verdana", Font.BOLD, 12);
 		
 		g.setColor(Theme.gForeground);
-		g.fillRect(x, y, width, height);
+		g.drawRect(x, y, width, height);
 		
-		g.setColor(Theme.gBackground);
+		g.setColor(Theme.gAero);
 		g.fillRect(x+2, y+2, width-4, height-4);
 		
 		
@@ -58,7 +58,6 @@ public class NumberIndicatorHorizontalTape {
 		
 		int tapeRange = 16 ;
 		double valueMult = (double) stepval/100;
-		System.out.println("#" + valueMult);
 		int valueRef = (int) (value/valueMult);
 		//TODO: Fix implementation for intervals other than 100
 		

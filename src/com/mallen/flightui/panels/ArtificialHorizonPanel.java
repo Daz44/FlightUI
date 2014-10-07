@@ -32,7 +32,7 @@ public class ArtificialHorizonPanel extends JPanel {
 	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
-	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-120, 100, 100, 800, 100);
+	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-140, 100, 100, 800, 100);
 	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20);
 	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20);
 	
@@ -72,7 +72,7 @@ public class ArtificialHorizonPanel extends JPanel {
 		altTape.draw(g, this);
 		
 		indicatorAltitude.update("" + qnhAlt);
-		indicatorAltitude.setLocation(this.getSize().width-90, 470);
+		indicatorAltitude.setLocation(this.getSize().width-110, 470);
 		indicatorAltitude.draw(g);
 		
 		//g.setColor(Theme.gForeground);
@@ -116,7 +116,7 @@ public class ArtificialHorizonPanel extends JPanel {
 		boolIndAP.setLocation(this.getSize().width-130, 10);
 		boolIndAP.draw(g);
 		
-		g.setColor(Color.RED);
+		g.setColor(Theme.gForeground);
 		g.drawString("FLAPS: " + FLUIAircraft.Flaps(4), 10, 50);
 
 		

@@ -53,10 +53,10 @@ public class BooleanIndicatorTextDigitalCompact {
 	    FontMetrics fm = g.getFontMetrics();
 		
 		g.setColor(Theme.gForeground);
-		g.fillRect(x-1, y-1, width+2, height+2);
+		g.fillRect(x, y, width, height);
 		
 		g.setColor(Theme.gBackground);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x+1, y+1, width-2, height-2);
 		
 		g.setColor(Theme.gForeground);
 		g.drawString(title, x+5, y+fm.getHeight());
@@ -64,7 +64,7 @@ public class BooleanIndicatorTextDigitalCompact {
 		
 		if(value) g.setColor(Theme.gTrue);
 		if(!value) g.setColor(Theme.gFalse);
-		g.fillRect(x+width-width/10, y, width/10, height);
+		g.fillRect(x+width-width/10, y+1, width/10-1, height-2);
 		
 		//Rectangle2D stringRect = TextFont.getStringBounds(unit, fm.getFontRenderContext());
 		//g.drawString(unit.toLowerCase(), x+width- (int) stringRect.getWidth(), y+fm.getHeight());

@@ -12,14 +12,17 @@ public class Theme {
 	//Global
 	public static Color gForeground;
 	public static Color gMidground; 
-	public static Color gBackground; 
+	public static Color gBackground;
+	public static Color gAero;
 	public static Color gTrue;
 	public static Color gNeutral;
 	public static Color gFalse;
 	//////////////////
 	
 	
-	public static void setTheme(Color vertSky, Color vertGround, Color globFore, Color globMid, Color globBack, Color globTrue, Color globNeutral, Color globFalse){
+	public static void setTheme(Color vertSky, Color vertGround, Color globFore, Color globAero,Color globMid, Color globBack, Color globTrue, Color globNeutral, Color globFalse){
+		System.out.println("THEME");
+		gAero = globAero;
 		vhSky = vertSky;
 		vhGround = vertGround;
 		gForeground = globFore;

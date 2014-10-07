@@ -1,5 +1,6 @@
 package com.mallen.flightui.ui.modules;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -42,14 +43,14 @@ public class BooleanIndicatorDigitalRect {
 	Font f;
 	public void draw(Graphics g){
 		
-		g.setColor(Theme.gForeground);
-		g.fillRect(x-1, y-1, width+2, height+2);
+		g.setColor(Color.RED);
+		g.drawRect(x, y, width, height);
 		
 		
 		
 		if(value) g.setColor(Theme.gTrue);
 		if(!value) g.setColor(Theme.gFalse);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x+1, y+1, width-2, height-2);
 		
 	}
 }

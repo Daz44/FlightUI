@@ -1,9 +1,11 @@
 package com.mallen.flightui.ui.modules;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 
@@ -45,11 +47,10 @@ public class NumberIndicatorVerticalTape {
 		Font TextFont = new Font("Verdana", Font.BOLD, 12);
 		
 		g.setColor(Theme.gForeground);
-		g.fillRect(x, y, width, height);
+		g.drawRect(x, y, width, height);
 		
-		g.setColor(Theme.gBackground);
-		g.fillRect(x+2, y+2, width-4, height-4);
-		
+		g.setColor(Theme.gAero);
+		g.fillRect(x+1, y+1, width-1, height-1);
 		
 		g.setFont(TextFont);
 		FontMetrics fm = g.getFontMetrics();
@@ -58,7 +59,6 @@ public class NumberIndicatorVerticalTape {
 		
 		int tapeRange = 8;
 		double valueMult = (double) stepval/100;
-		System.out.println("#" + valueMult);
 		int valueRef = (int) (value/valueMult);
 		//TODO: Fix implementation for intervals other than 100
 		
@@ -84,7 +84,7 @@ public class NumberIndicatorVerticalTape {
 				g.fillRect(x+width-width/8, (int) (stringY - stringRect.getHeight()/2 + stringRect.getHeight()/6), width/8, 2);
 			}
 		}
-		
+	      
 		g.fillRect(x, y + height/2, width, 2);	
 		
 	}
