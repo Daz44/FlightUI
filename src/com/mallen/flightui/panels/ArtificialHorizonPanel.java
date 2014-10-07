@@ -31,7 +31,7 @@ public class ArtificialHorizonPanel extends JPanel {
 	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
-	NumberIndicatorTape altTape = new NumberIndicatorTape(getWidth()-120, 100, 100, 800, 100);
+	NumberIndicatorTape altTape = new NumberIndicatorTape(getWidth()-120, 100, 100, 800, 10);
 	NumberIndicatorTape spdTape = new NumberIndicatorTape(20, 100, 100, 800, 10);
 	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true);
 	GaugeIndicator gInd = new GaugeIndicator(80, 40, 50, 50, 0, 500, 10);

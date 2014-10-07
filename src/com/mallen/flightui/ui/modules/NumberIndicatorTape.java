@@ -14,14 +14,14 @@ public class NumberIndicatorTape {
 	int height = 0, width = 0;
 	int value = 0, target = 0;
 	
-	int stepVal = 0;
+	int stepval = 0;
 	
 	public NumberIndicatorTape(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int step){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
 		width = horizonWidth;
-		stepVal = step;
+		stepval = step;
 	}
 	
 	//DEFAULT METHODS FOR INDICATORS
@@ -56,16 +56,23 @@ public class NumberIndicatorTape {
 		g.setColor(Theme.gForeground);
 		
 		int tapeRange = 8;
-		
+		double valueMult = (double) stepval/100;
+		System.out.println("#" + valueMult);
+		int valueRef = (int) (value/valueMult);
 		//TODO: Fix implementation for intervals other than 100
 		
 		for(int i = -tapeRange/2; i < tapeRange/2; i++){
-			Rectangle2D stringRect = TextFont.getStringBounds("" + (((value/100)*100)-(stepVal*i)), fm.getFontRenderContext());
-			int numberFromNextStep = ((value - ((value/100)*100)));
+			Rectangle2D stringRect = TextFont.getStringBounds("" + Math.round(((value/100)*100)-((100*valueMult)*i)), fm.getFontRenderContext());
+			int numberFromNextStep = ((valueRef - ((valueRef/100)*100)));
 			int offset = (int) ((int) numberFromNextStep + (y - stringRect.getHeight()) + height/2);
 			
-			if( i*height/tapeRange + offset < y+height &&  i*height/tapeRange + offset - stringRect.getHeight() > y && (((value/100)*100)-(stepVal*i)) >= 0){
-				g.drawString("" + (((value/100)*100)-(stepVal*i)), (int) (x + width/2 - stringRect.getWidth()/2), i*height/tapeRange + offset);
+			if( i*height/tapeRange + offset < y+height &&  i*height/tapeRange + offset - stringRect.getHeight() > y && (((valueRef/100)*100)-(100*i)) >= 0){
+			
+				String s = "" + Math.round(((value/ ((int) (100* (double) valueMult))*(100*valueMult)))-((100*valueMult)*i));
+				int stringX = (int) (x + width/2 - stringRect.getWidth()/2);
+				int stringY = i*height/tapeRange + offset;
+				
+				g.drawString(s, stringX, stringY);
 			}
 		}
 		
