@@ -105,10 +105,7 @@ public class ArtificialHorizonPanel extends JPanel {
 		hdgTape.update(hdg);
 		///////////////////////////////////////////////////////////              
 		                                                                         
-		                                                                         
-		                                                                         
-		                                                                         
-		                                                                         
+                                                  
 		boolIndGear.update(FLUIAircraft.GearDown());                             
 		boolIndGear.draw(g);                                                     
 		                                                                         

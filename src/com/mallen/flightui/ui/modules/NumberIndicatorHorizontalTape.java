@@ -63,7 +63,7 @@ public class NumberIndicatorHorizontalTape {
 		//TODO: Fix implementation for intervals other than 100
 		
 		for(int i = -tapeRange/2; i < tapeRange/2; i++){
-			String s = "" + Math.round(((value/ ((int) (100* (double) valueMult))*(100*valueMult)))-((100*valueMult)*i));
+			String s = "" + Math.round(((value/ ((int) (100* (double) valueMult))*(100*valueMult)))-((-100*valueMult)*i));
 			if(s.length() < 3){
 				s = "0" + s;
 			}
@@ -73,11 +73,11 @@ public class NumberIndicatorHorizontalTape {
 			int offset = (int) (Math.round(numberFromNextStep + (x - stringRect.getWidth()*3) + width/2));
 		
 			
-			if( i*width/tapeRange + offset < x+width &&  i*width/tapeRange + offset - stringRect.getWidth() > x){
+			if( i*width/tapeRange + offset < x+width &&  i*width/tapeRange + offset - stringRect.getWidth()*3 > x && Integer.parseInt(s) <= 360){
 		
 				
 				int stringY = (int) (y + height/2 + stringRect.getHeight()/2);
-				int stringX = i*width/tapeRange + offset;
+				int stringX = (i-1)*width/tapeRange + offset;
 				
 				g.drawString(s, stringX, stringY);
 			}
