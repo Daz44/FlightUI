@@ -57,8 +57,8 @@ public class Main
 		
 		
 		try {
-			boolean isUndecorated = true;
-			boolean isResizable = false;
+			boolean isUndecorated =false;
+			boolean isResizable = true;
 			
 			JFrame VH = new JFrame();
 			VH.setTitle("FlightUI - VirtualHorizon (Airliner)");
@@ -70,7 +70,7 @@ public class Main
 			VH.add(new ArtificialHorizonPanel());
 			VH.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			VH.setUndecorated(isUndecorated);
-			VH.setType(javax.swing.JFrame.Type.UTILITY);
+			//VH.setType(javax.swing.JFrame.Type.UTILITY);
 			
 			VH.setVisible(true);
 			

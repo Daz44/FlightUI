@@ -12,7 +12,7 @@ import com.mallen.flightui.ui.modules.BooleanIndicatorDigitalRect;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalCompact;
 import com.mallen.flightui.ui.modules.GaugeIndicator;
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontal;
-import com.mallen.flightui.ui.modules.NumberIndicatorTape;
+import com.mallen.flightui.ui.modules.NumberIndicatorHorizontalTape;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
@@ -31,8 +31,8 @@ public class ArtificialHorizonPanel extends JPanel {
 	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
-	NumberIndicatorTape altTape = new NumberIndicatorTape(getWidth()-120, 100, 100, 800, 10);
-	NumberIndicatorTape spdTape = new NumberIndicatorTape(20, 100, 100, 800, 10);
+	NumberIndicatorHorizontalTape altTape = new NumberIndicatorHorizontalTape(getWidth()-120, 100, 100, 800, 100);
+	NumberIndicatorHorizontalTape spdTape = new NumberIndicatorHorizontalTape(20, 100, 100, 800, 20);
 	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true);
 	GaugeIndicator gInd = new GaugeIndicator(80, 40, 50, 50, 0, 500, 10);
 

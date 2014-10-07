@@ -7,11 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontal;
-import com.mallen.flightui.ui.modules.NumberIndicatorTape;
+import com.mallen.flightui.ui.modules.NumberIndicatorHorizontalTape;
 import com.mallen.flightui.ui.modules.Theme;
 
 public class Test extends JPanel{
-	NumberIndicatorTape nit = new NumberIndicatorTape(10, 10, 100, 500, 100);
+	NumberIndicatorHorizontalTape nit = new NumberIndicatorHorizontalTape(10, 10, 100, 500, 100);
 
 	public static void main(String[] args){
 		Theme.setTheme(new Color(50, 100, 250), new Color(80, 50, 50), new Color(250, 250, 250), new Color(205, 205, 205), new Color(55, 55, 55), new Color(50, 190, 90), new Color(220, 200, 0),new Color(190, 50, 50));
