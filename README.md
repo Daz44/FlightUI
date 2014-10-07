@@ -26,8 +26,26 @@ Screenshots
 ![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot.PNG)
 #####OTHER INSTRUMENTS
 ![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot2.PNG)
-
-
+#####THEMES
+![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Themes.png)
+```
+		// AIRLINER THEME 
+		//Theme.setTheme(new Color(0, 102, 253), new Color(126, 92, 52), new Color(250, 250, 250), new Color(20, 20, 20, 80), new Color(205, 205, 205), new Color(55, 55, 55), new Color(50, 190, 90), new Color(220, 200, 0),new Color(190, 50, 50));
+		
+		//MILJET THEME
+		//Theme.setTheme(new Color(10, 10, 10), new Color(55, 55, 55), new Color(0, 210, 20), new Color(0, 210, 20, 80),new Color(0, 120, 10), new Color(0, 0, 0), new Color(50, 190, 90), new Color(220, 200, 0),new Color(50, 100, 50));
+		
+		//EMBRAER THEME
+		//Theme.setTheme(new Color(70, 130, 200), new Color(130, 50, 0), new Color(255, 255, 255),  new Color(5, 5, 5, 100), new Color(0, 0, 0), new Color(5, 5, 5), new Color(130, 200, 90), new Color(5, 190, 205),new Color(200, 0, 0));
+		
+		//AIRBUS THEME
+		//Theme.setTheme(new Color(20, 70, 170), new Color(60, 20, 20), new Color(255, 255, 255),  new Color(30, 30, 30), new Color(0, 0, 0), new Color(5, 5, 5), new Color(10, 150, 30), new Color(10, 200, 200),new Color(200, 0, 0));
+		
+		//BOEING THEME
+		//Theme.setTheme(new Color(10, 140, 200) /*SKY*/, new Color(150, 70, 20)/*GROUND*/, new Color(245, 245, 245)/*FORE*/,  new Color(100, 90, 90)/*AERO*/, new Color(5, 5, 5)/*MID*/, new Color(10, 15, 22) /*BACK*/, new Color(10, 150, 30) /*TRUE*/, new Color(10, 200, 200) /*NEUTRAL*/, new Color(200, 0, 0)/*FALSE*/);		
+		//(vertSky, vertGround, globFore, globMid, globBack, globTrue, globNeutral, globFalse)
+		
+```
 ---
 Configuration
 -------------
@@ -82,11 +100,3 @@ MIT
 [FSUIPC SDK]:http://www.schiratti.com/dowson.html
 [Microsoft's Flight Simulator X]:https://en.wikipedia.org/wiki/Microsoft_Flight_Simulator_X
 [Java]:http://www.java.com
-[marked]:https://github.com/chjj/marked
-[Ace Editor]:http://ace.ajax.org
-[node.js]:http://nodejs.org
-[Twitter Bootstrap]:http://twitter.github.com/bootstrap/
-[keymaster.js]:https://github.com/madrobby/keymaster
-[jQuery]:http://jquery.com
-[@tjholowaychuk]:http://twitter.com/tjholowaychuk
-[express]:http://expressjs.com
