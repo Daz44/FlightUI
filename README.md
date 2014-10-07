@@ -27,7 +27,8 @@ Screenshots
 #####OTHER INSTRUMENTS
 ![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot2.PNG)
 #####THEMES
-![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Themes.png)
+![FlightUI Themes](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/images/Themes_01.png)
+![FlightUI Themes for Airbus and Beoing](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/images/Themes_02.png)
 ```
 		// AIRLINER THEME 
 		//Theme.setTheme(new Color(0, 102, 253), new Color(126, 92, 52), new Color(250, 250, 250), new Color(20, 20, 20, 80), new Color(205, 205, 205), new Color(55, 55, 55), new Color(50, 190, 90), new Color(220, 200, 0),new Color(190, 50, 50));
@@ -100,3 +101,11 @@ MIT
 [FSUIPC SDK]:http://www.schiratti.com/dowson.html
 [Microsoft's Flight Simulator X]:https://en.wikipedia.org/wiki/Microsoft_Flight_Simulator_X
 [Java]:http://www.java.com
+[marked]:https://github.com/chjj/marked
+[Ace Editor]:http://ace.ajax.org
+[node.js]:http://nodejs.org
+[Twitter Bootstrap]:http://twitter.github.com/bootstrap/
+[keymaster.js]:https://github.com/madrobby/keymaster
+[jQuery]:http://jquery.com
+[@tjholowaychuk]:http://twitter.com/tjholowaychuk
+[express]:http://expressjs.com
