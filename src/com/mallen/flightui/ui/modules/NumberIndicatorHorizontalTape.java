@@ -59,7 +59,6 @@ public class NumberIndicatorHorizontalTape {
 		int tapeRange = 16 ;
 		double valueMult = (double) stepval/100;
 		int valueRef = (int) (value/valueMult);
-		//TODO: Fix implementation for intervals other than 100
 		
 		for(int i = -tapeRange/2; i < tapeRange/2; i++){
 			String s = "" + Math.round(((value/ ((int) (100* (double) valueMult))*(100*valueMult)))-((-100*valueMult)*i));

@@ -65,6 +65,9 @@ public class GaugeIndicator {
 		g.setColor(Theme.gForeground	);
 		if(value > maxVal) g.setColor(Theme.gFalse);
 		
+		
+		//TODO: NB: SET TO TRUE NOT FOREGROUND
+		g.setColor(Theme.gTrue);
 		g.fillArc(x+1, y+1, width-2, height-2, 90, (int) -(360.0/maxVal*value));
 	
 		/*
