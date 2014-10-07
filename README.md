@@ -19,6 +19,16 @@ FlightUI makes use of technolegies *including* the following:
 
 
 ---
+Screenshots
+---
+#####BUILD FROM 7TH OCTOBER 2014
+######MAJOR FLIGHT DISPLAY
+![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot.PNG)
+#####OTHER INSTRUMENTS
+![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot2.PNG)
+
+
+---
 Configuration
 -------------
 
