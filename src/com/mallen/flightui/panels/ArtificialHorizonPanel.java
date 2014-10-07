@@ -13,6 +13,7 @@ import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalCompact;
 import com.mallen.flightui.ui.modules.GaugeIndicator;
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontal;
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontalTape;
+import com.mallen.flightui.ui.modules.NumberIndicatorVerticalTape;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
@@ -31,8 +32,10 @@ public class ArtificialHorizonPanel extends JPanel {
 	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
-	NumberIndicatorHorizontalTape altTape = new NumberIndicatorHorizontalTape(getWidth()-120, 100, 100, 800, 100);
-	NumberIndicatorHorizontalTape spdTape = new NumberIndicatorHorizontalTape(20, 100, 100, 800, 20);
+	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-120, 100, 100, 800, 100);
+	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20);
+	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20);
+	
 	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true);
 	GaugeIndicator gInd = new GaugeIndicator(80, 40, 50, 50, 0, 500, 10);
 
@@ -63,13 +66,13 @@ public class ArtificialHorizonPanel extends JPanel {
 		ah.setSize(this.getSize().width, this.getSize().width);
 		ah.draw(g, this);
 		
-		altTape.setLocation(getWidth()-120, 100);
+		altTape.setLocation(getWidth()-70, 100);
 		altTape.setSize(50, 800);
 		altTape.update(FLUI_GLOBAL.qnhAlt);
 		altTape.draw(g, this);
 		
 		indicatorAltitude.update("" + qnhAlt);
-		indicatorAltitude.setLocation(this.getSize().width-140, 470);
+		indicatorAltitude.setLocation(this.getSize().width-90, 470);
 		indicatorAltitude.draw(g);
 		
 		//g.setColor(Theme.gForeground);
@@ -80,32 +83,35 @@ public class ArtificialHorizonPanel extends JPanel {
 		
 		spdTape.setLocation(20, 100);
 		spdTape.setSize(50, 800);
-		spdTape.update(FLUI_GLOBAL.trueSpeed);
+		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
 		spdTape.draw(g, this);
 		
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
 		indicatorSpeed.setLocation(10, 470);
 		indicatorSpeed.draw(g);
 	
-		
-		//////HEADING DISPLAY//////////////////////////////////////
-		
-		int hdg =  FLUI_GLOBAL.hdg;
-		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;
-		
-		numIndHeading.draw(g, this);
-		numIndHeading.setLocation(this.getSize().width/2-180, 10); 
-		numIndHeading.update(hdg, gps_waypoint);
-
-		///////////////////////////////////////////////////////////
-		
-		
-		
-		
-		
-		boolIndGear.update(FLUIAircraft.GearDown());
-		boolIndGear.draw(g);
-		
+		                                                                         
+		//////HEADING DISPLAY//////////////////////////////////////              
+		                                                                         
+		int hdg =  FLUI_GLOBAL.hdg;                                              
+		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;                             
+		                                                                         
+		numIndHeading.draw(g, this);                                             
+		numIndHeading.setLocation(this.getSize().width/2-180, 10);               
+		numIndHeading.update(hdg, gps_waypoint);                                 
+                        
+		hdgTape.draw(g, this);
+		hdgTape.setLocation(100, 40);
+		hdgTape.update(hdg);
+		///////////////////////////////////////////////////////////              
+		                                                                         
+		                                                                         
+		                                                                         
+		                                                                         
+		                                                                         
+		boolIndGear.update(FLUIAircraft.GearDown());                             
+		boolIndGear.draw(g);                                                     
+		                                                                         
 		boolean ap;
 		if(FLUI_READER.getByte(0x07BC) == 1){ ap = true; } else { ap = false;}	
 		

@@ -10,14 +10,14 @@ import java.awt.image.ImageObserver;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
-public class NumberIndicatorHorizontalTape {
+public class NumberIndicatorVerticalTape {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
 	int value = 0, target = 0;
 	
 	int stepval = 0;
 	
-	public NumberIndicatorHorizontalTape(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int step){
+	public NumberIndicatorVerticalTape(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int step){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
@@ -56,7 +56,7 @@ public class NumberIndicatorHorizontalTape {
 		
 		g.setColor(Theme.gForeground);
 		
-		int tapeRange = 16 ;
+		int tapeRange = 8;
 		double valueMult = (double) stepval/100;
 		System.out.println("#" + valueMult);
 		int valueRef = (int) (value/valueMult);
@@ -70,20 +70,22 @@ public class NumberIndicatorHorizontalTape {
 			
 			Rectangle2D stringRect = TextFont.getStringBounds(s, fm.getFontRenderContext());
 			int numberFromNextStep = ((valueRef - ((valueRef/100)*100)));
-			int offset = (int) (Math.round(numberFromNextStep + (x - stringRect.getWidth()*3) + width/2));
+			int offset = (int) ((int) numberFromNextStep + (y - stringRect.getHeight()) + height/2);
 		
 			
-			if( i*width/tapeRange + offset < x+width &&  i*width/tapeRange + offset - stringRect.getWidth() > x){
+			if( i*height/tapeRange + offset < y+height &&  i*height/tapeRange + offset - stringRect.getHeight() > y && (((valueRef/100)*100)-(100*i)) >= 0){
 		
 				
-				int stringY = (int) (y + height/2 + stringRect.getHeight()/2);
-				int stringX = i*width/tapeRange + offset;
+				int stringX = (int) (x + width/2 - stringRect.getWidth()/2);
+				int stringY = i*height/tapeRange + offset;
 				
 				g.drawString(s, stringX, stringY);
+				g.fillRect(x, (int) (stringY - stringRect.getHeight()/2 + stringRect.getHeight()/6), width/8, 2);
+				g.fillRect(x+width-width/8, (int) (stringY - stringRect.getHeight()/2 + stringRect.getHeight()/6), width/8, 2);
 			}
 		}
 		
-		g.fillRect(x + width/2 - 8, y, 16, 4);	
+		g.fillRect(x, y + height/2, width, 2);	
 		
 	}
 }
