@@ -42,13 +42,6 @@ public class ArtificialHorizonPanel extends JPanel {
 	public ArtificialHorizonPanel(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();
 		ad.initMem();
-		
-		Thread thread = new Thread(){
-			public void run(){
-				ah.loop();	
-			}
-		};
-		thread.start();
 	}
 	
 	BufferedImage bf;
