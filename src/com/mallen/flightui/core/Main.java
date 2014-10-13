@@ -26,9 +26,9 @@ public class Main
 	public void init() throws Exception{
 		System.out.println("Running tests + " + System.getProperty("java.library.path"));
 		
-		int ret = 0;
+		int FSUIPC_CONNECTION = 0;
 		try {
-			ret = fsuipc_wrapper.Open(fsuipc_wrapper.SIM_ANY);
+			FSUIPC_CONNECTION = fsuipc_wrapper.Open(fsuipc_wrapper.SIM_ANY);
 		} catch(Error e){
 			if(e.getMessage().equals("Can't load IA 32-bit .dll on a AMD 64-bit platform")){
 					throw new InvalidJVMConfigurationException(e.getMessage(), "Please start FlightUI with a 32BIT JVM!");
@@ -41,8 +41,8 @@ public class Main
 			}
 		}
 		
-		System.out.println("ret =" + ret);
-		if(ret == 0 )
+		System.out.println("ret =" + FSUIPC_CONNECTION);
+		if(FSUIPC_CONNECTION == 0 )
 			{
 				try {
 					throw new FlightSimConnectionException("Flight Sim Not Found", "Make sure your flight simulator is launched and try again!");
