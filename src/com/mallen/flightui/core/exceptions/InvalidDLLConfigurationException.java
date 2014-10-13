@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.core;
+package com.mallen.flightui.core.exceptions;
 
 public class InvalidDLLConfigurationException extends Exception{
 	public InvalidDLLConfigurationException(String reason, String explanation){

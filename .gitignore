@@ -1,2 +1,3 @@
 *.class
-dir_to_ignore/
+bin/
+.settings/

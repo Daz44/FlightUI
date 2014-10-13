@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.core;
+package com.mallen.flightui.core.exceptions;
 
 public class InvalidJVMConfigurationException extends Exception{
 	public InvalidJVMConfigurationException(String reason, String explanation){

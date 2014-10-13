@@ -23,6 +23,10 @@ import javax.swing.JFrame;
 
 import com.flightsim.fsuipc.FSUIPC;
 import com.flightsim.fsuipc.fsuipc_wrapper;
+import com.mallen.flightui.core.exceptions.FLUIException;
+import com.mallen.flightui.core.exceptions.FlightSimConnectionException;
+import com.mallen.flightui.core.exceptions.InvalidDLLConfigurationException;
+import com.mallen.flightui.core.exceptions.InvalidJVMConfigurationException;
 import com.mallen.flightui.panels.ArtificialHorizonPanel;
 import com.mallen.flightui.panels.AutopilotPanel;
 import com.mallen.flightui.panels.CautionPanel;
@@ -57,29 +61,23 @@ public class Main
 		}
 		
 		System.out.println("ret =" + FSUIPC_CONNECTION);
-		if(FSUIPC_CONNECTION == 0 )
-			{
-				try {
-					throw new FlightSimConnectionException("Flight Sim Not Found", "Make sure your flight simulator is launched and try again!");
-				} catch (FlightSimConnectionException e) {
-					e.printStackTrace();
-				}
-			}
+		if(FSUIPC_CONNECTION == 0 ){
+			throw new FlightSimConnectionException("Flight Sim Not Found", "Make sure your flight simulator is launched and try again!");
+		}
 		else
-			{
-				
-				Main t = new Main();
-				t.configFrame(true, true);
-				t.setFrameVisibility(true);
-				new Console();
+		{
+			Main t = new Main();
+			t.configFrame(true, true);
+			t.setFrameVisibility(true);
+			new Console();
 			}
 	}
 	
 	public static void main(String s[]) 
 	{
 		try {
-		Main m = new Main();
-		m.init();
+			Main m = new Main();
+			m.init();
 		}catch(Exception e){
 			System.out.println("FATAL EXCEPTION - Please ensure that FSUI_PC.DLL is in the correct direcoty!");
 			System.exit(1);

@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.core;
+package com.mallen.flightui.core.exceptions;
 
 public class FlightSimConnectionException extends Exception{
 	public FlightSimConnectionException(String reason, String explanation){
