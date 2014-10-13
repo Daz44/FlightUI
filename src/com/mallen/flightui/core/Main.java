@@ -75,8 +75,13 @@ public class Main
 	
 	public static void main(String s[]) 
 	{
-		try {
+		try {		
 			Main m = new Main();
+				if(s.length > 0){
+					m.setTheme(s[0].toLowerCase());
+				} else {
+					m.setTheme("embraer");
+				}
 			m.init();
 		}catch(Exception e){
 			System.out.println("FATAL EXCEPTION - Please ensure that FSUI_PC.DLL is in the correct direcoty!");
@@ -111,7 +116,7 @@ public class Main
 			Frame_VirtualHorizon.setSize(1000, 1000);
 			Frame_VirtualHorizon.setLocation(-1080, 100);
 			Frame_VirtualHorizon.setLocationRelativeTo(null);
-			Frame_VirtualHorizon.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_VirtualHorizon.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_VirtualHorizon.setMinimumSize(new Dimension(500, 500));
 			Frame_VirtualHorizon.add(new ArtificialHorizonPanel());
 			Frame_VirtualHorizon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,7 +130,7 @@ public class Main
 			Frame_Autopilot.setResizable(isResizable);
 			Frame_Autopilot.setSize(1000, 70);
 			Frame_Autopilot.setLocation(-1080, 30);
-			Frame_Autopilot.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_Autopilot.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_Autopilot.add(new AutopilotPanel());
 			Frame_Autopilot.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_Autopilot.setUndecorated(isUndecorated);
@@ -135,7 +140,7 @@ public class Main
 			Frame_LightPanel1.setResizable(isResizable);
 			Frame_LightPanel1.setLocation(-1080 ,30-70);
 			Frame_LightPanel1.setSize(1000, 70);
-			Frame_LightPanel1.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_LightPanel1.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_LightPanel1.add(new LightPanel());
 			Frame_LightPanel1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_LightPanel1.setUndecorated(isUndecorated);
@@ -145,7 +150,7 @@ public class Main
 			Frame_LightPanel2.setResizable(isResizable);
 			Frame_LightPanel2.setLocation(-1080, -30-70);
 			Frame_LightPanel2.setSize(1000, 70);
-			Frame_LightPanel2.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_LightPanel2.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_LightPanel2.add(new LightPanel2());
 			Frame_LightPanel2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_LightPanel2.setUndecorated(isUndecorated);
@@ -156,7 +161,7 @@ public class Main
 			Frame_RadioPanel.setResizable(isResizable);
 			Frame_RadioPanel.setLocation(-1080, -30-70-70);
 			Frame_RadioPanel.setSize(1000, 70);
-			Frame_RadioPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_RadioPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_RadioPanel.add(new RadioPanel());
 			Frame_RadioPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_RadioPanel.setUndecorated(isUndecorated);
@@ -167,7 +172,7 @@ public class Main
 			Frame_ENGDisp_Gauge.setResizable(isResizable);
 			Frame_ENGDisp_Gauge.setLocation(-1080, -30-70-70-160);
 			Frame_ENGDisp_Gauge.setSize(1000, 160);
-			Frame_ENGDisp_Gauge.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_ENGDisp_Gauge.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_ENGDisp_Gauge.add(new EnginePanelGuage());
 			Frame_ENGDisp_Gauge.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_ENGDisp_Gauge.setUndecorated(isUndecorated);
@@ -177,7 +182,7 @@ public class Main
 			Frame_CautionPanel.setResizable(isResizable);
 			Frame_CautionPanel.setLocation(-1080, -30-70-70-160-100);
 			Frame_CautionPanel.setSize(150, 100);
-			Frame_CautionPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			//Frame_CautionPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_CautionPanel.add(new CautionPanel());
 			Frame_CautionPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_CautionPanel.setUndecorated(isUndecorated);

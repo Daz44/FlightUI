@@ -17,6 +17,6 @@ package com.mallen.flightui.core.exceptions;
 
 public class FlightSimConnectionException extends Exception{
 	public FlightSimConnectionException(String reason, String explanation){
-		System.err.println("[FLUI] Type: Connection Exception | Reason: " + reason + " | " + explanation);
+		System.err.println("[FlightSimConnectionException] Reason: " + reason + " | " + explanation);
 	}
 }
