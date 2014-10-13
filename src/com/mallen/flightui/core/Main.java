@@ -57,7 +57,7 @@ public class Main
 				} else {
 					throw new FLUIException(e.getCause().toString(), e.getMessage());
 				}
-			}
+			}  
 		}
 		
 		System.out.println("ret =" + FSUIPC_CONNECTION);
@@ -223,7 +223,6 @@ public class Main
 	 * @param visible Parameter passed to JFrame.setVisible(visible)
 	 */
 	public void setFrameVisibility(boolean visible){
-		setTheme("embraer");
 		try {
 			Frame_Autopilot.setVisible(visible);
 			Frame_LightPanel1.setVisible(visible);
