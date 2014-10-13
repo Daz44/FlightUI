@@ -19,19 +19,27 @@ public class ArtificialHorizon {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
 	
-	public ArtificialHorizon(int horizonX, int horizonY, int horizonWidth, int horizonHeight, Color colS, Color colG, Color colI){
+	
+	/**
+	 * @param horizonX X Drawing position of graphic in Pixels
+	 * @param horizonY Y Drawing position of graphic in Pixels
+	 * @param horizonWidth Drawing width of graphic in Pixels
+	 * @param horizonHeight Drawing height of graphics in Pixels
+	 */
+	public ArtificialHorizon(int horizonX, int horizonY, int horizonWidth, int horizonHeight){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
 		width = horizonWidth;
 		f = new Font("Verdana", Font.PLAIN, height/100);
 		
-		colSky = colS;
-		colGround = colG;
-		colInd = colI;
-		
 	}
 	
+	/**
+	 * Sets sized of graphics - can be called at any time!
+	 * @param w Width in Pixels
+	 * @param h Height in Pixels
+	 */
 	public void setSize(int w, int h){
 		width = w;
 		height = h;
@@ -47,11 +55,13 @@ public class ArtificialHorizon {
 	private double drawOffset;
 	private double roll;
 	
-	public void loop(){
-		while(true){
-		}
-	}
+	/**
+	 * Draws graphics as per the X,Y,WIDTH and HEIGHT variables!
+	 * @param g Graphics class passed from parent class (JFrame)
+	 * @param io Image Observer for painting from parent class (JFrame)
+	 */
 	
+	//Todo: Refactor and make easier to read
 	public void draw(Graphics g, ImageObserver io){
 		
 		drawOffset = (height/180*(180-pitch+10));

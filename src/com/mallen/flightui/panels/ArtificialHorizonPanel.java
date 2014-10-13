@@ -23,7 +23,7 @@ import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 public class ArtificialHorizonPanel extends JPanel {
 	
-	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth(), Theme.vhSky, Theme.vhGround, Theme.gForeground);
+	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth());
 	
 	
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(getWidth()-100, 900, 100, 30, "ft");
