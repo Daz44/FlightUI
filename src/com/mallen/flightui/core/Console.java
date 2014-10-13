@@ -6,8 +6,8 @@ import java.util.Scanner;
 import com.mallen.flightui.wrapper.FLUI_READER;
 import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
-public class ConsoleMode {
-	public ConsoleMode(){
+public class Console {
+	public Console(){
 		System.out.println("------------------------------------------------------------------------------");
 		System.out.println("                          FLIGHTUI AIRCRAFT CONSOLE");
 		System.out.println("------------------------------------------------------------------------------");
@@ -46,6 +46,6 @@ public class ConsoleMode {
 	}
 	
 	public static void main(String[] args){
-		new ConsoleMode();
+		new Console();
 	}
 }

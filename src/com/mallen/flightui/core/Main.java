@@ -23,16 +23,32 @@ import com.mallen.flightui.wrapper.FLUI_DATA;
 public class Main
 {
 	
-	public static void main(String s[]) 
-	{
+	public void init() throws Exception{
 		System.out.println("Running tests + " + System.getProperty("java.library.path"));
-		int ret = fsuipc_wrapper.Open(fsuipc_wrapper.SIM_ANY);
 		
+		int ret = 0;
+		try {
+			ret = fsuipc_wrapper.Open(fsuipc_wrapper.SIM_ANY);
+		} catch(Error e){
+			if(e.getMessage().equals("Can't load IA 32-bit .dll on a AMD 64-bit platform")){
+					throw new InvalidJVMConfigurationException(e.getMessage(), "Please start FlightUI with a 32BIT JVM!");
+			} else {
+				if(e.getCause().toString().contains("dll in java.library.path")){
+					throw new InvalidDLLConfigurationException(e.getCause().toString(), "Please make sure fsuipc.dll is placed within your working directory or %home%");
+				} else {
+					throw new FLUIException(e.getCause().toString(), e.getMessage());
+				}
+			}
+		}
 		
 		System.out.println("ret =" + ret);
 		if(ret == 0 )
 			{
-				System.out.println("Flight sim not found");
+				try {
+					throw new FlightSimConnectionException("Flight Sim Not Found", "Make sure your flight simulator is launched and try again!");
+				} catch (FlightSimConnectionException e) {
+					e.printStackTrace();
+				}
 			}
 		else
 			{
@@ -40,6 +56,19 @@ public class Main
 				Main t = new Main();
 				t.drawFrame();
 			}
+	}
+	
+	public static void main(String s[]) 
+	{
+		try {
+		Main m = new Main();
+		m.init();
+		}catch(Exception e){
+			System.out.println("--FATAL EXCEPTION THROWN IN MAIN--");
+			System.out.println(e.getCause());
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
+		}
 	}
 	
 	FSUIPC fs = new FSUIPC();
@@ -55,7 +84,8 @@ public class Main
 		//Theme.setTheme(new Color(10, 10, 10), new Color(55, 55, 55), new Color(0, 210, 20), new Color(0, 210, 20, 80),new Color(0, 120, 10), new Color(0, 0, 0), new Color(50, 190, 90), new Color(220, 200, 0),new Color(50, 100, 50));
 		
 		//EMBRAER THEME
-		Theme.setTheme(new Color(70, 130, 200), new Color(130, 50, 0), new Color(255, 255, 255),  new Color(5, 5, 5, 100), new Color(0, 0, 0), new Color(5, 5, 5), new Color(130, 200, 90), new Color(5, 190, 205),new Color(200, 0, 0));
+		Theme.setTheme(new Color(70, 130, 200), new Color(130, 50, 0), new Color(255, 255, 255),  new Color(5, 5, 5, 50), new Color(0, 0, 0), new Color(5, 5, 5,
+				100), new Color(130, 200, 90), new Color(5, 190, 205),new Color(200, 0, 0));
 		
 		//AIRBUS THEME
 		//Theme.setTheme(new Color(20, 70, 170), new Color(60, 20, 20), new Color(255, 255, 255),  new Color(30, 30, 30), new Color(0, 0, 0), new Color(5, 5, 5), new Color(10, 150, 30), new Color(10, 200, 200),new Color(200, 0, 0));
@@ -66,19 +96,22 @@ public class Main
 		
 		
 		try {
-			boolean isUndecorated = true;
+			boolean isUndecorated = false;
 			boolean isResizable = true;
+			
 			
 			JFrame VH = new JFrame();
 			VH.setTitle("FlightUI - VirtualHorizon (Airliner)");
 			VH.setResizable(isResizable);
 			VH.setSize(1000, 1000);
 			VH.setLocation(-1080, 100);
+			VH.setLocationRelativeTo(null);
 			VH.setIconImage(ImageIO.read(new File("FLUI.png")));
 			VH.setMinimumSize(new Dimension(500, 500));
 			VH.add(new ArtificialHorizonPanel());
 			VH.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			VH.setUndecorated(isUndecorated);
+			VH.setAlwaysOnTop(true);
 			VH.setType(javax.swing.JFrame.Type.UTILITY);
 			
 			VH.setVisible(true);
@@ -159,9 +192,7 @@ public class Main
 			RadioPanel.setVisible(true);
 			ENGDisp_Guage.setVisible(true);
 			CautionPanel.setVisible(true);
-			
-			
-			new ConsoleMode();
+			new Console();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
