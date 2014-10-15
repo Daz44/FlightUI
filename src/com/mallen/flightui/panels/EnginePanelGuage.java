@@ -26,6 +26,7 @@ import com.mallen.flightui.ui.modules.GaugeIndicator;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.utils.Converter;
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
 import com.mallen.flightui.wrapper.FLUI_READER;
 
@@ -68,16 +69,16 @@ public class EnginePanelGuage extends JPanel {
 		g.fillRect(0, 0, getWidth(), getHeight());
 	
 		//DRAWING ENGINE DATA
-		guageIndEng1N1.update(FLUI_READER.getShort(0x0898)/164);
+		guageIndEng1N1.update(FLUI_GLOBAL.engine1N1);
 		guageIndEng1N1.draw(g, this);
 		
-		guageIndEng2N2.update(FLUI_READER.getShort(0x092E)/164);
+		guageIndEng2N2.update(FLUI_GLOBAL.engine2N2);
 		guageIndEng2N2.draw(g, this);
 		
-		guageIndEng2N1.update(FLUI_READER.getShort(0x0930)/164);
+		guageIndEng2N1.update(FLUI_GLOBAL.engine2N1);
 		guageIndEng2N1.draw(g, this);
 		
-		guageIndEng1N2.update(FLUI_READER.getShort(0x0896)/164);
+		guageIndEng1N2.update(FLUI_GLOBAL.engine1N2);
 		guageIndEng1N2.draw(g, this);
 		
 		g.setFont(new Font("Verdana", Font.PLAIN, getHeight()/10));
@@ -89,30 +90,30 @@ public class EnginePanelGuage extends JPanel {
 		int highLvl = 80;
 		
 		//ENGINE 1 N1
-		if(FLUI_READER.getShort(0x0898)/164 > highLvl){
+		if(FLUI_GLOBAL.engine1N1 > highLvl){
 			i = 3;
-		} else if(FLUI_READER.getShort(0x0898)/164 > midLvl){
+		} else if(FLUI_GLOBAL.engine1N1 > midLvl){
 			i = 2;
 		} else {
 			i = 1;
 		}
 		intIndEng1N1.update(i);
-		intIndEng1N1.text = FLUI_READER.getShort(0x0898)/164 + "%";
+		intIndEng1N1.text = FLUI_GLOBAL.engine1N1+ "%";
 		intIndEng1N1.draw(g);
 		
 		textIndEng1N1.update(i);
 		textIndEng1N1.draw(g);
 		
 		//ENGINE 2 N1
-		if(FLUI_READER.getShort(0x0930)/164 > highLvl){
+		if(FLUI_GLOBAL.engine2N1 > highLvl){
 			i = 3;
-		} else if(FLUI_READER.getShort(0x0930)/164 > midLvl){
+		} else if(FLUI_GLOBAL.engine2N1 > midLvl){
 			i = 2;
 		} else {
 			i = 1;
 		}	
 		intIndEng2N1.update(i);
-		intIndEng2N1.text = FLUI_READER.getShort(0x0930)/164 + "%";
+		intIndEng2N1.text = FLUI_GLOBAL.engine2N1+ "%";
 		intIndEng2N1.draw(g);
 		
 		textIndEng2N1.update(i);
@@ -122,31 +123,31 @@ public class EnginePanelGuage extends JPanel {
 		highLvl = 95;
 		
 		//ENGINE 1 N2
-		if(FLUI_READER.getShort(0x0896)/164 > midLvl){
+		if(FLUI_GLOBAL.engine1N2 > midLvl){
 			i = 3;
-		} else if(FLUI_READER.getShort(0x0896)/164 > highLvl){
+		} else if(FLUI_GLOBAL.engine1N2 > highLvl){
 			i = 2;
 		} else {
 			i = 1;
 		}
 		intIndEng1N2.update(i);
-		intIndEng1N2.text = FLUI_READER.getShort(0x0896)/164 + "%";
+		intIndEng1N2.text = FLUI_GLOBAL.engine1N2 + "%";
 		intIndEng1N2.draw(g);
 		
 		textIndEng1N2.update(i);
 		textIndEng1N2.draw(g);
 		
 		//ENGINE 2 N2
-		if(FLUI_READER.getShort(0x092E)/164 > midLvl){
+		if(FLUI_GLOBAL.engine2N2 > midLvl){
 			i = 3;
-		} else if(FLUI_READER.getShort(0x092E)/164 > highLvl){
+		} else if(FLUI_GLOBAL.engine2N2 > highLvl){
 			i = 2;
 		} else {
 			i = 1;
 		}	
 		
 		intIndEng2N2.update(i);
-		intIndEng2N2.text = FLUI_READER.getShort(0x092E)/164 + "%";
+		intIndEng2N2.text = FLUI_GLOBAL.engine2N2 + "%";
 		intIndEng2N2.draw(g);
 		
 		textIndEng2N2.update(i);
@@ -154,23 +155,23 @@ public class EnginePanelGuage extends JPanel {
 	
 		/////////////////////////////////////////////////////////////
 		
-		tiAlt.update(Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3101))));
+		tiAlt.update(FLUI_GLOBAL.engineAlternator);
 		tiAlt.draw(g);
 		
-		tiBat.update(Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3102))));
+		tiBat.update(FLUI_GLOBAL.engineBattery);
 		tiBat.draw(g);
 		
-		tiAvi.update(Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3103))));
+		tiAvi.update(FLUI_GLOBAL.engineAvionics);
 		tiAvi.draw(g);
 		
-		tiFuel.update(Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3104))));
+		tiFuel.update(FLUI_GLOBAL.enginePump);
 		tiFuel.draw(g);
 		
 		/////
-		guageIndThrot1.update(FLUI_READER.getShort(0x088C));
+		guageIndThrot1.update(FLUI_GLOBAL.engine1Throt);
 		guageIndThrot1.draw(g, this);
 		
-		guageIndThrot2.update(FLUI_READER.getShort(0x0924));
+		guageIndThrot2.update(FLUI_GLOBAL.engine2Throt);
 		guageIndThrot2.draw(g, this);
 		
 		try {

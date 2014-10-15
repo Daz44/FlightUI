@@ -17,6 +17,7 @@ package com.mallen.flightui.core;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -36,8 +37,10 @@ import com.mallen.flightui.panels.LightPanel2;
 import com.mallen.flightui.panels.RadioPanel;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
+import com.mallen.flightui.wrapper.FLUI_MEMORY;
 import com.mallen.flightui.wrapper.FLUI_READER;
 import com.mallen.flightui.wrapper.FLUI_DATA;
+import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 public class Main
 {
@@ -69,7 +72,7 @@ public class Main
 			Main t = new Main();
 			t.configFrame(true, true);
 			t.setFrameVisibility(true);
-			new Console();
+		//	new Console();
 			}
 	}
 	
@@ -93,13 +96,13 @@ public class Main
 	FLUI_DATA ad = new FLUI_DATA();
 	FLUI_READER adr = new FLUI_READER();
 	
-	JFrame Frame_VirtualHorizon = new JFrame();
-	JFrame Frame_Autopilot = new JFrame();
-	JFrame Frame_LightPanel1 = new JFrame();
-	JFrame Frame_LightPanel2 = new JFrame();
-	JFrame Frame_RadioPanel = new JFrame();
-	JFrame Frame_ENGDisp_Gauge = new JFrame();
-	JFrame Frame_CautionPanel = new JFrame();
+	 JFrame Frame_VirtualHorizon = new JFrame();
+	 JFrame Frame_Autopilot = new JFrame();
+	 JFrame Frame_LightPanel1 = new JFrame();
+	 JFrame Frame_LightPanel2 = new JFrame();
+	 JFrame Frame_RadioPanel = new JFrame();
+	 JFrame Frame_ENGDisp_Gauge = new JFrame();
+	 JFrame Frame_CautionPanel = new JFrame();
 	
 	/**
 	 * Initializes FlightUI panel (VirtualHorizon, Radio Panel, etc...)
@@ -110,27 +113,23 @@ public class Main
 	 */
 	public void configFrame(boolean isUndecorated, boolean isResizable){
 		try {		
-			
+
 			Frame_VirtualHorizon.setTitle("FlightUI - VirtualHorizon (Airliner)");
 			Frame_VirtualHorizon.setResizable(isResizable);
 			Frame_VirtualHorizon.setSize(1000, 1000);
 			Frame_VirtualHorizon.setLocation(-1080, 100);
-			Frame_VirtualHorizon.setLocationRelativeTo(null);
-			//Frame_VirtualHorizon.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_VirtualHorizon.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_VirtualHorizon.setMinimumSize(new Dimension(500, 500));
 			Frame_VirtualHorizon.add(new ArtificialHorizonPanel());
 			Frame_VirtualHorizon.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			Frame_VirtualHorizon.setUndecorated(isUndecorated);
 			Frame_VirtualHorizon.setAlwaysOnTop(true);
 			Frame_VirtualHorizon.setType(javax.swing.JFrame.Type.UTILITY);		
-			Frame_VirtualHorizon.setVisible(true);
-			
 			
 			Frame_Autopilot.setTitle("FlightUI - AUTOPILOT (Airliner)");
 			Frame_Autopilot.setResizable(isResizable);
 			Frame_Autopilot.setSize(1000, 70);
 			Frame_Autopilot.setLocation(-1080, 30);
-			//Frame_Autopilot.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_Autopilot.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_Autopilot.add(new AutopilotPanel());
 			Frame_Autopilot.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_Autopilot.setUndecorated(isUndecorated);
@@ -140,7 +139,7 @@ public class Main
 			Frame_LightPanel1.setResizable(isResizable);
 			Frame_LightPanel1.setLocation(-1080 ,30-70);
 			Frame_LightPanel1.setSize(1000, 70);
-			//Frame_LightPanel1.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_LightPanel1.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_LightPanel1.add(new LightPanel());
 			Frame_LightPanel1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_LightPanel1.setUndecorated(isUndecorated);
@@ -150,7 +149,7 @@ public class Main
 			Frame_LightPanel2.setResizable(isResizable);
 			Frame_LightPanel2.setLocation(-1080, -30-70);
 			Frame_LightPanel2.setSize(1000, 70);
-			//Frame_LightPanel2.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_LightPanel2.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_LightPanel2.add(new LightPanel2());
 			Frame_LightPanel2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_LightPanel2.setUndecorated(isUndecorated);
@@ -161,7 +160,7 @@ public class Main
 			Frame_RadioPanel.setResizable(isResizable);
 			Frame_RadioPanel.setLocation(-1080, -30-70-70);
 			Frame_RadioPanel.setSize(1000, 70);
-			//Frame_RadioPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_RadioPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_RadioPanel.add(new RadioPanel());
 			Frame_RadioPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_RadioPanel.setUndecorated(isUndecorated);
@@ -172,7 +171,7 @@ public class Main
 			Frame_ENGDisp_Gauge.setResizable(isResizable);
 			Frame_ENGDisp_Gauge.setLocation(-1080, -30-70-70-160);
 			Frame_ENGDisp_Gauge.setSize(1000, 160);
-			//Frame_ENGDisp_Gauge.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_ENGDisp_Gauge.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_ENGDisp_Gauge.add(new EnginePanelGuage());
 			Frame_ENGDisp_Gauge.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_ENGDisp_Gauge.setUndecorated(isUndecorated);
@@ -182,11 +181,12 @@ public class Main
 			Frame_CautionPanel.setResizable(isResizable);
 			Frame_CautionPanel.setLocation(-1080, -30-70-70-160-100);
 			Frame_CautionPanel.setSize(150, 100);
-			//Frame_CautionPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
+			Frame_CautionPanel.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
 			Frame_CautionPanel.add(new CautionPanel());
 			Frame_CautionPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_CautionPanel.setUndecorated(isUndecorated);
 			Frame_CautionPanel.setType(javax.swing.JFrame.Type.UTILITY);
+			
 		} catch(Exception e){ e.printStackTrace();}
 	}
 	
@@ -206,7 +206,7 @@ public class Main
 			Theme.setTheme(new Color(10, 10, 10), new Color(55, 55, 55), new Color(0, 210, 20), new Color(0, 210, 20, 80),new Color(0, 120, 10), new Color(0, 0, 0), new Color(50, 190, 90), new Color(220, 200, 0),new Color(50, 100, 50));	
 		} else if(theme.toLowerCase().trim().equals("embraer")){
 			//EMBRAER THEME
-			Theme.setTheme(new Color(70, 130, 200), new Color(130, 50, 0), new Color(255, 255, 255),  new Color(5, 5, 5, 50), new Color(0, 0, 0), new Color(5, 5, 5, 100), new Color(130, 200, 90), new Color(5, 190, 205),new Color(200, 0, 0));
+			Theme.setTheme(new Color(70, 130, 200), new Color(130, 50, 0), new Color(255, 255, 255),  new Color(5, 5, 5, 50), new Color(0, 0, 0), new Color(35, 35, 35), new Color(130, 200, 90), new Color(5, 190, 205),new Color(200, 0, 0));
 		} else if(theme.toLowerCase().trim().equals("airbus")){
 			//AIRBUS THEME
 			Theme.setTheme(new Color(20, 70, 170), new Color(60, 20, 20), new Color(255, 255, 255),  new Color(30, 30, 30), new Color(0, 0, 0), new Color(5, 5, 5), new Color(10, 150, 30), new Color(10, 200, 200),new Color(200, 0, 0));
@@ -229,12 +229,16 @@ public class Main
 	 */
 	public void setFrameVisibility(boolean visible){
 		try {
+			
 			Frame_Autopilot.setVisible(visible);
 			Frame_LightPanel1.setVisible(visible);
 			Frame_LightPanel2.setVisible(visible);
-			//Frame_RadioPanel.setVisible(visible);
+			Frame_RadioPanel.setVisible(visible);
 			Frame_ENGDisp_Gauge.setVisible(visible);
+			Frame_VirtualHorizon.setVisible(visible);
 			Frame_CautionPanel.setVisible(visible);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

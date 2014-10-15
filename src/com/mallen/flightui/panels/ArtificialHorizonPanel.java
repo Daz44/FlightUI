@@ -17,8 +17,8 @@ package com.mallen.flightui.panels;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -36,6 +36,7 @@ import com.mallen.flightui.wrapper.FLUI_MEMORY;
 import com.mallen.flightui.wrapper.FLUI_READER;
 import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
+@SuppressWarnings("serial")
 public class ArtificialHorizonPanel extends JPanel {
 	
 	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth());
@@ -57,48 +58,74 @@ public class ArtificialHorizonPanel extends JPanel {
 	public ArtificialHorizonPanel(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();
 		ad.initMem();
-	}
+	};
 	
-	BufferedImage bf;
-	int qnhAlt = 0;
+	int qnhAlt;
+	boolean drawFPS = true;
+	boolean debugInf = false;
 	
+	int sX = 0;
+	int sY = 0;
 	
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);
 	
 	long delta = System.currentTimeMillis();
+	long methDelta = 0;
 	
 		qnhAlt = FLUI_GLOBAL.qnhAlt;
 	
+		if(debugInf){
+			System.out.println("----LOOP DATA----");
+			methDelta = System.currentTimeMillis();
+		}	
+			
 		ah.setSize(this.getSize().width, this.getSize().width);
 		ah.draw(g, this);
 		
+		if(debugInf){
+			System.out.println("AH:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
+			
 		altTape.setLocation(getWidth()-70, 100);
 		altTape.setSize(50, 800);
 		altTape.update(FLUI_GLOBAL.qnhAlt);
 		altTape.draw(g, this);
 		
+		if(debugInf){
+			System.out.println("AT:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
+			
 		indicatorAltitude.update("" + qnhAlt);
 		indicatorAltitude.setLocation(this.getSize().width-110, 470);
 		indicatorAltitude.draw(g);
 		
-		//g.setColor(Theme.gForeground);
-		//g.drawString("R" + FLUI_GLOBAL.radAlt + "FT", this.getSize().width-100, 365);
-		
-		//////TRUE AIRSPEED DISPLAY//////////////////////////////////////
-		
+		if(debugInf){
+			System.out.println("IA:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
 		
 		spdTape.setLocation(20, 100);
 		spdTape.setSize(50, 800);
 		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
 		spdTape.draw(g, this);
 		
+		if(debugInf){
+			System.out.println("ST:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
+			
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
 		indicatorSpeed.setLocation(10, 470);
 		indicatorSpeed.draw(g);
 	
-		                                                                         
+		if(debugInf){
+			System.out.println("IS:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}                                                                      
 		//////HEADING DISPLAY//////////////////////////////////////              
 		                                                                         
 		int hdg =  FLUI_GLOBAL.hdg;                                              
@@ -107,31 +134,76 @@ public class ArtificialHorizonPanel extends JPanel {
 		numIndHeading.draw(g, this);                                             
 		numIndHeading.setLocation(this.getSize().width/2-180, 10);               
 		numIndHeading.update(hdg, gps_waypoint);                                 
-                        
+              
+		if(debugInf){
+			System.out.println("NIH:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
+		
 		hdgTape.draw(g, this);
 		hdgTape.setLocation(100, 40);
 		hdgTape.update(hdg);
 		///////////////////////////////////////////////////////////              
-		                                                                         
-                                                  
-		boolIndGear.update(FLUIAircraft.GearDown());                             
-		boolIndGear.draw(g);                                                     
-		                                                                         
-		boolean ap;
-		if(FLUI_READER.getByte(0x07BC) == 1){ ap = true; } else { ap = false;}	
+		 
+		if(debugInf){
+			System.out.println("HT:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
+			
+		boolIndGear.update(FLUI_GLOBAL.gear);                             
+		boolIndGear.draw(g);             
 		
-		boolIndAP.update(ap);
+		if(debugInf){
+			System.out.println("BIG:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}                                                      
+		
+		boolIndAP.update(FLUI_GLOBAL.ap);
 		boolIndAP.setLocation(this.getSize().width-130, 10);
 		boolIndAP.draw(g);
 		
-		g.setColor(Theme.gForeground);
-		g.drawString("FLAPS: " + FLUIAircraft.Flaps(4), 10, 50);
-
+		if(debugInf){
+			System.out.println("BIAP:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
 		
-		try {
+		g.setColor(Theme.gForeground);
+		g.drawString("FLAPS: " + FLUI_GLOBAL.flaps, 10, 50);
+
+		if(debugInf){
+			System.out.println("FLAPS:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}
+			//TESTING
+				g.fillRect(sX, sY, 5, 5);
+				sX++;
+				sY++;
+			////////////
 			
-			Thread.sleep(1000/120);
-		} catch (InterruptedException e) {
+		try {
+			long sleepTime = 1000/120 - (System.currentTimeMillis()-delta);
+			if(sleepTime < 0){
+				//System.out.println("[WARNING] DROPPED FRAMES - " + sleepTime);
+				sleepTime = 0;
+			}
+			
+		if(debugInf){
+			System.out.println("STC:" + (System.currentTimeMillis()-delta));
+			methDelta = System.currentTimeMillis();
+		}	
+			
+			int fps = Math.round(1000-(System.currentTimeMillis()-delta));
+			
+			if(drawFPS){
+				g.setFont(new Font("Verdana", Font.BOLD, 22));
+				g.setColor(Color.GREEN);
+				g.drawString("" + fps, 10, 24);
+			}
+			
+			if(debugInf){
+				System.out.println("--- END DATA --- " + (System.currentTimeMillis()-delta) + " - FPS: " + 	(1000-(System.currentTimeMillis()-delta)));
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

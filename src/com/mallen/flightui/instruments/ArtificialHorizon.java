@@ -79,7 +79,7 @@ public class ArtificialHorizon {
 	//Todo: Refactor and make easier to read
 	public void draw(Graphics g, ImageObserver io){
 		
-		drawOffset = (height/180*(180-pitch+10));
+		drawOffset = (height/180*(180-((pitch+3)))); 	//Fix the magic number offset
 		pitch = FLUI_GLOBAL.pitch;
 		roll = FLUI_GLOBAL.roll;
 

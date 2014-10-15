@@ -15,11 +15,14 @@
 
 package com.mallen.flightui.wrapper;
 
+import com.mallen.flightui.utils.Converter;
+import com.mallen.flightui.wrapper.flui.FLUIAircraft;
+
 public class FLUI_GLOBAL {
 	private static boolean hasInit = false;
 	
-	public static int pitch;
-	public static int roll;
+	public static double pitch;
+	public static double roll;
 	public static int qnhAlt;
 	public static int radAlt;
 	
@@ -29,6 +32,13 @@ public class FLUI_GLOBAL {
 	public static int hdg;
 	public static int gps_waypoint;
 	
+	public static int flaps;
+	public static boolean gear;
+	public static boolean ap;
+	
+	public static int engine1N1, engine1N2, engine2N1, engine2N2, engine1Throt, engine2Throt;
+	public static int engineAlternator, engineBattery, engineAvionics, enginePump;
+	
 	public static void init(){
 			System.out.println("INIT");
 			
@@ -36,8 +46,8 @@ public class FLUI_GLOBAL {
 			Thread t = new Thread(new Runnable(){
 				public void run(){
 					while(true){
-						pitch = (int) (FLUI_READER.getDouble(12144)+90);
-						roll = (int) FLUI_READER.getDouble(12152);						
+						pitch = (FLUI_READER.getDouble(12144)+90);
+						roll = FLUI_READER.getDouble(12152);						
 			
 						qnhAlt = FLUI_READER.getInt(FLUI_MEMORY.FSUIPC_LOOKUP.get("QNH_ALTITUDE"));
 						radAlt = (int) Math.round(FLUI_READER.getInt(FLUI_MEMORY.FSUIPC_LOOKUP.get("RADIO_ALTITUDE"))/65536*3.28);
@@ -48,6 +58,24 @@ public class FLUI_GLOBAL {
 
 						indicatorSpeed = FLUI_READER.getInt(0x02BC)/128;
 						trueSpeed =  FLUI_READER.getInt(0x02B8)/128;
+					
+						flaps =  FLUIAircraft.Flaps(4);
+						
+						gear = FLUIAircraft.GearDown();
+						if(FLUI_READER.getByte(0x07BC) == 1){ ap = true; } else { ap = false;}	
+						
+						engine1N1 = FLUI_READER.getShort(0x0898)/164;
+						engine1N2 = FLUI_READER.getShort(0x0896)/164;
+						engine2N1 = FLUI_READER.getShort(0x0930)/164;
+						engine2N2 = FLUI_READER.getShort(0x092E)/164;
+						
+						engine1Throt = FLUI_READER.getShort(0x088C);
+						engine2Throt = FLUI_READER.getShort(0x0924);
+
+						engineAlternator = Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3101)));
+						engineBattery = Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3102)));
+						engineAvionics = Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3103)));
+						enginePump = Converter.boolToInt(Converter.intToBool(FLUI_READER.getByte(0x3104)));
 						
 						try {
 							Thread.sleep(50);
