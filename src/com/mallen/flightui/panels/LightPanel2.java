@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalRect;
 import com.mallen.flightui.ui.modules.Theme;
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.flui.FLUILights;
 
 public class LightPanel2 extends JPanel{
@@ -48,25 +49,25 @@ public class LightPanel2 extends JPanel{
 	    g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
 	
-		tiNav.update((FLUILights.Nav()));
+		tiNav.update((FLUI_GLOBAL.LIGHT_NAV));
 		tiNav.draw(g);
 
-		tiBeacon.update((FLUILights.Beacon()));
+		tiBeacon.update(FLUI_GLOBAL.LIGHT_BEACON);
 		tiBeacon.draw(g);
 		
-		tiLanding.update((FLUILights.Landing()));
+		tiLanding.update(FLUI_GLOBAL.LIGHT_LANDING);
 		tiLanding.draw(g);
 		
-		tiTaxi.update((FLUILights.Taxi()));
+		tiTaxi.update(FLUI_GLOBAL.LIGHT_TAXI);
 		tiTaxi.draw(g);
 		
-		tiWing.update((FLUILights.Wing()));
+		tiWing.update(FLUI_GLOBAL.LIGHT_WING);
 		tiWing.draw(g);
 		
-		tiLogo.update((FLUILights.Logo()));
+		tiLogo.update(FLUI_GLOBAL.LIGHT_LOGO);
 		tiLogo.draw(g);
 		
-		tiStrobe.update((FLUILights.Strobe()));
+		tiStrobe.update(FLUI_GLOBAL.LIGHT_STROBE);
 		tiStrobe.draw(g);
 		
 		try {

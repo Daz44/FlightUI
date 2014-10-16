@@ -15,13 +15,13 @@
 
 package com.mallen.flightui.wrapper.flui;
 
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
+
 public class FLUIWarning {
 	
 	//FLUI MasterCaution
 	public static boolean MasterCaution(){
-		if(FLUIAircraft.Spoilers()){ //SPOILERS
-			return true;
-		} else if(!FLUIAircraft.GearDown() && FLUIAircraft.AltFeet() < 1000){
+		if(!FLUI_GLOBAL.gear	 && FLUI_GLOBAL.qnhAlt < 1000){
 			return true;
 		} else {
 			return false;
@@ -30,9 +30,7 @@ public class FLUIWarning {
 	
 	//FLUI MasterWarning
 	public static boolean MasterWarning(){
-		if(FLUIAircraft.Stalled() || FLUIAircraft.Overspeed()){
-			return true;
-		} else if(!FLUIAircraft.Alternator()){
+		if(FLUI_GLOBAL.AIRCRAFT_STALLED || FLUI_GLOBAL.AIRCRAFT_OVERSPEED){
 			return true;
 		} else {
 			return false;

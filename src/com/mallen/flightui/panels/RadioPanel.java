@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class RadioPanel extends JPanel{
@@ -45,19 +46,19 @@ public class RadioPanel extends JPanel{
 	    g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
-		String commString = Integer.toHexString(FLUI_READER.getShort(0x034E));
+		String commString = Integer.toHexString(FLUI_GLOBAL.COM1);
 		tiCom1.text = "COM1: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
 		tiCom1.draw(g); 
 
-		commString = Integer.toHexString(FLUI_READER.getShort(0x3118));
+		commString = Integer.toHexString(FLUI_GLOBAL.COM2);
 		tiCom2.text = "COM2: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
 		tiCom2.draw(g);
 		
-		commString = Integer.toHexString(FLUI_READER.getShort(0x0350));
+		commString = Integer.toHexString(FLUI_GLOBAL.NAV1);
 		tiNav1.text = "NAV1: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
 		tiNav1.draw(g);
 		
-		commString = Integer.toHexString(FLUI_READER.getShort(0x0352));
+		commString = Integer.toHexString(FLUI_GLOBAL.NAV2);
 		tiNav2.text = "NAV2: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
 		tiNav2.draw(g);
 		

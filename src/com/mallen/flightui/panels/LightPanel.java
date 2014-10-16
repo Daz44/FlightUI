@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.utils.Converter;
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.flui.FLUILights;
 
 public class LightPanel extends JPanel{
@@ -49,25 +50,25 @@ public class LightPanel extends JPanel{
 	    g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
 	
-		tiNav.update(Converter.boolToInt(FLUILights.Nav()));
+		tiNav.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_NAV));
 		tiNav.draw(g);
 
-		tiBeacon.update(Converter.boolToInt(FLUILights.Beacon()));
+		tiBeacon.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_BEACON));
 		tiBeacon.draw(g);
 		
-		tiLanding.update(Converter.boolToInt(FLUILights.Landing()));
+		tiLanding.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_LANDING));
 		tiLanding.draw(g);
 		
-		tiTaxi.update(Converter.boolToInt(FLUILights.Taxi()));
+		tiTaxi.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_TAXI));
 		tiTaxi.draw(g);
 		
-		tiWing.update(Converter.boolToInt(FLUILights.Wing()));
+		tiWing.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_WING));
 		tiWing.draw(g);
 		
-		tiLogo.update(Converter.boolToInt(FLUILights.Logo()));
+		tiLogo.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_LOGO));
 		tiLogo.draw(g);
 		
-		tiStrobe.update(Converter.boolToInt(FLUILights.Strobe()));
+		tiStrobe.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_STROBE));
 		tiStrobe.draw(g);
 		
 		try {

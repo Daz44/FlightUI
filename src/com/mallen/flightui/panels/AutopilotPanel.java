@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalRect;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
 import com.mallen.flightui.wrapper.FLUI_READER;
 
@@ -55,40 +56,28 @@ public class AutopilotPanel extends JPanel {
 		g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		indicatorAltitude.update(Math.round(FLUI_READER.getInt(0x07D4)/65536*3.3)/100*100 + "");
+		indicatorAltitude.update(FLUI_GLOBAL.AP_VAL_ALT + "");
 		indicatorAltitude.draw(g);
 		
-		boolean alt;
-		if(FLUI_READER.getByte(0x07D0) == 1){ alt = true; } else { alt = false;}
-		indicatorBooleanAltitude.update(alt);
+		indicatorBooleanAltitude.update(FLUI_GLOBAL.AP_ALT);
 		indicatorBooleanAltitude.draw(g);
+
+		indicatorVertSpeed.update("" + FLUI_GLOBAL.AP_VAL_VS);
+		indicatorVertSpeed.draw(g);
 		
-			int vsVal = FLUI_READER.getInt(0x07F2);
-			
-			if(vsVal > 50000) vsVal = vsVal-65536;
-			
-			indicatorVertSpeed.update("" + vsVal);
-			indicatorVertSpeed.draw(g);
-		
-		indicatorHeading.update(Math.round(FLUI_READER.getInt(0x07CC)/65536.0*360.0) + "");
+		indicatorHeading.update(FLUI_GLOBAL.AP_VAL_HDG + "");
 		indicatorHeading.draw(g);
 		
-		boolean hdg;
-		if(FLUI_READER.getByte(0x07C8) == 1){ hdg = true; } else { hdg = false;}
-		indicatorBooleanHeading.update(hdg);
+		indicatorBooleanHeading.update(FLUI_GLOBAL.AP_HDG);
 		indicatorBooleanHeading.draw(g);
 				
-		boolean ap;
-		if(FLUI_READER.getByte(0x07BC) == 1){ ap = true; } else { ap = false;}
-		indicatorBooleanAPMaster.update(ap);
+		indicatorBooleanAPMaster.update(FLUI_GLOBAL.AP_MASTER);
 		indicatorBooleanAPMaster.draw(g);
 		
-		boolean at;
-		if(FLUI_READER.getByte(0x07DC) == 1){ at = true; } else { at = false;}
-		indicatorBooleanAThrottle.update(at);
+		indicatorBooleanAThrottle.update(FLUI_GLOBAL.AP_THR);
 		indicatorBooleanAThrottle.draw(g);
 		
-		indicatorAThrottle.update(FLUI_READER.getInt(0x07E2) + "");
+		indicatorAThrottle.update(FLUI_GLOBAL.AP_VAL_SPD + "");
 		indicatorAThrottle.draw(g);
 		
 		

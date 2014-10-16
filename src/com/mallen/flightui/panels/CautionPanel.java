@@ -34,10 +34,6 @@ public class CautionPanel extends JPanel {
 	setDoubleBuffered(true);
 	
 	 Graphics2D g2d = (Graphics2D) g;
-	    RenderingHints rhints = g2d.getRenderingHints();
-	    rhints.containsValue(RenderingHints.VALUE_ANTIALIAS_ON);
-	    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-	
 		
 	    g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -47,12 +43,6 @@ public class CautionPanel extends JPanel {
 		
 		cInd.update(FLUIWarning.MasterCaution());
 		cInd.draw(g);	
-
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}		
 		repaint();
 	}
 }
