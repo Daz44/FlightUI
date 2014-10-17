@@ -42,25 +42,29 @@ public class RadioPanel extends JPanel{
 	    rhints.containsValue(RenderingHints.VALUE_ANTIALIAS_ON);
 	    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	
+	    try {
 		
-	    g.setColor(Theme.gBackground);
-		g.fillRect(0, 0, getWidth(), getHeight());
-
-		String commString = Integer.toHexString(FLUI_GLOBAL.COM1);
-		tiCom1.text = "COM1: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
-		tiCom1.draw(g); 
-
-		commString = Integer.toHexString(FLUI_GLOBAL.COM2);
-		tiCom2.text = "COM2: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
-		tiCom2.draw(g);
-		
-		commString = Integer.toHexString(FLUI_GLOBAL.NAV1);
-		tiNav1.text = "NAV1: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
-		tiNav1.draw(g);
-		
-		commString = Integer.toHexString(FLUI_GLOBAL.NAV2);
-		tiNav2.text = "NAV2: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
-		tiNav2.draw(g);
+		    g.setColor(Theme.gBackground);
+			g.fillRect(0, 0, getWidth(), getHeight());
+	
+			String commString = Integer.toHexString(FLUI_GLOBAL.COM1);
+			tiCom1.text = "COM1: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
+			tiCom1.draw(g); 
+	
+			commString = Integer.toHexString(FLUI_GLOBAL.COM2);
+			tiCom2.text = "COM2: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
+			tiCom2.draw(g);
+			
+			commString = Integer.toHexString(FLUI_GLOBAL.NAV1);
+			tiNav1.text = "NAV1: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
+			tiNav1.draw(g);
+			
+			commString = Integer.toHexString(FLUI_GLOBAL.NAV2);
+			tiNav2.text = "NAV2: 1" + commString.substring(0, 2) + "." + commString.substring(2, 4);
+			tiNav2.draw(g);
+	    } catch(Exception e){
+	    	e.printStackTrace();
+	    }
 		
 		try {
 			Thread.sleep(10);
