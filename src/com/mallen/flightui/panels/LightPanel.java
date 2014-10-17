@@ -30,7 +30,7 @@ import com.mallen.flightui.wrapper.flui.FLUILights;
 public class LightPanel extends JPanel{
 	
 	TextIndicatorRGB tiNav = new TextIndicatorRGB(10, 5, 40, 30, "NAV", 1);
-	TextIndicatorRGB tiBeacon = new TextIndicatorRGB	(110, 5, 40, 30, "BEACON", 1);
+	TextIndicatorRGB tiBeacon = new TextIndicatorRGB(110, 5, 40, 30, "BEACON", 1);
 	TextIndicatorRGB tiLanding = new TextIndicatorRGB(210, 5, 40, 30, "LAND", 1);
 	TextIndicatorRGB tiTaxi = new TextIndicatorRGB(310, 5, 40, 30, "TAXI", 1);
 	TextIndicatorRGB tiWing = new TextIndicatorRGB(410, 5, 40, 30, "WING", 1);

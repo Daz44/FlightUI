@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.ui.modules;
+package com.mallen.flightui.instruments;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -80,7 +80,7 @@ public class ArtificialHorizon {
 	public void draw(Graphics g, ImageObserver io){
 		
 		drawOffset = (height/180*(180-((pitch+3)))); 	//Fix the magic number offset
-		pitch = FLUI_GLOBAL.pitch - 12;
+		pitch = FLUI_GLOBAL.pitch;
 		roll = FLUI_GLOBAL.roll;
 
 		Graphics2D g2d = (Graphics2D)g;

@@ -22,7 +22,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import com.mallen.flightui.ui.modules.ArtificialHorizon;
+import com.mallen.flightui.instruments.ArtificialHorizon;
 import com.mallen.flightui.ui.modules.BooleanIndicatorDigitalRect;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalCompact;
 import com.mallen.flightui.ui.modules.GaugeIndicator;
@@ -33,6 +33,8 @@ import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
+import com.mallen.flightui.wrapper.FLUI_READER;
+import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 @SuppressWarnings("serial")
 public class ArtificialHorizonPanel extends JPanel {
@@ -43,14 +45,14 @@ public class ArtificialHorizonPanel extends JPanel {
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(getWidth()-100, 900, 100, 30, "ft");
 	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100, 30, "kias");
 	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(400-180, 10, 360, 20, 0, 360, 20);
-	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true, true);
+	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
 	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-140, 100, 100, 800, 100);
 	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20);
 	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20);
 	
-	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
+	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true);
 	GaugeIndicator gInd = new GaugeIndicator(80, 40, 50, 50, 0, 500, 10);
 
 	public ArtificialHorizonPanel(){
