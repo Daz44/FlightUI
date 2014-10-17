@@ -58,7 +58,7 @@ public class BooleanIndicatorDigitalRect {
 	Font f;
 	public void draw(Graphics g){
 		
-		g.setColor(Color.RED);
+		g.setColor(Theme.gForeground);
 		g.drawRect(x, y, width, height);
 		
 		

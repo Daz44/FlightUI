@@ -28,13 +28,13 @@ import com.mallen.flightui.wrapper.flui.FLUILights;
 
 public class LightPanel2 extends JPanel{
 	
-	BooleanIndicatorTextDigitalRect tiNav = new BooleanIndicatorTextDigitalRect(10, 5, 100, 30, "NAV", false);
-	BooleanIndicatorTextDigitalRect tiBeacon = new BooleanIndicatorTextDigitalRect(130, 5, 100, 30, "BEACON", false);
-	BooleanIndicatorTextDigitalRect tiLanding = new BooleanIndicatorTextDigitalRect(250, 5, 100, 30, "LAND", false);
-	BooleanIndicatorTextDigitalRect tiTaxi = new BooleanIndicatorTextDigitalRect(370, 5, 100, 30, "TAXI", false);
-	BooleanIndicatorTextDigitalRect tiWing = new BooleanIndicatorTextDigitalRect(490, 5, 100, 30, "WING", false);
-	BooleanIndicatorTextDigitalRect tiLogo = new BooleanIndicatorTextDigitalRect(610, 5, 100, 30, "LOGO", false);
-	BooleanIndicatorTextDigitalRect tiStrobe = new BooleanIndicatorTextDigitalRect(720, 5, 100, 30, "STROBE", false);
+	BooleanIndicatorTextDigitalRect tiNav = new BooleanIndicatorTextDigitalRect(10, 5, 100, 30, "NAV", false, false);
+	BooleanIndicatorTextDigitalRect tiBeacon = new BooleanIndicatorTextDigitalRect(130, 5, 100, 30, "BEACON", false, false);
+	BooleanIndicatorTextDigitalRect tiLanding = new BooleanIndicatorTextDigitalRect(250, 5, 100, 30, "LAND", false, false);
+	BooleanIndicatorTextDigitalRect tiTaxi = new BooleanIndicatorTextDigitalRect(370, 5, 100, 30, "TAXI", false, false);
+	BooleanIndicatorTextDigitalRect tiWing = new BooleanIndicatorTextDigitalRect(490, 5, 100, 30, "WING", false, false);
+	BooleanIndicatorTextDigitalRect tiLogo = new BooleanIndicatorTextDigitalRect(610, 5, 100, 30, "LOGO", false, false);
+	BooleanIndicatorTextDigitalRect tiStrobe = new BooleanIndicatorTextDigitalRect(720, 5, 100, 30, "STROBE", false, false);
 	
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);

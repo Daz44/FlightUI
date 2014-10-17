@@ -30,17 +30,17 @@ import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class AutopilotPanel extends JPanel {
 	
-	BooleanIndicatorTextDigitalRect indicatorBooleanAPMaster = new BooleanIndicatorTextDigitalRect(10, 10, 105, 20, "AP MASTER", false);
+	BooleanIndicatorTextDigitalRect indicatorBooleanAPMaster = new BooleanIndicatorTextDigitalRect(10, 10, 105, 20, "AP MASTER", false, false);
 	
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(235, 10, 100, 20, "ft");
 	TextFieldIndicator indicatorVertSpeed = new TextFieldIndicator(345, 10, 100, 20, "ft/m");
-	BooleanIndicatorTextDigitalRect indicatorBooleanAltitude = new BooleanIndicatorTextDigitalRect(125, 10, 100, 20, "ALTITUDE", false);
+	BooleanIndicatorTextDigitalRect indicatorBooleanAltitude = new BooleanIndicatorTextDigitalRect(125, 10, 100, 20, "ALTITUDE", false, false);
 
 	TextFieldIndicator indicatorHeading = new TextFieldIndicator(565, 10, 100, 20, "hdg");
-	BooleanIndicatorTextDigitalRect indicatorBooleanHeading = new BooleanIndicatorTextDigitalRect(455, 10, 100, 20, "HEADING", false);
+	BooleanIndicatorTextDigitalRect indicatorBooleanHeading = new BooleanIndicatorTextDigitalRect(455, 10, 100, 20, "HEADING", false, false);
 	
 	TextFieldIndicator indicatorAThrottle = new TextFieldIndicator(835, 10, 100, 20, "kias");
-	BooleanIndicatorTextDigitalRect indicatorBooleanAThrottle = new BooleanIndicatorTextDigitalRect(675, 10, 150, 20, "AUTOTHROTTLE", false);
+	BooleanIndicatorTextDigitalRect indicatorBooleanAThrottle = new BooleanIndicatorTextDigitalRect(675, 10, 150, 20, "AUTOTHROTTLE", false, false);
 	
 	public AutopilotPanel(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();

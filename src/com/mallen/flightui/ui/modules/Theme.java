@@ -16,6 +16,7 @@
 package com.mallen.flightui.ui.modules;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Theme {
 	
@@ -46,5 +47,14 @@ public class Theme {
 		gTrue = globTrue;
 		gNeutral = globNeutral;
 		gFalse = globFalse;
+	}
+	
+	public static void setAero(boolean aero, Graphics g){
+		if(aero){
+			g.setColor(Theme.gAero);
+		} else {
+			g.setColor(Theme.gBackground);
+		}
+		
 	}
 }

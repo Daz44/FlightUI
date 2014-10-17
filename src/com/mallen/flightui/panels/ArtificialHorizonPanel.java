@@ -45,15 +45,14 @@ public class ArtificialHorizonPanel extends JPanel {
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(getWidth()-100, 900, 100, 30, "ft");
 	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100, 30, "kias");
 	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(400-180, 10, 360, 20, 0, 360, 20);
-	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true);
+	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true, true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
 	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-140, 100, 100, 800, 100);
 	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20);
 	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20);
 	
-	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true);
-	GaugeIndicator gInd = new GaugeIndicator(80, 40, 50, 50, 0, 500, 10);
+	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
 	public ArtificialHorizonPanel(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();

@@ -26,9 +26,10 @@ public class GaugeIndicator {
 	int height = 0, width = 0;
 	int value = 0, target = 0;
 	
+	private boolean aero = false;
 	double minVal = 0, maxVal = 0, stepVal = 0;
 	
-	public GaugeIndicator(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int min, int max, int step){
+	public GaugeIndicator(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int min, int max, int step, boolean aeroOn){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
@@ -37,6 +38,7 @@ public class GaugeIndicator {
 		minVal = min;
 		maxVal = max;
 		stepVal = step;
+		aero = aeroOn;
 		
 		f = new Font("Verdana", Font.PLAIN, height/20);	
 	}
@@ -51,6 +53,10 @@ public class GaugeIndicator {
 	public void setLocation(int w, int h){
 		x = w;
 		y = h;
+	}
+	
+	public void setAero(boolean b){
+		aero = b;
 	}
 	
 	public void update(int s){
@@ -69,19 +75,14 @@ public class GaugeIndicator {
 		g.setFont(f);
 		
 		g.setColor(Theme.gMidground);
-		g.fillOval(x, y, width, height);
+		g.drawOval(x, y, width, height);
 		
-		g.setColor(Theme.gBackground);
-		g.fillOval(x+1, y+1, width-2, height-2);
-		
-		g.setColor(Theme.gBackground);
+		Theme.setAero(aero, g);
 		g.fillOval(x+1, y+1, width-2, height-2);
 		
 		g.setColor(Theme.gForeground	);
 		if(value > maxVal) g.setColor(Theme.gFalse);
 		
-		
-		//TODO: NB: SET TO TRUE NOT FOREGROUND
 		g.setColor(Theme.gTrue);
 		g.fillArc(x+1, y+1, width-2, height-2, 90, (int) -(360.0/maxVal*value));
 	

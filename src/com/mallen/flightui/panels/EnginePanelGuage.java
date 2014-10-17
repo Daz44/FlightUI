@@ -31,10 +31,10 @@ import com.mallen.flightui.wrapper.FLUI_MEMORY;
 import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class EnginePanelGuage extends JPanel {
-	GaugeIndicator guageIndEng1N1 = new GaugeIndicator(10, 10, 50, 50, 0, 100, 1);
-	GaugeIndicator guageIndEng1N2 = new GaugeIndicator(530, 10, 50, 50, 0, 100, 1);
-	GaugeIndicator guageIndEng2N1 = new GaugeIndicator(10, 70, 50, 50, 0, 100, 1);
-	GaugeIndicator guageIndEng2N2 = new GaugeIndicator(530, 70, 50, 50, 0, 100, 1);
+	GaugeIndicator guageIndEng1N1 = new GaugeIndicator(10, 10, 50, 50, 0, 100, 1 ,true);
+	GaugeIndicator guageIndEng1N2 = new GaugeIndicator(530, 10, 50, 50, 0, 100, 1,true);
+	GaugeIndicator guageIndEng2N1 = new GaugeIndicator(10, 70, 50, 50, 0, 100, 1,true);
+	GaugeIndicator guageIndEng2N2 = new GaugeIndicator(530, 70, 50, 50, 0, 100, 1,true);
 	
 	TextIndicatorRGB intIndEng1N1 = new TextIndicatorRGB(70, 20, 100, 20, "1N1", 1);
 	TextIndicatorRGB intIndEng1N2 = new TextIndicatorRGB(440, 20, 100, 20, "1N2", 1);
@@ -51,8 +51,8 @@ public class EnginePanelGuage extends JPanel {
 	TextIndicatorRGB tiAvi = new TextIndicatorRGB(650, 80, 40, 30, "AVIONICS", 1);
 	TextIndicatorRGB tiFuel = new TextIndicatorRGB(850, 80, 40, 30, "FUEL PUMP", 1);
 	
-	GaugeIndicator guageIndThrot1 = new GaugeIndicator(275, 10, 50, 50, 0, 16384, 1);
-	GaugeIndicator guageIndThrot2 = new GaugeIndicator(275, 70, 50, 50, 0, 16384, 1);
+	GaugeIndicator guageIndThrot1 = new GaugeIndicator(275, 10, 50, 50, 0, 16384, 1,true);
+	GaugeIndicator guageIndThrot2 = new GaugeIndicator(275, 70, 50, 50, 0, 16384, 1,true);
 	
 	public EnginePanelGuage(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();
