@@ -25,7 +25,7 @@ public class BooleanIndicatorTextDigitalRect {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
 	boolean value = false;
-	boolean aero;
+	private boolean aero;
 	String title = "";
 	
 	int minVal = 0, maxVal = 0, stepVal = 0;

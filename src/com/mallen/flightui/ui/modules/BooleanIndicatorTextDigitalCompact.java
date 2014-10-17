@@ -25,7 +25,7 @@ public class BooleanIndicatorTextDigitalCompact {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
 	boolean value = false;
-	boolean aero = false;
+	private boolean aero = false;
 	String title = "";
 	
 	int minVal = 0, maxVal = 0, stepVal = 0;

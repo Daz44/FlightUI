@@ -30,20 +30,26 @@ public class NumberIndicatorHorizontalTape {
 	int height = 0, width = 0;
 	int value = 0, target = 0;
 	
+	private boolean aero = false;
 	int stepval = 0;
 	
-	public NumberIndicatorHorizontalTape(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int step){
+	public NumberIndicatorHorizontalTape(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int step, boolean aeroOn){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
 		width = horizonWidth;
 		stepval = step;
+		aero = aeroOn;
 	}
 	
 	//DEFAULT METHODS FOR INDICATORS
 	public void setSize(int w, int h){
 		width = w;
 		height = h;
+	}
+	
+	public void setAero(boolean b){
+		aero = b;
 	}
 	
 	public void setLocation(int w, int h){
@@ -62,7 +68,7 @@ public class NumberIndicatorHorizontalTape {
 		g.setColor(Theme.gForeground);
 		g.drawRect(x, y, width, height);
 		
-		g.setColor(Theme.gAero);
+		Theme.setAero(aero, g);
 		g.fillRect(x+2, y+2, width-4, height-4);
 		
 		

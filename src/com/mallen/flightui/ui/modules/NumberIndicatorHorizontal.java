@@ -25,9 +25,10 @@ public class NumberIndicatorHorizontal {
 	int height = 0, width = 0;
 	int value = 0, target = 0;
 	
+	private boolean aero = false;
 	int minVal = 0, maxVal = 0, stepVal = 0;
 	
-	public NumberIndicatorHorizontal(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int min, int max, int step){
+	public NumberIndicatorHorizontal(int horizonX, int horizonY, int horizonWidth, int horizonHeight, int min, int max, int step, boolean aeroOn){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
@@ -37,6 +38,7 @@ public class NumberIndicatorHorizontal {
 		maxVal = max;
 		stepVal = step;
 		
+		aero = aeroOn;
 		f = new Font("Verdana", Font.PLAIN, height/2);	
 	}
 	
@@ -52,6 +54,10 @@ public class NumberIndicatorHorizontal {
 		y = h;
 	}
 	
+	public void setAero(Boolean b){
+		aero = b;
+	}
+	
 	public void update(int s, int targ){
 		value = s;
 		target = targ;
@@ -64,8 +70,8 @@ public class NumberIndicatorHorizontal {
 		
 		g.setFont(f);
 		
-		g.setColor(Theme.gBackground);
-		g.fillRect(x, y, width, height);
+		Theme.setAero(aero, g);
+		g.fillRect(x+1, y+1, width-2, height-2);
 		
 		g.setColor(Theme.gForeground);
 		g.drawRect(x, y, width, height);

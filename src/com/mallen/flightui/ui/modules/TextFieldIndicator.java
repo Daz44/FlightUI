@@ -30,8 +30,9 @@ public class TextFieldIndicator {
 	
 	int x = 0, y = 0;
 	int height = 0, width = 0;
+	private boolean aero = false;
 	
-	public TextFieldIndicator(int labelX, int labelY, int labelWidth, int labelHeight, String labelUnit){
+	public TextFieldIndicator(int labelX, int labelY, int labelWidth, int labelHeight, String labelUnit, boolean aeroOn){
 		x = labelX;
 		y = labelY;
 		
@@ -39,6 +40,7 @@ public class TextFieldIndicator {
 		width = labelWidth;
 		unit = labelUnit;
 		
+		aero = aeroOn;
 		TextFont = new Font("Verdana", Font.BOLD, height/2);
 	}
 	
@@ -47,6 +49,10 @@ public class TextFieldIndicator {
 		width = w;
 		height = h;
 		TextFont = new Font("Verdana", Font.PLAIN, height/2);
+	}
+	
+	public void setAero(boolean b){
+		aero = b;
 	}
 	
 	public void setLocation(int w, int h){
@@ -68,9 +74,9 @@ public class TextFieldIndicator {
 	    FontMetrics fm = g.getFontMetrics();
 		
 		g.setColor(Theme.gForeground);
-		g.fillRect(x-1, y-1, width+2, height+2);
+		g.drawRect(x-1, y-1, width+2, height+2);
 		
-		g.setColor(Theme.gBackground);
+		Theme.setAero(aero, g);
 		g.fillRect(x, y, width, height);
 		
 		g.setColor(Theme.gForeground);

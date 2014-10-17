@@ -42,15 +42,15 @@ public class ArtificialHorizonPanel extends JPanel {
 	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth());
 	
 	
-	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(getWidth()-100, 900, 100, 30, "ft");
-	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100, 30, "kias");
-	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(400-180, 10, 360, 20, 0, 360, 20);
+	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(getWidth()-100, 900, 100, 30, "ft", false);
+	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100, 30, "kias", false);
+	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(400-180, 10, 360, 20, 0, 360, 20, true);
 	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true, true);
 	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
 	
-	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-140, 100, 100, 800, 100);
-	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20);
-	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20);
+	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-140, 100, 100, 800, 100, true);
+	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20, true);
+	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20, true);
 	
 	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
@@ -62,9 +62,6 @@ public class ArtificialHorizonPanel extends JPanel {
 	int qnhAlt;
 	boolean drawFPS = true;
 	boolean debugInf = false;
-	
-	int sX = 0;
-	int sY = 0;
 	
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
@@ -173,11 +170,6 @@ public class ArtificialHorizonPanel extends JPanel {
 			System.out.println("FLAPS:" + (System.currentTimeMillis()-delta));
 			methDelta = System.currentTimeMillis();
 		}
-			//TESTING
-				g.fillRect(sX, sY, 5, 5);
-				sX++;
-				sY++;
-			////////////
 			
 		try {
 			long sleepTime = 1000/120 - (System.currentTimeMillis()-delta);
