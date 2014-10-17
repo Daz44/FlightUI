@@ -25,12 +25,14 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.GaugeIndicator;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
-import com.mallen.flightui.utils.Converter;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
-import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class EnginePanelGuage extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GaugeIndicator guageIndEng1N1 = new GaugeIndicator(10, 10, 50, 50, 0, 100, 1);
 	GaugeIndicator guageIndEng1N2 = new GaugeIndicator(530, 10, 50, 50, 0, 100, 1);
 	GaugeIndicator guageIndEng2N1 = new GaugeIndicator(10, 70, 50, 50, 0, 100, 1);
@@ -55,8 +57,7 @@ public class EnginePanelGuage extends JPanel {
 	GaugeIndicator guageIndThrot2 = new GaugeIndicator(275, 70, 50, 50, 0, 16384, 1);
 	
 	public EnginePanelGuage(){
-		FLUI_MEMORY ad = new FLUI_MEMORY();
-		ad.initMem();
+		FLUI_MEMORY.initMem();
 	}
 	
 	BufferedImage bf;

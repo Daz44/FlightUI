@@ -24,10 +24,13 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalRect;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.flui.FLUILights;
 
 public class LightPanel2 extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	BooleanIndicatorTextDigitalRect tiNav = new BooleanIndicatorTextDigitalRect(10, 5, 100, 30, "NAV", false);
 	BooleanIndicatorTextDigitalRect tiBeacon = new BooleanIndicatorTextDigitalRect(130, 5, 100, 30, "BEACON", false);
 	BooleanIndicatorTextDigitalRect tiLanding = new BooleanIndicatorTextDigitalRect(250, 5, 100, 30, "LAND", false);

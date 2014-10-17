@@ -17,18 +17,13 @@ package com.mallen.flightui.instruments;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
-
-import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_READER;
-import com.mallen.flightui.wrapper.flui.FLUIAircraft;
+
 
 public class ArtificialHorizon {
 	int x = 0, y = 0;

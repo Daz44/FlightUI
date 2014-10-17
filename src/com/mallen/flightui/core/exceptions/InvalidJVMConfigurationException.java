@@ -16,6 +16,11 @@
 package com.mallen.flightui.core.exceptions;
 
 public class InvalidJVMConfigurationException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public InvalidJVMConfigurationException(String reason, String explanation){
 		System.err.println("[InvalidJVMConfigurationException] | Reason: " + reason + " | " + explanation);
 	}

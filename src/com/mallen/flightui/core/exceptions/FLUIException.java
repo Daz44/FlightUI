@@ -16,6 +16,11 @@
 package com.mallen.flightui.core.exceptions;
 
 public class FLUIException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public FLUIException(String reason, String explanation){
 		System.err.println("[FLUIException | Reason: " + reason + " | " + explanation);
 	}

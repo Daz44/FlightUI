@@ -41,8 +41,7 @@ public class Console {
 	public void parseInput(String s){
 		
 		if(s.split(" ")[0].toLowerCase().equals("getint")){
-			FLUI_READER fr = new FLUI_READER();
-			System.out.println("[ " + s.split(" ")[1] + "} " + fr.getInt(Integer.valueOf(s.split(" ")[1].toLowerCase())));
+			System.out.println("[ " + s.split(" ")[1] + "} " + FLUI_READER.getInt(Integer.valueOf(s.split(" ")[1].toLowerCase())));
 		}
 		
 		if(s.split(" ")[0].toLowerCase().equals("aircraftdata")){

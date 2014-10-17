@@ -20,7 +20,6 @@ import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 import com.mallen.flightui.wrapper.flui.FLUILights;
 
 public class FLUI_GLOBAL {
-	private static boolean hasInit = false;
 	
 	public static double pitch;
 	public static double roll;
@@ -93,14 +92,13 @@ public class FLUI_GLOBAL {
 						if(FLUI_READER.getByte(0x036C) == 1){ AIRCRAFT_STALLED = true;} else {AIRCRAFT_STALLED = false;}
 						if(FLUI_READER.getByte(0x036D) == 1){ AIRCRAFT_OVERSPEED = true;} else { AIRCRAFT_OVERSPEED = false;}
 						
-						FLUILights fll = new FLUILights();
-						LIGHT_NAV = fll.Nav();
-						LIGHT_BEACON = fll.Beacon();
-						LIGHT_LANDING =fll.Landing();
-						LIGHT_LANDING = fll.Taxi();
-						LIGHT_STROBE = fll.Strobe();
-						LIGHT_WING = fll.Wing();
-						LIGHT_LOGO = fll.Logo();
+						LIGHT_NAV = FLUILights.Nav();
+						LIGHT_BEACON = FLUILights.Beacon();
+						LIGHT_LANDING =FLUILights.Landing();
+						LIGHT_LANDING = FLUILights.Taxi();
+						LIGHT_STROBE = FLUILights.Strobe();
+						LIGHT_WING = FLUILights.Wing();
+						LIGHT_LOGO = FLUILights.Logo();
 					
 						if(FLUI_READER.getByte(0x07BC) == 1){ AP_MASTER = true; } else { AP_MASTER = false;}
 						if(FLUI_READER.getByte(0x07DC) == 1){ AP_THR = true; } else { AP_THR = false;}

@@ -24,10 +24,13 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class RadioPanel extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	TextIndicatorRGB tiCom1 = new TextIndicatorRGB(10, 5, 200, 30, "COM1", 1);
 	TextIndicatorRGB tiCom2 = new TextIndicatorRGB(210, 5, 200, 30, "COM2", 1);
 	TextIndicatorRGB tiNav1 = new TextIndicatorRGB(410, 5, 200, 30, "LAND", 1);

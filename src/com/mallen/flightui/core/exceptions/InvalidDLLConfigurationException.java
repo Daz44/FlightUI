@@ -16,6 +16,11 @@
 package com.mallen.flightui.core.exceptions;
 
 public class InvalidDLLConfigurationException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public InvalidDLLConfigurationException(String reason, String explanation){
 		System.err.println("[InvalidDLLConfigurationException] | Reason: " + reason + " | " + explanation);
 	}

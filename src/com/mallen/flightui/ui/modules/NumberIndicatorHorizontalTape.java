@@ -15,15 +15,11 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
-
-import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 public class NumberIndicatorHorizontalTape {
 	int x = 0, y = 0;

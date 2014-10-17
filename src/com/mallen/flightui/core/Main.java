@@ -17,8 +17,6 @@ package com.mallen.flightui.core;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
-import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -36,11 +34,8 @@ import com.mallen.flightui.panels.LightPanel;
 import com.mallen.flightui.panels.LightPanel2;
 import com.mallen.flightui.panels.RadioPanel;
 import com.mallen.flightui.ui.modules.Theme;
-import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_MEMORY;
 import com.mallen.flightui.wrapper.FLUI_READER;
 import com.mallen.flightui.wrapper.FLUI_DATA;
-import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 public class Main
 {

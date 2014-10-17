@@ -26,10 +26,14 @@ import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
-import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class AutopilotPanel extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	BooleanIndicatorTextDigitalRect indicatorBooleanAPMaster = new BooleanIndicatorTextDigitalRect(10, 10, 105, 20, "AP MASTER", false);
 	
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(235, 10, 100, 20, "ft");
@@ -43,8 +47,7 @@ public class AutopilotPanel extends JPanel {
 	BooleanIndicatorTextDigitalRect indicatorBooleanAThrottle = new BooleanIndicatorTextDigitalRect(675, 10, 150, 20, "AUTOTHROTTLE", false);
 	
 	public AutopilotPanel(){
-		FLUI_MEMORY ad = new FLUI_MEMORY();
-		ad.initMem();
+		FLUI_MEMORY.initMem();
 	}
 	
 	BufferedImage bf;

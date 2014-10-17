@@ -33,8 +33,6 @@ import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
-import com.mallen.flightui.wrapper.FLUI_READER;
-import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 @SuppressWarnings("serial")
 public class ArtificialHorizonPanel extends JPanel {
@@ -56,8 +54,7 @@ public class ArtificialHorizonPanel extends JPanel {
 	GaugeIndicator gInd = new GaugeIndicator(80, 40, 50, 50, 0, 500, 10);
 
 	public ArtificialHorizonPanel(){
-		FLUI_MEMORY ad = new FLUI_MEMORY();
-		ad.initMem();
+		FLUI_MEMORY.initMem();
 	};
 	
 	int qnhAlt;
