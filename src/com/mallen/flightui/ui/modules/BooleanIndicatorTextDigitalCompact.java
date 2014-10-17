@@ -25,11 +25,12 @@ public class BooleanIndicatorTextDigitalCompact {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
 	boolean value = false;
+	boolean aero = false;
 	String title = "";
 	
 	int minVal = 0, maxVal = 0, stepVal = 0;
 	
-	public BooleanIndicatorTextDigitalCompact(int horizonX, int horizonY, int horizonWidth, int horizonHeight, String text, Boolean val){
+	public BooleanIndicatorTextDigitalCompact(int horizonX, int horizonY, int horizonWidth, int horizonHeight, String text, Boolean val, Boolean aeroOn){
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
@@ -37,6 +38,7 @@ public class BooleanIndicatorTextDigitalCompact {
 		
 		title = text;
 		value = val;
+		aero = aeroOn;
 		
 		f = new Font("Verdana", Font.PLAIN, height/2);	
 	}
@@ -68,9 +70,14 @@ public class BooleanIndicatorTextDigitalCompact {
 	    FontMetrics fm = g.getFontMetrics();
 		
 		g.setColor(Theme.gForeground);
-		g.fillRect(x, y, width, height);
+		g.drawRect(x, y, width, height);
 		
-		g.setColor(Theme.gBackground);
+		if(aero){
+			g.setColor(Theme.gAero);
+		} else {
+			g.setColor(Theme.gBackground);
+		}
+		
 		g.fillRect(x+1, y+1, width-2, height-2);
 		
 		g.setColor(Theme.gForeground);
