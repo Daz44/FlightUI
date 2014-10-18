@@ -54,11 +54,12 @@ public class EnginePanelGuage extends JPanel {
 	
 	public EnginePanelGuage(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();
-		ad.initMem();
+		FLUI_MEMORY.initMem();
 	}
 	
 	BufferedImage bf;
 	
+	@Override
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);

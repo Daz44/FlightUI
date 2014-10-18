@@ -32,6 +32,7 @@ public class RadioPanel extends JPanel{
 	TextIndicatorRGB tiNav1 = new TextIndicatorRGB(410, 5, 200, 30, "LAND", 1);
 	TextIndicatorRGB tiNav2 = new TextIndicatorRGB(610, 5, 200, 30, "TAXI", 1);
 	
+	@Override
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);

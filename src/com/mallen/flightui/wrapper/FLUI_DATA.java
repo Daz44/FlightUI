@@ -30,7 +30,7 @@ public class FLUI_DATA {
 	}
 	
 	public static int getHeading(){
-		return (int) FLUI_GLOBAL.hdg;
+		return FLUI_GLOBAL.hdg;
 	}
 	public static int getTAS(){
 		return FLUI_GLOBAL.trueSpeed;

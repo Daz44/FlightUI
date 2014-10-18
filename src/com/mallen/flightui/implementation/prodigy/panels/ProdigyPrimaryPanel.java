@@ -53,13 +53,14 @@ public class ProdigyPrimaryPanel extends JPanel {
 
 	public ProdigyPrimaryPanel(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();
-		ad.initMem();
+		FLUI_MEMORY.initMem();
 	};
 	
 	int qnhAlt;
 	boolean drawFPS = true;
 	boolean debugInf = false;
 	
+	@Override
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);

@@ -25,8 +25,6 @@ import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 
-import sun.java2d.loops.DrawRect;
-
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 
 public class ArtificialHorizon {
@@ -105,12 +103,12 @@ public class ArtificialHorizon {
 		Rectangle2D stringRect = f.getStringBounds("" + pitch, fm.getFontRenderContext());
 		
 		for(int i = -60; i <= 60; i += 10){
-			g.fillRect(x + width/2 - width/8, (int) ((int) y + (drawOffset - height/180*i-1)), width/4, 2);
-			g.drawString("" + i, x + width/2 - width/8 - 50, (int) ((int) ((int) y + (drawOffset - height/180*i)) - stringRect.getHeight()/4));
+			g.fillRect(x + width/2 - width/8, (int) (y + (drawOffset - height/180*i-1)), width/4, 2);
+			g.drawString("" + i, x + width/2 - width/8 - 50, (int) ((int) (y + (drawOffset - height/180*i)) - stringRect.getHeight()/4));
 		}
 		
 		for(int i2 = -25; i2 <= 25; i2 += 10){
-			g.fillRect(x + width/2 - (width/8)/2, (int) ((int) y + (drawOffset - height/180*i2-1)), width/8, 2);
+			g.fillRect(x + width/2 - (width/8)/2, (int) (y + (drawOffset - height/180*i2-1)), width/8, 2);
 			g.drawString("" + i2, x + width/2 + width/8 + 25, (int) (y + (int) (drawOffset - height/180*i2) - stringRect.getHeight()/4));
 	
 		}

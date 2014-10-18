@@ -36,6 +36,7 @@ public class LightPanel extends JPanel{
 	TextIndicatorRGB tiLogo = new TextIndicatorRGB(510, 5, 40, 30, "LOGO", 1);
 	TextIndicatorRGB tiStrobe = new TextIndicatorRGB(610, 5, 40, 30, "STROBE", 1);
 	
+	@Override
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);

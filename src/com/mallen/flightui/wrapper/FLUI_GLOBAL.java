@@ -52,6 +52,7 @@ public class FLUI_GLOBAL {
 			
 			//TODO: COMPLETE MOVING RUNTIME RETRIEVAL OF AIRCRAFT DATA TO THIS METHOD
 			Thread t = new Thread(new Runnable(){
+				@Override
 				public void run(){
 					while(true){
 						pitch = (FLUI_READER.getDouble(12144)+90);
@@ -94,13 +95,13 @@ public class FLUI_GLOBAL {
 						if(FLUI_READER.getByte(0x036D) == 1){ AIRCRAFT_OVERSPEED = true;} else { AIRCRAFT_OVERSPEED = false;}
 						
 						FLUILights fll = new FLUILights();
-						LIGHT_NAV = fll.Nav();
-						LIGHT_BEACON = fll.Beacon();
-						LIGHT_LANDING =fll.Landing();
-						LIGHT_LANDING = fll.Taxi();
-						LIGHT_STROBE = fll.Strobe();
-						LIGHT_WING = fll.Wing();
-						LIGHT_LOGO = fll.Logo();
+						LIGHT_NAV = FLUILights.Nav();
+						LIGHT_BEACON = FLUILights.Beacon();
+						LIGHT_LANDING =FLUILights.Landing();
+						LIGHT_LANDING = FLUILights.Taxi();
+						LIGHT_STROBE = FLUILights.Strobe();
+						LIGHT_WING = FLUILights.Wing();
+						LIGHT_LOGO = FLUILights.Logo();
 					
 						if(FLUI_READER.getByte(0x07BC) == 1){ AP_MASTER = true; } else { AP_MASTER = false;}
 						if(FLUI_READER.getByte(0x07DC) == 1){ AP_THR = true; } else { AP_THR = false;}

@@ -14,14 +14,12 @@
 */
 
 package com.mallen.flightui.implementation.prodigy;
-import java.awt.Dimension;
 import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import com.flightsim.fsuipc.fsuipc_wrapper;
-import com.mallen.flightui.core.Console;
 import com.mallen.flightui.core.exceptions.FLUIException;
 import com.mallen.flightui.core.exceptions.FlightSimConnectionException;
 import com.mallen.flightui.core.exceptions.InvalidDLLConfigurationException;

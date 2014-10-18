@@ -28,6 +28,7 @@ public class CautionPanel extends JPanel {
 	WarningIndicator wInd = new WarningIndicator(10, 10, 50, 50, "MW", false, Theme.gFalse);
 	WarningIndicator cInd = new WarningIndicator(80, 10, 50, 50, "MC", false, Theme.gNeutral);
 	
+	@Override
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);

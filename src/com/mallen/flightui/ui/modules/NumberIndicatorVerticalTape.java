@@ -15,17 +15,11 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
-
-import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 public class NumberIndicatorVerticalTape {
 	int x = 0, y = 0;
@@ -84,14 +78,14 @@ public class NumberIndicatorVerticalTape {
 		//TODO: Fix implementation for intervals other than 100
 		
 		for(int i = -tapeRange/2; i < tapeRange/2; i++){
-			String s = "" + Math.round(((value/ ((int) (100* (double) valueMult))*(100*valueMult)))-((100*valueMult)*i));
+			String s = "" + Math.round(((value/ ((int) (100* valueMult))*(100*valueMult)))-((100*valueMult)*i));
 			if(s.length() < 3){
 				s = "0" + s;
 			}
 			
 			Rectangle2D stringRect = TextFont.getStringBounds(s, fm.getFontRenderContext());
 			int numberFromNextStep = ((valueRef - ((valueRef/100)*100)));
-			int offset = (int) ((int) numberFromNextStep + (y - stringRect.getHeight()) + height/2);
+			int offset = (int) (numberFromNextStep + (y - stringRect.getHeight()) + height/2);
 		
 			
 			if( i*height/tapeRange + offset < y+height &&  i*height/tapeRange + offset - stringRect.getHeight() > y && (((valueRef/100)*100)-(100*i)) >= 0){

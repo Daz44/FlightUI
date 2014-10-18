@@ -35,6 +35,7 @@ public class LightPanel2 extends JPanel{
 	BooleanIndicatorTextDigitalRect tiLogo = new BooleanIndicatorTextDigitalRect(610, 5, 100, 30, "LOGO", false, false);
 	BooleanIndicatorTextDigitalRect tiStrobe = new BooleanIndicatorTextDigitalRect(720, 5, 100, 30, "STROBE", false, false);
 	
+	@Override
 	public void paintComponent(Graphics g){
 	super.paintComponent(g);
 	setDoubleBuffered(true);
