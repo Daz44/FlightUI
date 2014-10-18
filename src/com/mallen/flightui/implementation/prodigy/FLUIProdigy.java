@@ -21,12 +21,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import com.flightsim.fsuipc.fsuipc_wrapper;
+import com.mallen.flightui.core.Console;
 import com.mallen.flightui.core.exceptions.FLUIException;
 import com.mallen.flightui.core.exceptions.FlightSimConnectionException;
 import com.mallen.flightui.core.exceptions.InvalidDLLConfigurationException;
 import com.mallen.flightui.core.exceptions.InvalidJVMConfigurationException;
 import com.mallen.flightui.implementation.prodigy.panels.ProdigyPrimaryPanel;
 import com.mallen.flightui.ui.modules.Theme;
+import com.mallen.flightui.utils.ConsoleFormatting;
 
 public class FLUIProdigy
 {
@@ -56,25 +58,50 @@ public class FLUIProdigy
 		else
 		{
 			FLUIProdigy t = new FLUIProdigy();
-			t.configFrame(false, true, true);
+			t.configFrame();
 		//	new Console();
 			}
 	}
 	
+
+	int xVal = 0;
+	int yVal =  0;
+	int widthVal =  0;
+	int heightVal =  0;
+	
 	public static void main(String s[]) 
 	{
+		FLUIProdigy m = new FLUIProdigy();
 		try {		
-			FLUIProdigy m = new FLUIProdigy();
 				if(s.length > 0){
 					Theme.setTheme(s[0].toLowerCase());
 				} else {
 					Theme.setTheme("embraer");
 				}
 			m.init();
-		}catch(Exception e){
-			System.out.println("FATAL EXCEPTION - Please ensure that FSUI_PC.DLL is in the correct direcoty!");
-			System.exit(1);
+		} catch(Exception e){
+			e.printStackTrace();
 		}
+	}
+	
+	public void configFrame(){
+		ConsoleFormatting.lineBreak(System.out);
+		ConsoleFormatting.drawHeader(System.out, "FLIGHTUI CONFIGURATION PRODIGY");
+		ConsoleFormatting.lineBreak(System.out);
+		
+		xVal = ConsoleFormatting.getInputInt(System.out, "X value for PFD");
+		yVal =  ConsoleFormatting.getInputInt(System.out, "Y value for PFD");
+		widthVal =  ConsoleFormatting.getInputInt(System.out, "Width value for PFD");
+		heightVal =  ConsoleFormatting.getInputInt(System.out, "Height value for PFD");
+		
+		ConsoleFormatting.lineBreak(System.out);
+		ConsoleFormatting.drawHeader(System.out, "XVAL: " + xVal);
+		ConsoleFormatting.drawHeader(System.out, "YVAL: " + yVal);
+		ConsoleFormatting.drawHeader(System.out, "WVAL: " + widthVal);
+		ConsoleFormatting.drawHeader(System.out, "HVAL: " + heightVal);
+		ConsoleFormatting.lineBreak(System.out);
+		
+		drawFrame(false, true, true);
 	}
 	
 	/**
@@ -84,17 +111,16 @@ public class FLUIProdigy
 	 * @param isResizable If the frames should be resizable or not (JFrame.setResiazble())
 	 * @throws Exception	
 	 */
-	public void configFrame(boolean isUndecorated, boolean isResizable, boolean visible){
+	public void drawFrame(boolean isUndecorated, boolean isResizable, boolean visible){
 		try {		
 
 			 JFrame Frame_ProdigyPrimary = new JFrame();
 			
 			Frame_ProdigyPrimary.setTitle("FlightUI - VirtualHorizon (Airliner)");
 			Frame_ProdigyPrimary.setResizable(isResizable);
-			Frame_ProdigyPrimary.setSize(1920, 1080);
-			Frame_ProdigyPrimary.setLocation(0, 0);
+			Frame_ProdigyPrimary.setSize(widthVal, heightVal);
+			Frame_ProdigyPrimary.setLocation(xVal, yVal);
 			Frame_ProdigyPrimary.setIconImage(ImageIO.read(new File("resources/FLUI.png")));
-			Frame_ProdigyPrimary.setMinimumSize(new Dimension(500, 500));
 			Frame_ProdigyPrimary.add(new ProdigyPrimaryPanel());
 			Frame_ProdigyPrimary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			Frame_ProdigyPrimary.setAlwaysOnTop(true);
