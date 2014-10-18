@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.panels;
+package com.mallen.flightui.implementation.generic.panels;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,7 +24,6 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class RadioPanel extends JPanel{
 	

@@ -13,11 +13,10 @@
 
 */
 
-package com.mallen.flightui.panels;
+package com.mallen.flightui.implementation.generic.panels;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 

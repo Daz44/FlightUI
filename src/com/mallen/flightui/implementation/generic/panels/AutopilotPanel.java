@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.panels;
+package com.mallen.flightui.implementation.generic.panels;
 
 
 import java.awt.Graphics;
@@ -26,7 +26,6 @@ import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
-import com.mallen.flightui.wrapper.FLUI_READER;
 
 public class AutopilotPanel extends JPanel {
 	

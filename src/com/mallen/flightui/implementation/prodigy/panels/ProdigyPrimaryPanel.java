@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.panels;
+package com.mallen.flightui.implementation.prodigy.panels;
 
 
 import java.awt.Color;
@@ -25,7 +25,6 @@ import javax.swing.JPanel;
 import com.mallen.flightui.instruments.ArtificialHorizon;
 import com.mallen.flightui.ui.modules.BooleanIndicatorDigitalRect;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalCompact;
-import com.mallen.flightui.ui.modules.GaugeIndicator;
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontal;
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontalTape;
 import com.mallen.flightui.ui.modules.NumberIndicatorVerticalTape;
@@ -33,11 +32,9 @@ import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 import com.mallen.flightui.wrapper.FLUI_MEMORY;
-import com.mallen.flightui.wrapper.FLUI_READER;
-import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 
 @SuppressWarnings("serial")
-public class ArtificialHorizonPanel extends JPanel {
+public class ProdigyPrimaryPanel extends JPanel {
 	
 	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth());
 	
@@ -54,7 +51,7 @@ public class ArtificialHorizonPanel extends JPanel {
 	
 	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
-	public ArtificialHorizonPanel(){
+	public ProdigyPrimaryPanel(){
 		FLUI_MEMORY ad = new FLUI_MEMORY();
 		ad.initMem();
 	};
