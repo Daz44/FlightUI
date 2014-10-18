@@ -92,7 +92,6 @@ public class FLUIGeneric
 	 */
 	public void configFrame(boolean isUndecorated, boolean isResizable, boolean visible){
 		try {		
-
 			 JFrame Frame_VirtualHorizon = new JFrame();
 			 JFrame Frame_Autopilot = new JFrame();
 			 JFrame Frame_LightPanel1 = new JFrame();
