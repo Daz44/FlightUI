@@ -22,7 +22,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import com.mallen.flightui.instruments.ArtificialHorizon;
+import com.mallen.flightui.ui.modules.ArtificialHorizon;
 import com.mallen.flightui.ui.modules.BooleanIndicatorDigitalRect;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalCompact;
 import com.mallen.flightui.ui.modules.NumberIndicatorHorizontal;
@@ -74,7 +74,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 			methDelta = System.currentTimeMillis();
 		}	
 			
-		ah.setSize(this.getSize().width, this.getSize().width);
+		ah.setSize(this.getSize().width, this.getSize().height);
 		ah.draw(g, this);
 		
 		if(debugInf){
