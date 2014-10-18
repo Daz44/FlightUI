@@ -85,6 +85,7 @@ public class FLUIGeneric {
 		} catch (Exception e) {
 			System.out
 					.println("FATAL EXCEPTION - Please ensure that FSUI_PC.DLL is in the correct direcoty!");
+			e.printStackTrace();
 			System.exit(1);
 		}
 	}

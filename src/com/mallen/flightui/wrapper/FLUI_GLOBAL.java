@@ -55,11 +55,11 @@ public class FLUI_GLOBAL {
 
 		// TODO: COMPLETE MOVING RUNTIME RETRIEVAL OF AIRCRAFT DATA TO THIS
 		// METHOD
-		Thread t = new Thread(new Runnable() {
+		Thread globalValueFetcher = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while (true) {
-					pitch = (FLUI_READER.getDouble(12144) + 90);
+					pitch = FLUI_READER.getDouble(12144) + 90;
 					roll = FLUI_READER.getDouble(12152);
 
 					qnhAlt = FLUI_READER.getInt(FLUI_MEMORY.FSUIPC_LOOKUP
@@ -71,8 +71,9 @@ public class FLUI_GLOBAL {
 					hdg = (int) Math.round(360.0 * FLUI_READER.getInt(0x0580)
 							/ (65536.0 * 65536.0));// Correcting the Heading
 													// Value given by FSUIPC
-					if (hdg < 0)
+					if (hdg < 0) {
 						hdg = 360 + hdg;
+					}
 					gps_waypoint = (int) Math.toDegrees(FLUI_READER
 							.getDouble(FLUI_MEMORY.FSUIPC_LOOKUP
 									.get("GPS_WAYPOINT_HEADING")));
@@ -122,7 +123,7 @@ public class FLUI_GLOBAL {
 						AIRCRAFT_OVERSPEED = false;
 					}
 
-					FLUILights fll = new FLUILights();
+					new FLUILights();
 					LIGHT_NAV = FLUILights.Nav();
 					LIGHT_BEACON = FLUILights.Beacon();
 					LIGHT_LANDING = FLUILights.Landing();
@@ -156,8 +157,9 @@ public class FLUI_GLOBAL {
 					AP_VAL_HDG = (int) Math.round(FLUI_READER.getInt(0x07CC) / 65536.0 * 360.0);
 
 					AP_VAL_VS = FLUI_READER.getInt(0x07F2);
-					if (AP_VAL_VS > 50000)
+					if (AP_VAL_VS > 50000) {
 						AP_VAL_VS = AP_VAL_VS - 65536;
+					}
 
 					AP_VAL_ALT = (int) Math.round(FLUI_READER.getInt(0x07D4) / 65536 * 3.3) / 100 * 100;
 
@@ -169,7 +171,7 @@ public class FLUI_GLOBAL {
 				}
 			}
 		});
-		t.start();
+		globalValueFetcher.start();
 
 	}
 }

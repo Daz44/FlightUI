@@ -21,20 +21,12 @@ public class FLUIWarning {
 
 	// FLUI MasterCaution
 	public static boolean MasterCaution() {
-		if (!FLUI_GLOBAL.gear && FLUI_GLOBAL.qnhAlt < 1000) {
-			return true;
-		} else {
-			return false;
-		}
+		return !FLUI_GLOBAL.gear && FLUI_GLOBAL.qnhAlt < 1000;
 	}
 
 	// FLUI MasterWarning
 	public static boolean MasterWarning() {
-		if (FLUI_GLOBAL.AIRCRAFT_STALLED || FLUI_GLOBAL.AIRCRAFT_OVERSPEED) {
-			return true;
-		} else {
-			return false;
-		}
+		return FLUI_GLOBAL.AIRCRAFT_STALLED || FLUI_GLOBAL.AIRCRAFT_OVERSPEED;
 	}
 
 }

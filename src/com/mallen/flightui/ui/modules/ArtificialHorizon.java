@@ -87,7 +87,7 @@ public class ArtificialHorizon {
 	// Todo: Refactor and make easier to read
 	public void draw(Graphics g, ImageObserver io) {
 
-		drawOffset = (height) / 180 * (180 - (pitch)); // Fix the magic number
+		drawOffset = height / 180.0 * (180.0 - pitch); // Fix the magic number
 														// offset
 		pitch = FLUI_GLOBAL.pitch;
 		roll = FLUI_GLOBAL.roll;
@@ -103,7 +103,7 @@ public class ArtificialHorizon {
 				(int) (height + drawOffset));
 
 		// Set orange as background
-		g2d.rotate(Math.toRadians(roll), x + (width / 2), y + (height / 2));
+		g2d.rotate(Math.toRadians(roll), x + width / 2, y + height / 2);
 		g2d.setColor(colGround);
 		g2d.fill(vhGround);
 
@@ -128,7 +128,7 @@ public class ArtificialHorizon {
 		}
 
 		for (int i2 = -25; i2 <= 25; i2 += 10) {
-			g.fillRect(x + width / 2 - (width / 8) / 2, (int) (y + (drawOffset
+			g.fillRect(x + width / 2 - width / 8 / 2, (int) (y + (drawOffset
 					- height / 180 * i2 - 1)), width / 8, 2);
 			g.drawString("" + i2, x + width / 2 + width / 8 + 25, (int) (y
 					+ (int) (drawOffset - height / 180 * i2) - stringRect

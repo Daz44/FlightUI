@@ -84,7 +84,7 @@ public class RadioPanel extends JPanel {
 			}
 			tiNav2.draw(g);
 		} catch (Exception e) {
-			System.err.println("Error in Radio");
+			e.printStackTrace();
 		}
 
 		try {

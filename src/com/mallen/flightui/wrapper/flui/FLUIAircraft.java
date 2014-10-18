@@ -80,20 +80,12 @@ public class FLUIAircraft {
 
 	public static boolean GearDown() {
 		FSGear gear = new FSGear();
-		if (gear.LeftGearState() > 16000 && gear.RightGearState() > 16000
-				&& gear.NoseGearState() > 16000) {
-			return true;
-		} else {
-			return false;
-		}
+		return gear.LeftGearState() > 16000 && gear.RightGearState() > 16000
+				&& gear.NoseGearState() > 16000;
 	}
 
 	public static boolean Spoilers() {
-		if (FLUI_READER.getInt(0x0BD0) > 0) { // SPOILERS
-			return true;
-		} else {
-			return false;
-		}
+		return FLUI_READER.getInt(0x0BD0) > 0;
 	}
 
 	public static boolean Alternator() {
