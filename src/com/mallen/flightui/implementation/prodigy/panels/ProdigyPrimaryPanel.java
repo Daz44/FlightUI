@@ -59,7 +59,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 			getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
 	public ProdigyPrimaryPanel() {
-		FLUI_MEMORY ad = new FLUI_MEMORY();
+		new FLUI_MEMORY();
 		FLUI_MEMORY.initMem();
 	};
 
@@ -73,60 +73,29 @@ public class ProdigyPrimaryPanel extends JPanel {
 		setDoubleBuffered(true);
 
 		long delta = System.currentTimeMillis();
-		long methDelta = 0;
-
 		qnhAlt = FLUI_GLOBAL.qnhAlt;
-
-		if (debugInf) {
-			System.out.println("----LOOP DATA----");
-			methDelta = System.currentTimeMillis();
-		}
 
 		ah.setSize(this.getSize().width, this.getSize().height);
 		ah.draw(g, this);
-
-		if (debugInf) {
-			System.out.println("AH:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		altTape.setLocation(getWidth() - 70, 100);
 		altTape.setSize(50, 800);
 		altTape.update(FLUI_GLOBAL.qnhAlt);
 		altTape.draw(g, this);
 
-		if (debugInf) {
-			System.out.println("AT:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		indicatorAltitude.update("" + qnhAlt);
 		indicatorAltitude.setLocation(this.getSize().width - 110, 470);
 		indicatorAltitude.draw(g);
-
-		if (debugInf) {
-			System.out.println("IA:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		spdTape.setLocation(20, 100);
 		spdTape.setSize(50, 800);
 		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
 		spdTape.draw(g, this);
 
-		if (debugInf) {
-			System.out.println("ST:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
 		indicatorSpeed.setLocation(10, 470);
 		indicatorSpeed.draw(g);
 
-		if (debugInf) {
-			System.out.println("IS:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
 		// ////HEADING DISPLAY//////////////////////////////////////
 
 		int hdg = FLUI_GLOBAL.hdg;
@@ -136,45 +105,20 @@ public class ProdigyPrimaryPanel extends JPanel {
 		numIndHeading.setLocation(this.getSize().width / 2 - 180, 10);
 		numIndHeading.update(hdg, gps_waypoint);
 
-		if (debugInf) {
-			System.out.println("NIH:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		hdgTape.draw(g, this);
 		hdgTape.setLocation(100, 40);
 		hdgTape.update(hdg);
 		// /////////////////////////////////////////////////////////
 
-		if (debugInf) {
-			System.out.println("HT:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		boolIndGear.update(FLUI_GLOBAL.gear);
 		boolIndGear.draw(g);
-
-		if (debugInf) {
-			System.out.println("BIG:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		boolIndAP.update(FLUI_GLOBAL.ap);
 		boolIndAP.setLocation(this.getSize().width - 130, 10);
 		boolIndAP.draw(g);
 
-		if (debugInf) {
-			System.out.println("BIAP:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		g.setColor(Theme.gForeground);
 		g.drawString("FLAPS: " + FLUI_GLOBAL.flaps, 10, 50);
-
-		if (debugInf) {
-			System.out.println("FLAPS:" + (System.currentTimeMillis() - delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		try {
 			long sleepTime = 1000 / 120 - (System.currentTimeMillis() - delta);
@@ -182,12 +126,6 @@ public class ProdigyPrimaryPanel extends JPanel {
 				// System.out.println("[WARNING] DROPPED FRAMES - " +
 				// sleepTime);
 				sleepTime = 0;
-			}
-
-			if (debugInf) {
-				System.out.println("STC:"
-						+ (System.currentTimeMillis() - delta));
-				methDelta = System.currentTimeMillis();
 			}
 
 			int fps = Math.round(1000 - (System.currentTimeMillis() - delta));
@@ -198,11 +136,6 @@ public class ProdigyPrimaryPanel extends JPanel {
 				g.drawString("" + fps, 10, 24);
 			}
 
-			if (debugInf) {
-				System.out.println("--- END DATA --- "
-						+ (System.currentTimeMillis() - delta) + " - FPS: "
-						+ (1000 - (System.currentTimeMillis() - delta)));
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -59,11 +59,9 @@ public class ArtificialHorizonPanel extends JPanel {
 			getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
 	public ArtificialHorizonPanel() {
-		FLUI_MEMORY ad = new FLUI_MEMORY();
 		FLUI_MEMORY.initMem();
 	};
 
-	int qnhAlt;
 	boolean drawFPS = true;
 	boolean debugInf = false;
 
@@ -73,9 +71,7 @@ public class ArtificialHorizonPanel extends JPanel {
 		setDoubleBuffered(true);
 
 		long delta = System.currentTimeMillis();
-		long methDelta = 0;
-
-		qnhAlt = FLUI_GLOBAL.qnhAlt;
+		int qnhAlt = FLUI_GLOBAL.qnhAlt;
 
 		ah.setSize(getWidth(), getHeight());
 		ah.draw(g, this);
@@ -130,24 +126,12 @@ public class ArtificialHorizonPanel extends JPanel {
 				sleepTime = 0;
 			}
 
-			if (debugInf) {
-				System.out.println("STC:"
-						+ (System.currentTimeMillis() - delta));
-				methDelta = System.currentTimeMillis();
-			}
-
 			int fps = Math.round(1000 - (System.currentTimeMillis() - delta));
 
 			if (drawFPS) {
 				g.setFont(new Font("Verdana", Font.BOLD, 22));
 				g.setColor(Color.GREEN);
 				g.drawString("" + fps, 10, 24);
-			}
-
-			if (debugInf) {
-				System.out.println("--- END DATA --- "
-						+ (System.currentTimeMillis() - delta) + " - FPS: "
-						+ (1000 - (System.currentTimeMillis() - delta)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

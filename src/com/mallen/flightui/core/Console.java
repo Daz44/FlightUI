@@ -31,20 +31,19 @@ public class Console {
 				.println("------------------------------------------------------------------------------");
 
 		System.out.println("Init @ " + new Date());
-		this.waitForInput();
+		waitForInput();
 	}
 
-	private Scanner input = new Scanner(System.in);
+	private final Scanner input = new Scanner(System.in);
 
 	public void waitForInput() {
 		System.out.print("[INPUT] > ");
-		this.parseInput(input.nextLine());
+		parseInput(input.nextLine());
 	}
 
 	public void parseInput(String s) {
 
 		if (s.split(" ")[0].toLowerCase().equals("getint")) {
-			FLUI_READER fr = new FLUI_READER();
 			System.out.println("[ "
 					+ s.split(" ")[1]
 					+ "} "
@@ -68,7 +67,7 @@ public class Console {
 			}
 		}
 
-		this.waitForInput();
+		waitForInput();
 	}
 
 	public static void main(String[] args) {
