@@ -13,7 +13,7 @@
 
 */
 
-package com.mallen.flightui.instruments;
+package com.mallen.flightui.ui.modules;
 
 import java.awt.Color;
 import java.awt.Font;
