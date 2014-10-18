@@ -70,58 +70,28 @@ public class ArtificialHorizonPanel extends JPanel {
 
 		qnhAlt = FLUI_GLOBAL.qnhAlt;
 
-		if(debugInf){
-			System.out.println("----LOOP DATA----");
-			methDelta = System.currentTimeMillis();
-		}	
-
 		ah.setSize(getWidth(), getHeight());
 		ah.draw(g, this);
-
-		if(debugInf){
-			System.out.println("AH:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		altTape.setLocation(getWidth()-70, 50);
 		altTape.setSize(50, getHeight()/100);
 		altTape.update(FLUI_GLOBAL.qnhAlt);
 		altTape.draw(g, this);
 
-		if(debugInf){
-			System.out.println("AT:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		indicatorAltitude.update("" + qnhAlt);
 		indicatorAltitude.setLocation(this.getSize().width-110, 50 + getHeight()/100);
 		indicatorAltitude.draw(g);
-
-		if(debugInf){
-			System.out.println("IA:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		spdTape.setLocation(getWidth()-70, 50);
 		spdTape.setSize(50, getHeight()/100);
 		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
 		spdTape.draw(g, this);
 
-		if(debugInf){
-			System.out.println("ST:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
 		indicatorSpeed.setLocation(10, 470);
 		indicatorSpeed.draw(g);
-
-		if(debugInf){
-			System.out.println("IS:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}                                                                      
+                                                                 
 		//////HEADING DISPLAY//////////////////////////////////////              
-
 		int hdg =  FLUI_GLOBAL.hdg;                                              
 		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;                             
 
@@ -129,45 +99,20 @@ public class ArtificialHorizonPanel extends JPanel {
 		numIndHeading.setLocation(this.getSize().width/2-180, 10);               
 		numIndHeading.update(hdg, gps_waypoint);                                 
 
-		if(debugInf){
-			System.out.println("NIH:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		hdgTape.draw(g, this);
 		hdgTape.setLocation(100, 40);
 		hdgTape.update(hdg);
 		///////////////////////////////////////////////////////////              
 
-		if(debugInf){
-			System.out.println("HT:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		boolIndGear.update(FLUI_GLOBAL.gear);                             
-		boolIndGear.draw(g);             
-
-		if(debugInf){
-			System.out.println("BIG:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}                                                      
+		boolIndGear.draw(g);                                                         
 
 		boolIndAP.update(FLUI_GLOBAL.ap);
 		boolIndAP.setLocation(this.getSize().width-130, 10);
 		boolIndAP.draw(g);
 
-		if(debugInf){
-			System.out.println("BIAP:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
-
 		g.setColor(Theme.gForeground);
 		g.drawString("FLAPS: " + FLUI_GLOBAL.flaps, 10, 50);
-
-		if(debugInf){
-			System.out.println("FLAPS:" + (System.currentTimeMillis()-delta));
-			methDelta = System.currentTimeMillis();
-		}
 
 		try {
 			long sleepTime = 1000/120 - (System.currentTimeMillis()-delta);
