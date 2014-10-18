@@ -11,7 +11,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-*/
+ */
 
 package com.mallen.flightui.implementation.generic.panels;
 
@@ -25,24 +25,26 @@ import com.mallen.flightui.ui.modules.WarningIndicator;
 import com.mallen.flightui.wrapper.flui.FLUIWarning;
 
 public class CautionPanel extends JPanel {
-	WarningIndicator wInd = new WarningIndicator(10, 10, 50, 50, "MW", false, Theme.gFalse);
-	WarningIndicator cInd = new WarningIndicator(80, 10, 50, 50, "MC", false, Theme.gNeutral);
-	
+	WarningIndicator wInd = new WarningIndicator(10, 10, 50, 50, "MW", false,
+			Theme.gFalse);
+	WarningIndicator cInd = new WarningIndicator(80, 10, 50, 50, "MC", false,
+			Theme.gNeutral);
+
 	@Override
-	public void paintComponent(Graphics g){
-	super.paintComponent(g);
-	setDoubleBuffered(true);
-	
-	 Graphics2D g2d = (Graphics2D) g;
-		
-	    g.setColor(Theme.gBackground);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		setDoubleBuffered(true);
+
+		Graphics2D g2d = (Graphics2D) g;
+
+		g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
-	
+
 		wInd.update(FLUIWarning.MasterWarning());
 		wInd.draw(g);
-		
+
 		cInd.update(FLUIWarning.MasterCaution());
-		cInd.draw(g);	
+		cInd.draw(g);
 		repaint();
 	}
 }

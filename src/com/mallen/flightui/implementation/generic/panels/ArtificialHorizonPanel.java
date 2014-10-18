@@ -15,7 +15,6 @@
 
 package com.mallen.flightui.implementation.generic.panels;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -38,20 +37,28 @@ public class ArtificialHorizonPanel extends JPanel {
 
 	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getHeight());
 
+	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(
+			getWidth() - 100, 900, 100, 30, "ft", false);
+	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100,
+			30, "kias", false);
+	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(
+			400 - 180, 10, 360, 20, 0, 360, 20, true);
+	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(
+			10, 10, 100, 20, "GEAR", true, true);
+	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(
+			-45, 375, 20, 20, false);
 
-	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(getWidth()-100, 900, 100, 30, "ft", false);
-	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100, 30, "kias", false);
-	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(400-180, 10, 360, 20, 0, 360, 20, true);
-	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(10, 10, 100, 20, "GEAR", true, true);
-	BooleanIndicatorDigitalRect boolIndStall = new BooleanIndicatorDigitalRect(-45, 375, 20, 20, false);
+	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(
+			getWidth() - 140, 100, 100, 800, 100, true);
+	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20,
+			100, 100, 800, 20, true);
+	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(
+			100, 20, 800, 30, 20, true);
 
-	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(getWidth()-140, 100, 100, 800, 100, true);
-	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20, 100, 100, 800, 20, true);
-	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(100, 20, 800, 30, 20, true);
+	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(
+			getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
-	BooleanIndicatorTextDigitalCompact boolIndAP = new BooleanIndicatorTextDigitalCompact(getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
-
-	public ArtificialHorizonPanel(){
+	public ArtificialHorizonPanel() {
 		FLUI_MEMORY ad = new FLUI_MEMORY();
 		FLUI_MEMORY.initMem();
 	};
@@ -61,7 +68,7 @@ public class ArtificialHorizonPanel extends JPanel {
 	boolean debugInf = false;
 
 	@Override
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setDoubleBuffered(true);
 
@@ -73,69 +80,74 @@ public class ArtificialHorizonPanel extends JPanel {
 		ah.setSize(getWidth(), getHeight());
 		ah.draw(g, this);
 
-		altTape.setLocation(getWidth()-70, 50);
-		altTape.setSize(50, getHeight()/100);
+		altTape.setLocation(getWidth() - 70, 50);
+		altTape.setSize(50, getHeight() / 100);
 		altTape.update(FLUI_GLOBAL.qnhAlt);
 		altTape.draw(g, this);
 
 		indicatorAltitude.update("" + qnhAlt);
-		indicatorAltitude.setLocation(this.getSize().width-110, 50 + getHeight()/100);
+		indicatorAltitude.setLocation(this.getSize().width - 110,
+				50 + getHeight() / 100);
 		indicatorAltitude.draw(g);
 
-		spdTape.setLocation(getWidth()-70, 50);
-		spdTape.setSize(50, getHeight()/100);
+		spdTape.setLocation(getWidth() - 70, 50);
+		spdTape.setSize(50, getHeight() / 100);
 		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
 		spdTape.draw(g, this);
 
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
 		indicatorSpeed.setLocation(10, 470);
 		indicatorSpeed.draw(g);
-                                                                 
-		//////HEADING DISPLAY//////////////////////////////////////              
-		int hdg =  FLUI_GLOBAL.hdg;                                              
-		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;                             
 
-		numIndHeading.draw(g, this);                                             
-		numIndHeading.setLocation(this.getSize().width/2-180, 10);               
-		numIndHeading.update(hdg, gps_waypoint);                                 
+		// ////HEADING DISPLAY//////////////////////////////////////
+		int hdg = FLUI_GLOBAL.hdg;
+		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;
+
+		numIndHeading.draw(g, this);
+		numIndHeading.setLocation(this.getSize().width / 2 - 180, 10);
+		numIndHeading.update(hdg, gps_waypoint);
 
 		hdgTape.draw(g, this);
 		hdgTape.setLocation(100, 40);
 		hdgTape.update(hdg);
-		///////////////////////////////////////////////////////////              
+		// /////////////////////////////////////////////////////////
 
-		boolIndGear.update(FLUI_GLOBAL.gear);                             
-		boolIndGear.draw(g);                                                         
+		boolIndGear.update(FLUI_GLOBAL.gear);
+		boolIndGear.draw(g);
 
 		boolIndAP.update(FLUI_GLOBAL.ap);
-		boolIndAP.setLocation(this.getSize().width-130, 10);
+		boolIndAP.setLocation(this.getSize().width - 130, 10);
 		boolIndAP.draw(g);
 
 		g.setColor(Theme.gForeground);
 		g.drawString("FLAPS: " + FLUI_GLOBAL.flaps, 10, 50);
 
 		try {
-			long sleepTime = 1000/120 - (System.currentTimeMillis()-delta);
-			if(sleepTime < 0){
-				//System.out.println("[WARNING] DROPPED FRAMES - " + sleepTime);
+			long sleepTime = 1000 / 120 - (System.currentTimeMillis() - delta);
+			if (sleepTime < 0) {
+				// System.out.println("[WARNING] DROPPED FRAMES - " +
+				// sleepTime);
 				sleepTime = 0;
 			}
 
-			if(debugInf){
-				System.out.println("STC:" + (System.currentTimeMillis()-delta));
+			if (debugInf) {
+				System.out.println("STC:"
+						+ (System.currentTimeMillis() - delta));
 				methDelta = System.currentTimeMillis();
-			}	
+			}
 
-			int fps = Math.round(1000-(System.currentTimeMillis()-delta));
+			int fps = Math.round(1000 - (System.currentTimeMillis() - delta));
 
-			if(drawFPS){
+			if (drawFPS) {
 				g.setFont(new Font("Verdana", Font.BOLD, 22));
 				g.setColor(Color.GREEN);
 				g.drawString("" + fps, 10, 24);
 			}
 
-			if(debugInf){
-				System.out.println("--- END DATA --- " + (System.currentTimeMillis()-delta) + " - FPS: " + 	(1000-(System.currentTimeMillis()-delta)));
+			if (debugInf) {
+				System.out.println("--- END DATA --- "
+						+ (System.currentTimeMillis() - delta) + " - FPS: "
+						+ (1000 - (System.currentTimeMillis() - delta)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

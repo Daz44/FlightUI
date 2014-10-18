@@ -11,26 +11,26 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-*/
+ */
 
 package com.mallen.flightui.wrapper.flui;
 
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 
 public class FLUIWarning {
-	
-	//FLUI MasterCaution
-	public static boolean MasterCaution(){
-		if(!FLUI_GLOBAL.gear	 && FLUI_GLOBAL.qnhAlt < 1000){
+
+	// FLUI MasterCaution
+	public static boolean MasterCaution() {
+		if (!FLUI_GLOBAL.gear && FLUI_GLOBAL.qnhAlt < 1000) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	//FLUI MasterWarning
-	public static boolean MasterWarning(){
-		if(FLUI_GLOBAL.AIRCRAFT_STALLED || FLUI_GLOBAL.AIRCRAFT_OVERSPEED){
+
+	// FLUI MasterWarning
+	public static boolean MasterWarning() {
+		if (FLUI_GLOBAL.AIRCRAFT_STALLED || FLUI_GLOBAL.AIRCRAFT_OVERSPEED) {
 			return true;
 		} else {
 			return false;
@@ -38,4 +38,3 @@ public class FLUIWarning {
 	}
 
 }
-

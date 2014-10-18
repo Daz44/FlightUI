@@ -11,7 +11,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-*/
+ */
 
 package com.mallen.flightui.implementation.generic.panels;
 
@@ -26,56 +26,58 @@ import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.utils.Converter;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 
-public class LightPanel extends JPanel{
-	
+public class LightPanel extends JPanel {
+
 	TextIndicatorRGB tiNav = new TextIndicatorRGB(10, 5, 40, 30, "NAV", 1);
-	TextIndicatorRGB tiBeacon = new TextIndicatorRGB(110, 5, 40, 30, "BEACON", 1);
+	TextIndicatorRGB tiBeacon = new TextIndicatorRGB(110, 5, 40, 30, "BEACON",
+			1);
 	TextIndicatorRGB tiLanding = new TextIndicatorRGB(210, 5, 40, 30, "LAND", 1);
 	TextIndicatorRGB tiTaxi = new TextIndicatorRGB(310, 5, 40, 30, "TAXI", 1);
 	TextIndicatorRGB tiWing = new TextIndicatorRGB(410, 5, 40, 30, "WING", 1);
 	TextIndicatorRGB tiLogo = new TextIndicatorRGB(510, 5, 40, 30, "LOGO", 1);
-	TextIndicatorRGB tiStrobe = new TextIndicatorRGB(610, 5, 40, 30, "STROBE", 1);
-	
+	TextIndicatorRGB tiStrobe = new TextIndicatorRGB(610, 5, 40, 30, "STROBE",
+			1);
+
 	@Override
-	public void paintComponent(Graphics g){
-	super.paintComponent(g);
-	setDoubleBuffered(true);
-	
-	 Graphics2D g2d = (Graphics2D) g;
-	    RenderingHints rhints = g2d.getRenderingHints();
-	    rhints.containsValue(RenderingHints.VALUE_ANTIALIAS_ON);
-	    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-	
-		
-	    g.setColor(Theme.gBackground);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		setDoubleBuffered(true);
+
+		Graphics2D g2d = (Graphics2D) g;
+		RenderingHints rhints = g2d.getRenderingHints();
+		rhints.containsValue(RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
-	
+
 		tiNav.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_NAV));
 		tiNav.draw(g);
 
 		tiBeacon.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_BEACON));
 		tiBeacon.draw(g);
-		
+
 		tiLanding.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_LANDING));
 		tiLanding.draw(g);
-		
+
 		tiTaxi.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_TAXI));
 		tiTaxi.draw(g);
-		
+
 		tiWing.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_WING));
 		tiWing.draw(g);
-		
+
 		tiLogo.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_LOGO));
 		tiLogo.draw(g);
-		
+
 		tiStrobe.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_STROBE));
 		tiStrobe.draw(g);
-		
+
 		try {
 			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}		
+		}
 		repaint();
 	}
 }

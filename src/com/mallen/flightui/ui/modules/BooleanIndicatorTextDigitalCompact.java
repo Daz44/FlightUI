@@ -11,7 +11,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 
-*/
+ */
 
 package com.mallen.flightui.ui.modules;
 
@@ -27,67 +27,74 @@ public class BooleanIndicatorTextDigitalCompact {
 	boolean value = false;
 	private boolean aero = false;
 	String title = "";
-	
+
 	int minVal = 0, maxVal = 0, stepVal = 0;
-	
-	public BooleanIndicatorTextDigitalCompact(int horizonX, int horizonY, int horizonWidth, int horizonHeight, String text, Boolean val, Boolean aeroOn){
+
+	public BooleanIndicatorTextDigitalCompact(int horizonX, int horizonY,
+			int horizonWidth, int horizonHeight, String text, Boolean val,
+			Boolean aeroOn) {
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
 		width = horizonWidth;
-		
+
 		title = text;
 		value = val;
-		
+
 		aero = aeroOn;
-		f = new Font("Verdana", Font.PLAIN, height/2);	
+		f = new Font("Verdana", Font.PLAIN, height / 2);
 	}
-	
-	//DEFAULT METHODS FOR INDICATORS
-	public void setSize(int w, int h){
+
+	// DEFAULT METHODS FOR INDICATORS
+	public void setSize(int w, int h) {
 		width = w;
 		height = h;
 		f = new Font("Verdana", Font.PLAIN, height);
 	}
-	
-	public void setLocation(int w, int h){
+
+	public void setLocation(int w, int h) {
 		x = w;
 		y = h;
 	}
-	
-	public void setAero(Boolean b){
+
+	public void setAero(Boolean b) {
 		aero = b;
 	}
-	
-	public void update(boolean b){
+
+	public void update(boolean b) {
 		value = b;
 	}
-	////////////////////////////////
-	
+
+	// //////////////////////////////
+
 	Font f;
-	public void draw(Graphics g){
-		Graphics2D g2d = (Graphics2D)g;
+
+	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-						  RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		
+				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
 		g.setFont(f);
-	    FontMetrics fm = g.getFontMetrics();
-		
+		FontMetrics fm = g.getFontMetrics();
+
 		g.setColor(Theme.gForeground);
 		g.drawRect(x, y, width, height);
-		
+
 		Theme.setAero(aero, g);
-		g.fillRect(x+1, y+1, width-2, height-2);
-		
+		g.fillRect(x + 1, y + 1, width - 2, height - 2);
+
 		g.setColor(Theme.gForeground);
-		g.drawString(title, x+5, y+fm.getHeight());
-		
-		
-		if(value) g.setColor(Theme.gTrue);
-		if(!value) g.setColor(Theme.gFalse);
-		g.fillRect(x+width-width/10, y+1, width/10-1, height-2);
-		
-		//Rectangle2D stringRect = TextFont.getStringBounds(unit, fm.getFontRenderContext());
-		//g.drawString(unit.toLowerCase(), x+width- (int) stringRect.getWidth(), y+fm.getHeight());
+		g.drawString(title, x + 5, y + fm.getHeight());
+
+		if (value)
+			g.setColor(Theme.gTrue);
+		if (!value)
+			g.setColor(Theme.gFalse);
+		g.fillRect(x + width - width / 10, y + 1, width / 10 - 1, height - 2);
+
+		// Rectangle2D stringRect = TextFont.getStringBounds(unit,
+		// fm.getFontRenderContext());
+		// g.drawString(unit.toLowerCase(), x+width- (int)
+		// stringRect.getWidth(), y+fm.getHeight());
 	}
 }
