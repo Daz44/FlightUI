@@ -1,1 +1,10 @@
+com.mallen.flightui.core
+com.mallen.flightui.core.exceptions
+com.mallen.flightui.implementation.generic
 com.mallen.flightui.implementation.generic.panels
+com.mallen.flightui.implementation.prodigy
+com.mallen.flightui.implementation.prodigy.panels
+com.mallen.flightui.ui.modules
+com.mallen.flightui.utils
+com.mallen.flightui.wrapper
+com.mallen.flightui.wrapper.flui
