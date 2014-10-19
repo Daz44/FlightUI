@@ -28,15 +28,19 @@ import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 
 public class LightPanel extends JPanel {
 
-	TextIndicatorRGB tiNav = new TextIndicatorRGB(10, 5, 40, 30, "NAV", 1);
+	TextIndicatorRGB tiNav = new TextIndicatorRGB(10, 5, 40, 30, "NAV", 1, true);
 	TextIndicatorRGB tiBeacon = new TextIndicatorRGB(110, 5, 40, 30, "BEACON",
-			1);
-	TextIndicatorRGB tiLanding = new TextIndicatorRGB(210, 5, 40, 30, "LAND", 1);
-	TextIndicatorRGB tiTaxi = new TextIndicatorRGB(310, 5, 40, 30, "TAXI", 1);
-	TextIndicatorRGB tiWing = new TextIndicatorRGB(410, 5, 40, 30, "WING", 1);
-	TextIndicatorRGB tiLogo = new TextIndicatorRGB(510, 5, 40, 30, "LOGO", 1);
+			1, true);
+	TextIndicatorRGB tiLanding = new TextIndicatorRGB(210, 5, 40, 30, "LAND",
+			1, true);
+	TextIndicatorRGB tiTaxi = new TextIndicatorRGB(310, 5, 40, 30, "TAXI", 1,
+			true);
+	TextIndicatorRGB tiWing = new TextIndicatorRGB(410, 5, 40, 30, "WING", 1,
+			true);
+	TextIndicatorRGB tiLogo = new TextIndicatorRGB(510, 5, 40, 30, "LOGO", 1,
+			true);
 	TextIndicatorRGB tiStrobe = new TextIndicatorRGB(610, 5, 40, 30, "STROBE",
-			1);
+			1, true);
 
 	@Override
 	public void paintComponent(Graphics g) {

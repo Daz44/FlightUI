@@ -38,30 +38,31 @@ public class EnginePanelGuage extends JPanel {
 			1, true);
 
 	TextIndicatorRGB intIndEng1N1 = new TextIndicatorRGB(70, 20, 100, 20,
-			"1N1", 1);
+			"1N1", 1, true);
 	TextIndicatorRGB intIndEng1N2 = new TextIndicatorRGB(440, 20, 100, 20,
-			"1N2", 1);
+			"1N2", 1, true);
 	TextIndicatorRGB intIndEng2N1 = new TextIndicatorRGB(70, 80, 100, 20,
-			"2N1", 1);
+			"2N1", 1, true);
 	TextIndicatorRGB intIndEng2N2 = new TextIndicatorRGB(440, 80, 100, 20,
-			"2N2", 1);
+			"2N2", 1, true);
 
 	TextIndicatorRGB textIndEng1N1 = new TextIndicatorRGB(150, 20, 100, 20,
-			"ENGINE1-N1", 1);
+			"ENGINE1-N1", 1, true);
 	TextIndicatorRGB textIndEng1N2 = new TextIndicatorRGB(360, 20, 100, 20,
-			"ENGINE1-N2", 1);
+			"ENGINE1-N2", 1, true);
 	TextIndicatorRGB textIndEng2N1 = new TextIndicatorRGB(150, 80, 100, 20,
-			"ENGINE2-N1", 1);
+			"ENGINE2-N1", 1, true);
 	TextIndicatorRGB textIndEng2N2 = new TextIndicatorRGB(360, 80, 100, 20,
-			"ENGINE2-N2", 1);
+			"ENGINE2-N2", 1, true);
 
 	TextIndicatorRGB tiAlt = new TextIndicatorRGB(650, 20, 40, 30,
-			"ALTERNATOR", 1);
-	TextIndicatorRGB tiBat = new TextIndicatorRGB(850, 20, 40, 30, "BATTERY", 1);
+			"ALTERNATOR", 1, true);
+	TextIndicatorRGB tiBat = new TextIndicatorRGB(850, 20, 40, 30, "BATTERY",
+			1, true);
 	TextIndicatorRGB tiAvi = new TextIndicatorRGB(650, 80, 40, 30, "AVIONICS",
-			1);
+			1, true);
 	TextIndicatorRGB tiFuel = new TextIndicatorRGB(850, 80, 40, 30,
-			"FUEL PUMP", 1);
+			"FUEL PUMP", 1, true);
 
 	GaugeIndicator guageIndThrot1 = new GaugeIndicator(275, 10, 50, 50, 0,
 			16384, 1, true);
@@ -69,7 +70,7 @@ public class EnginePanelGuage extends JPanel {
 			16384, 1, true);
 
 	public EnginePanelGuage() {
-		FLUI_MEMORY ad = new FLUI_MEMORY();
+		new FLUI_MEMORY();
 		FLUI_MEMORY.initMem();
 	}
 

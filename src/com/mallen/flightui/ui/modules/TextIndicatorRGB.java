@@ -29,9 +29,10 @@ public class TextIndicatorRGB {
 
 	int x = 0, y = 0;
 	int height = 0, width = 0;
+	boolean textAlignC;
 
 	public TextIndicatorRGB(int labelX, int labelY, int labelWidth,
-			int labelHeight, String label, int status) {
+			int labelHeight, String label, int status, boolean aligned) {
 		x = labelX;
 		y = labelY;
 
@@ -39,6 +40,7 @@ public class TextIndicatorRGB {
 		width = labelWidth;
 		text = label;
 
+		textAlignC = aligned;
 		textStatus = status;
 		TextFont = new Font("Verdana", Font.BOLD, height / 2);
 	}
@@ -79,7 +81,13 @@ public class TextIndicatorRGB {
 			g.setColor(Theme.gFalse);
 		}
 
-		g.drawString(text, (int) (x + width / 2 - stringRect.getWidth() / 2), y
-				+ fm.getHeight());
+		int drawX = 0;
+		if (textAlignC) {
+			drawX = (int) Math.round(x + width / 2 - stringRect.getWidth() / 2);
+		} else {
+			drawX = x;
+		}
+
+		g.drawString(text, drawX, y + fm.getHeight());
 	}
 }

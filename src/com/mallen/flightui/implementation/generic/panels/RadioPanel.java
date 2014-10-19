@@ -27,10 +27,14 @@ import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 
 public class RadioPanel extends JPanel {
 
-	TextIndicatorRGB tiCom1 = new TextIndicatorRGB(10, 5, 200, 30, "COM1", 1);
-	TextIndicatorRGB tiCom2 = new TextIndicatorRGB(210, 5, 200, 30, "COM2", 1);
-	TextIndicatorRGB tiNav1 = new TextIndicatorRGB(410, 5, 200, 30, "NAV1", 1);
-	TextIndicatorRGB tiNav2 = new TextIndicatorRGB(610, 5, 200, 30, "NAV2", 1);
+	TextIndicatorRGB tiCom1 = new TextIndicatorRGB(10, 5, 200, 30, "COM1", 1,
+			true);
+	TextIndicatorRGB tiCom2 = new TextIndicatorRGB(210, 5, 200, 30, "COM2", 1,
+			true);
+	TextIndicatorRGB tiNav1 = new TextIndicatorRGB(410, 5, 200, 30, "NAV1", 1,
+			true);
+	TextIndicatorRGB tiNav2 = new TextIndicatorRGB(610, 5, 200, 30, "NAV2", 1,
+			true);
 
 	@Override
 	public void paintComponent(Graphics g) {
