@@ -45,8 +45,8 @@ public class ArtificialHorizon {
 	public ArtificialHorizon(int horizonX, int horizonY, int horizonWidth,
 			int horizonHeight) {
 		x = 0;
-		y = 0;
-		height = horizonHeight;
+		y = 0 - horizonHeight;
+		height = horizonHeight * 3;
 		width = horizonWidth;
 		f = new Font("Verdana", Font.PLAIN, height / 50);
 
@@ -89,12 +89,14 @@ public class ArtificialHorizon {
 	 * @param io
 	 *            Image Observer for painting from parent class (JFrame)
 	 */
-
-	// Todo: Refactor and make easier to read
 	public void draw(Graphics g, ImageObserver io) {
 
 		uiScale = 0.5;
 		int widthRef = (int) (width * uiScale);
+
+		// TODO: Add vertical scaling eg. Show 20 degrees on screen instead of a
+		// full 180 across the height of the monitor
+		int heightRef = height;
 
 		drawOffset = height / 180.0 * (180.0 - pitch);
 		pitch = FLUI_GLOBAL.pitch;
@@ -127,19 +129,19 @@ public class ArtificialHorizon {
 
 		for (int i = -60; i <= 60; i += 10) {
 			g.fillRect(x + width / 2 - widthRef / 8, (int) (y + (drawOffset
-					- height / 180 * i - 1)), widthRef / 4, 2);
+					- heightRef / 180 * i - 1)), widthRef / 4, 2);
 			g.drawString(
 					"" + i,
 					x + width / 2 - widthRef / 8 - 50,
-					(int) ((int) (y + (drawOffset - height / 180 * i)) - stringRect
+					(int) ((int) (y + (drawOffset - heightRef / 180 * i)) - stringRect
 							.getHeight() / 4));
 		}
 
 		for (int i2 = -25; i2 <= 25; i2 += 10) {
 			g.fillRect(x + width / 2 - widthRef / 8 / 2, (int) (y + (drawOffset
-					- height / 180 * i2 - 1)), widthRef / 8, 2);
+					- heightRef / 180 * i2 - 1)), widthRef / 8, 2);
 			g.drawString("" + i2, x + width / 2 + widthRef / 8 + 25, (int) (y
-					+ (int) (drawOffset - height / 180 * i2) - stringRect
+					+ (int) (drawOffset - heightRef / 180 * i2) - stringRect
 					.getHeight() / 4));
 
 		}
