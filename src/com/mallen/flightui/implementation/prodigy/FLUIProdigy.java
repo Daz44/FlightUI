@@ -12,6 +12,7 @@
 package com.mallen.flightui.implementation.prodigy;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -88,7 +89,6 @@ public class FLUIProdigy {
 		int heightVal = 0;
 
 		boolean resizable = false, decorated = false;
-		;
 
 		if (textType) {
 			ConsoleFormatting.lineBreak(System.out);
@@ -103,10 +103,9 @@ public class FLUIProdigy {
 			heightVal = ConsoleFormatting.getInputInt(System.out,
 					"Height value for PFD");
 
-			decorated = ConsoleFormatting
-					.getInputBool(System.out, "Resizable?");
-			resizable = ConsoleFormatting.getInputBool(System.out,
-					"Undecoated?");
+			decorated = ConsoleFormatting.getInputBool(System.out,
+					"Undecorated");
+			resizable = ConsoleFormatting.getInputBool(System.out, "Resizable");
 
 			ConsoleFormatting.lineBreak(System.out);
 			ConsoleFormatting.drawHeader(System.out, "XVAL: " + xVal);
@@ -134,25 +133,25 @@ public class FLUIProdigy {
 	 */
 	public void drawFrame(boolean isUndecorated, boolean isResizable,
 			boolean visible, int x, int y, int width, int height) {
+		JFrame Frame_ProdigyPrimary = new JFrame();
+
+		Frame_ProdigyPrimary.setTitle("FlightUI - VirtualHorizon (Airliner)");
+		Frame_ProdigyPrimary.setResizable(isResizable);
+		Frame_ProdigyPrimary.setSize(width, height);
+		Frame_ProdigyPrimary.setLocation(x, y);
+
 		try {
-
-			JFrame Frame_ProdigyPrimary = new JFrame();
-
-			Frame_ProdigyPrimary
-					.setTitle("FlightUI - VirtualHorizon (Airliner)");
-			Frame_ProdigyPrimary.setResizable(isResizable);
-			Frame_ProdigyPrimary.setSize(width, height);
-			Frame_ProdigyPrimary.setLocation(x, y);
 			Frame_ProdigyPrimary.setIconImage(ImageIO.read(new File(
-					"resources/FLUI.png")));
-			Frame_ProdigyPrimary.add(new ProdigyPrimaryPanel());
-			Frame_ProdigyPrimary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			// Frame_ProdigyPrimary.setAlwaysOnTop(true);
-			Frame_ProdigyPrimary.setUndecorated(isUndecorated);
-			Frame_ProdigyPrimary.setVisible(visible);
-
-		} catch (Exception e) {
+					"/resources/FLUI.png")));
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Frame_ProdigyPrimary.add(new ProdigyPrimaryPanel());
+		Frame_ProdigyPrimary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Frame_ProdigyPrimary.setAlwaysOnTop(true);
+		Frame_ProdigyPrimary.setUndecorated(isUndecorated);
+		Frame_ProdigyPrimary.setVisible(visible);
+
 	}
 }
