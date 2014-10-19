@@ -66,6 +66,11 @@ public class ArtificialHorizon {
 
 	}
 
+	public void setLocation(int xLoc, int yLoc) {
+		x = xLoc;
+		y = yLoc;
+	}
+
 	Font f;
 	Color colSky = new Color(25, 110, 255);
 	Color colGround = new Color(155, 90, 0);
