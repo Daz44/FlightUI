@@ -172,7 +172,7 @@ public class FLUI_GLOBAL {
 
 					AP_VAL_ALT = (int) Math.round(FLUI_READER.getInt(0x07D4) / 65536 * 3.3) / 100 * 100;
 					QNH = Converter.roundDecimal(
-							FLUI_READER.getShort(0x0330) / 16 * 0.02953, 2);
+							FLUI_READER.getShort(0x0330) / 16.0 * 0.02953, 2);
 
 					try {
 						Thread.sleep(5);
@@ -182,6 +182,7 @@ public class FLUI_GLOBAL {
 				}
 			}
 		});
+		globalValueFetcher.setName("FLUI_GLOBAL THREAD");
 		globalValueFetcher.start();
 
 	}

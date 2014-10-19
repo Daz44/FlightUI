@@ -30,6 +30,7 @@ import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 public class ArtificialHorizon {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
+	double uiScale = 1;
 
 	/**
 	 * @param horizonX
@@ -62,7 +63,7 @@ public class ArtificialHorizon {
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height / 70);
+		f = new Font("Verdana", Font.PLAIN, (int) (height / 50 * uiScale));
 
 	}
 
@@ -92,8 +93,10 @@ public class ArtificialHorizon {
 	// Todo: Refactor and make easier to read
 	public void draw(Graphics g, ImageObserver io) {
 
-		drawOffset = height / 180.0 * (180.0 - pitch); // Fix the magic number
-														// offset
+		uiScale = 0.5;
+		int widthRef = (int) (width * uiScale);
+
+		drawOffset = height / 180.0 * (180.0 - pitch);
 		pitch = FLUI_GLOBAL.pitch;
 		roll = FLUI_GLOBAL.roll;
 
@@ -104,8 +107,8 @@ public class ArtificialHorizon {
 
 		Rectangle vhGround = new Rectangle(x - width, y - height, width * 3,
 				height * 3);
-		Rectangle vhSky = new Rectangle(x - width, y - height, width * 3,
-				(int) (height + drawOffset));
+		Rectangle vhSky = new Rectangle(x - width, y - height - height,
+				width * 3, (int) (height + drawOffset) + height);
 
 		// Set orange as background
 		g2d.rotate(Math.toRadians(roll), x + width / 2, y + height / 2);
@@ -123,19 +126,19 @@ public class ArtificialHorizon {
 				fm.getFontRenderContext());
 
 		for (int i = -60; i <= 60; i += 10) {
-			g.fillRect(x + width / 2 - width / 8, (int) (y + (drawOffset
-					- height / 180 * i - 1)), width / 4, 2);
+			g.fillRect(x + width / 2 - widthRef / 8, (int) (y + (drawOffset
+					- height / 180 * i - 1)), widthRef / 4, 2);
 			g.drawString(
 					"" + i,
-					x + width / 2 - width / 8 - 50,
+					x + width / 2 - widthRef / 8 - 50,
 					(int) ((int) (y + (drawOffset - height / 180 * i)) - stringRect
 							.getHeight() / 4));
 		}
 
 		for (int i2 = -25; i2 <= 25; i2 += 10) {
-			g.fillRect(x + width / 2 - width / 8 / 2, (int) (y + (drawOffset
-					- height / 180 * i2 - 1)), width / 8, 2);
-			g.drawString("" + i2, x + width / 2 + width / 8 + 25, (int) (y
+			g.fillRect(x + width / 2 - widthRef / 8 / 2, (int) (y + (drawOffset
+					- height / 180 * i2 - 1)), widthRef / 8, 2);
+			g.drawString("" + i2, x + width / 2 + widthRef / 8 + 25, (int) (y
 					+ (int) (drawOffset - height / 180 * i2) - stringRect
 					.getHeight() / 4));
 
@@ -148,12 +151,12 @@ public class ArtificialHorizon {
 		g2d.rotate(Math.toRadians(-roll), x + width / 2, y + height / 2);
 
 		// Onscreen Indicator to show center of screen
-		g.fillRect(x + width / 2 - width / 8, y + height / 2 - 4, width / 4,
-				height / 120);
-		g.fillRect(x + width / 2 - width / 8, y + height / 2 - 4, height / 120,
-				height / 30);
-		g.fillRect(x + width / 2 - width / 8 + width / 4 - height / 120, y
-				+ height / 2 - 4, height / 120, height / 30);
+		g.fillRect(x + width / 2 - widthRef / 8, y + height / 2 - 4,
+				widthRef / 4, height / 120);
+		g.fillRect(x + width / 2 - widthRef / 8, y + height / 2 - 4,
+				height / 120, height / 30);
+		g.fillRect(x + width / 2 - widthRef / 8 + widthRef / 4 - height / 120,
+				y + height / 2 - 4, height / 120, height / 30);
 
 		// BLACKING OUT OVERDRAW
 		g.setColor(Color.BLACK);
