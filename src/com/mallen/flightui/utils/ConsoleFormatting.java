@@ -25,8 +25,9 @@ public class ConsoleFormatting {
 
 	public static void lineBreak(PrintStream ps) {
 		String s = "";
-		for (int i = 0; i < consoleWidth; i++)
+		for (int i = 0; i < consoleWidth; i++) {
 			s += "-";
+		}
 		ps.println(s);
 	}
 
@@ -74,6 +75,14 @@ public class ConsoleFormatting {
 		Scanner scanner = new Scanner(System.in);
 		ps.print(question + ": ");
 		s = scanner.nextLine();
+		return s;
+	}
+
+	public static boolean getInputBool(PrintStream ps, String question) {
+		boolean s = false;
+		Scanner scanner = new Scanner(System.in);
+		ps.print(question + ": ");
+		s = scanner.nextBoolean();
 		return s;
 	}
 }

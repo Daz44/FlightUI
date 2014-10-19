@@ -32,8 +32,9 @@ public class Converter {
 	}
 
 	public static double round(double value, int places) {
-		if (places < 0)
+		if (places < 0) {
 			throw new IllegalArgumentException();
+		}
 
 		BigDecimal bd = new BigDecimal(value);
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
@@ -41,21 +42,35 @@ public class Converter {
 	}
 
 	public static boolean intToBool(int i) {
-		if (i == 0)
+		if (i == 0) {
 			return false;
-		if (i != 0)
+		}
+		if (i != 0) {
 			return true;
+		}
 
 		return false;
 	}
 
 	// ONLY TO BE USED FOR LIGHT PANEL --
 	public static int boolToInt(boolean b) {
-		if (b)
+		if (b) {
 			return 1;
-		if (!b)
+		}
+		if (!b) {
 			return 3;
+		}
 
 		return 2;
+	}
+
+	public static double roundDecimal(double value, int places) {
+		if (places < 0) {
+			throw new IllegalArgumentException();
+		}
+
+		BigDecimal valueRounded = new BigDecimal(value);
+		valueRounded = valueRounded.setScale(places, RoundingMode.HALF_UP);
+		return valueRounded.doubleValue();
 	}
 }

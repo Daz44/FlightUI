@@ -26,6 +26,7 @@ public class FLUI_GLOBAL {
 	public static double roll;
 	public static int qnhAlt;
 	public static int radAlt;
+	public static double QNH;
 
 	public static int indicatorSpeed;
 	public static int trueSpeed;
@@ -43,6 +44,8 @@ public class FLUI_GLOBAL {
 			enginePump;
 
 	public static int COM1, COM2, NAV1, NAV2;
+	public static int COM1_S, COM2_S, NAV1_S, NAV2_S;
+
 	public static boolean AIRCRAFT_STALLED, AIRCRAFT_OVERSPEED;
 
 	public static boolean LIGHT_NAV, LIGHT_BEACON, LIGHT_LANDING, LIGHT_TAXI,
@@ -58,6 +61,7 @@ public class FLUI_GLOBAL {
 		Thread globalValueFetcher = new Thread(new Runnable() {
 			@Override
 			public void run() {
+				System.out.println("FLUI_GLOBAL LOOP");
 				while (true) {
 					pitch = FLUI_READER.getDouble(12144) + 90;
 					roll = FLUI_READER.getDouble(12152);
@@ -112,6 +116,11 @@ public class FLUI_GLOBAL {
 					NAV1 = FLUI_READER.getShort(0x0350);
 					NAV2 = FLUI_READER.getShort(0x0352);
 
+					COM1_S = FLUI_READER.getShort(0x0311A);
+					COM2_S = FLUI_READER.getShort(0x311C);
+					NAV1_S = FLUI_READER.getShort(0x0311E);
+					NAV2_S = FLUI_READER.getShort(0x03120);
+
 					if (FLUI_READER.getByte(0x036C) == 1) {
 						AIRCRAFT_STALLED = true;
 					} else {
@@ -162,9 +171,11 @@ public class FLUI_GLOBAL {
 					}
 
 					AP_VAL_ALT = (int) Math.round(FLUI_READER.getInt(0x07D4) / 65536 * 3.3) / 100 * 100;
+					QNH = Converter.roundDecimal(
+							FLUI_READER.getShort(0x0330) / 16 * 0.02953, 2);
 
 					try {
-						Thread.sleep(50);
+						Thread.sleep(5);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
