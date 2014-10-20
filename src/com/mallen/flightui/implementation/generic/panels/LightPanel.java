@@ -21,26 +21,26 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-import com.mallen.flightui.ui.modules.TextIndicatorRGB;
+import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalRect;
 import com.mallen.flightui.ui.modules.Theme;
-import com.mallen.flightui.utils.Converter;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 
 public class LightPanel extends JPanel {
 
-	TextIndicatorRGB tiNav = new TextIndicatorRGB(10, 5, 40, 30, "NAV", 1, true);
-	TextIndicatorRGB tiBeacon = new TextIndicatorRGB(110, 5, 40, 30, "BEACON",
-			1, true);
-	TextIndicatorRGB tiLanding = new TextIndicatorRGB(210, 5, 40, 30, "LAND",
-			1, true);
-	TextIndicatorRGB tiTaxi = new TextIndicatorRGB(310, 5, 40, 30, "TAXI", 1,
-			true);
-	TextIndicatorRGB tiWing = new TextIndicatorRGB(410, 5, 40, 30, "WING", 1,
-			true);
-	TextIndicatorRGB tiLogo = new TextIndicatorRGB(510, 5, 40, 30, "LOGO", 1,
-			true);
-	TextIndicatorRGB tiStrobe = new TextIndicatorRGB(610, 5, 40, 30, "STROBE",
-			1, true);
+	BooleanIndicatorTextDigitalRect tiNav = new BooleanIndicatorTextDigitalRect(
+			10, 5, 100, 30, "NAV", false, false);
+	BooleanIndicatorTextDigitalRect tiBeacon = new BooleanIndicatorTextDigitalRect(
+			130, 5, 100, 30, "BEACON", false, false);
+	BooleanIndicatorTextDigitalRect tiLanding = new BooleanIndicatorTextDigitalRect(
+			250, 5, 100, 30, "LAND", false, false);
+	BooleanIndicatorTextDigitalRect tiTaxi = new BooleanIndicatorTextDigitalRect(
+			370, 5, 100, 30, "TAXI", false, false);
+	BooleanIndicatorTextDigitalRect tiWing = new BooleanIndicatorTextDigitalRect(
+			490, 5, 100, 30, "WING", false, false);
+	BooleanIndicatorTextDigitalRect tiLogo = new BooleanIndicatorTextDigitalRect(
+			610, 5, 100, 30, "LOGO", false, false);
+	BooleanIndicatorTextDigitalRect tiStrobe = new BooleanIndicatorTextDigitalRect(
+			720, 5, 100, 30, "STROBE", false, false);
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -56,25 +56,25 @@ public class LightPanel extends JPanel {
 		g.setColor(Theme.gBackground);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
-		tiNav.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_NAV));
+		tiNav.update(FLUI_GLOBAL.LIGHT_NAV);
 		tiNav.draw(g);
 
-		tiBeacon.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_BEACON));
+		tiBeacon.update(FLUI_GLOBAL.LIGHT_BEACON);
 		tiBeacon.draw(g);
 
-		tiLanding.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_LANDING));
+		tiLanding.update(FLUI_GLOBAL.LIGHT_LANDING);
 		tiLanding.draw(g);
 
-		tiTaxi.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_TAXI));
+		tiTaxi.update(FLUI_GLOBAL.LIGHT_TAXI);
 		tiTaxi.draw(g);
 
-		tiWing.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_WING));
+		tiWing.update(FLUI_GLOBAL.LIGHT_WING);
 		tiWing.draw(g);
 
-		tiLogo.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_LOGO));
+		tiLogo.update(FLUI_GLOBAL.LIGHT_LOGO);
 		tiLogo.draw(g);
 
-		tiStrobe.update(Converter.boolToInt(FLUI_GLOBAL.LIGHT_STROBE));
+		tiStrobe.update(FLUI_GLOBAL.LIGHT_STROBE);
 		tiStrobe.draw(g);
 
 		try {

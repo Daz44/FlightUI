@@ -30,7 +30,6 @@ import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 public class ArtificialHorizon {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
-	double uiScale = 1;
 
 	/**
 	 * @param horizonX
@@ -63,7 +62,7 @@ public class ArtificialHorizon {
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, (int) (height / 50 * uiScale));
+		f = new Font("Verdana", Font.PLAIN, height / 50);
 
 	}
 
@@ -90,9 +89,33 @@ public class ArtificialHorizon {
 	 *            Image Observer for painting from parent class (JFrame)
 	 */
 	public void draw(Graphics g, ImageObserver io) {
+		double uiScaleWidth = 0.5;
+		double uiScaleHeight = 1;
 
-		uiScale = 0.5;
-		int widthRef = (int) (width * uiScale);
+		int uiIndicatorMin = -20;
+		int uiIndicatorMax = 40;
+
+		int uiIndicatorSmallMin = -25;
+		int uiIndicatorSmallMax = 45;
+
+		int uiIndicatorInterval = 20;
+		int uiIndicatorIntervalSmall = 5;
+
+		boolean uiIndicatorText = true;
+		boolean uiIndicatorTextSmall = false;
+
+		if (uiScaleHeight < 1) {
+			uiScaleHeight = 1;
+		}
+
+		int vertScale = (int) ((uiScaleHeight - 1) * 2);
+
+		x = 0;
+		y = 70 - 1010 * (vertScale / 2);
+
+		height = 1010 * (vertScale + 1);
+
+		int widthRef = (int) (width * uiScaleWidth);
 
 		// TODO: Add vertical scaling eg. Show 20 degrees on screen instead of a
 		// full 180 across the height of the monitor
@@ -127,23 +150,30 @@ public class ArtificialHorizon {
 		Rectangle2D stringRect = f.getStringBounds("" + pitch,
 				fm.getFontRenderContext());
 
-		for (int i = -60; i <= 60; i += 10) {
+		for (int i = uiIndicatorMin; i <= uiIndicatorMax; i += uiIndicatorInterval) {
 			g.fillRect(x + width / 2 - widthRef / 8, (int) (y + (drawOffset
 					- heightRef / 180 * i - 1)), widthRef / 4, 2);
-			g.drawString(
-					"" + i,
-					x + width / 2 - widthRef / 8 - 50,
-					(int) ((int) (y + (drawOffset - heightRef / 180 * i)) - stringRect
-							.getHeight() / 4));
+
+			if (uiIndicatorText) {
+				g.drawString(
+						"" + i,
+						x + width / 2 - widthRef / 8 - 50,
+						(int) ((int) (y + (drawOffset - heightRef / 180 * i)) - stringRect
+								.getHeight() / 4));
+			}
 		}
 
-		for (int i2 = -25; i2 <= 25; i2 += 10) {
+		for (int i2 = uiIndicatorSmallMin; i2 <= uiIndicatorSmallMax; i2 += uiIndicatorIntervalSmall) {
 			g.fillRect(x + width / 2 - widthRef / 8 / 2, (int) (y + (drawOffset
 					- heightRef / 180 * i2 - 1)), widthRef / 8, 2);
-			g.drawString("" + i2, x + width / 2 + widthRef / 8 + 25, (int) (y
-					+ (int) (drawOffset - heightRef / 180 * i2) - stringRect
-					.getHeight() / 4));
 
+			if (uiIndicatorTextSmall) {
+				g.drawString(
+						"" + i2,
+						x + width / 2 + widthRef / 8 + 25,
+						(int) (y + (int) (drawOffset - heightRef / 180 * i2) - stringRect
+								.getHeight() / 4));
+			}
 		}
 
 		/**
@@ -152,13 +182,14 @@ public class ArtificialHorizon {
 
 		g2d.rotate(Math.toRadians(-roll), x + width / 2, y + height / 2);
 
+		int heightRef2 = 1080;
 		// Onscreen Indicator to show center of screen
 		g.fillRect(x + width / 2 - widthRef / 8, y + height / 2 - 4,
-				widthRef / 4, height / 120);
+				widthRef / 4, heightRef2 / 120);
 		g.fillRect(x + width / 2 - widthRef / 8, y + height / 2 - 4,
-				height / 120, height / 30);
-		g.fillRect(x + width / 2 - widthRef / 8 + widthRef / 4 - height / 120,
-				y + height / 2 - 4, height / 120, height / 30);
+				heightRef2 / 120, heightRef2 / 30);
+		g.fillRect(x + width / 2 - widthRef / 8 + widthRef / 4 - heightRef2
+				/ 120, y + height / 2 - 4, heightRef2 / 120, heightRef2 / 30);
 
 		// BLACKING OUT OVERDRAW
 		g.setColor(Color.BLACK);
