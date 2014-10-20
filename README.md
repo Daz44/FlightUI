@@ -24,6 +24,9 @@ Screenshots
 #####BUILD FROM 7TH OCTOBER 2014
 ######MAJOR FLIGHT DISPLAY
 ![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot.PNG)
+#####BUILD FROM 21ST OCTOBER 2014
+######PRODIGY FLIGHT PANEL
+![FlightUI Screenshot as of 21/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/ScreenshotProdigyPanel.PNG)
 #####OTHER INSTRUMENTS
 ![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot2.PNG)
 #####THEMES
