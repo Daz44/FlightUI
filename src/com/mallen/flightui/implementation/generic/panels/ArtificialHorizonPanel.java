@@ -38,9 +38,9 @@ public class ArtificialHorizonPanel extends JPanel {
 	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getHeight());
 
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(
-			getWidth() - 100, 900, 100, 30, "ft", false);
+			getWidth() - 100, 900, 100, 30, "ft", false, false);
 	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 100,
-			30, "kias", false);
+			30, "kias", false, false);
 	NumberIndicatorHorizontal numIndHeading = new NumberIndicatorHorizontal(
 			400 - 180, 10, 360, 20, 0, 360, 20, true);
 	BooleanIndicatorTextDigitalCompact boolIndGear = new BooleanIndicatorTextDigitalCompact(
@@ -49,9 +49,9 @@ public class ArtificialHorizonPanel extends JPanel {
 			-45, 375, 20, 20, false);
 
 	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(
-			getWidth() - 140, 100, 100, 800, 100, true);
+			getWidth() - 140, 100, 100, 800, 100, 48000, true);
 	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20,
-			100, 100, 800, 20, true);
+			100, 100, 800, 20, 280, true);
 	NumberIndicatorHorizontalTape hdgTape = new NumberIndicatorHorizontalTape(
 			100, 20, 800, 30, 20, true);
 
@@ -78,7 +78,7 @@ public class ArtificialHorizonPanel extends JPanel {
 
 		altTape.setLocation(getWidth() - 70, 50);
 		altTape.setSize(50, getHeight() / 100);
-		altTape.update(FLUI_GLOBAL.qnhAlt);
+		altTape.update(FLUI_GLOBAL.qnhAlt, FLUI_GLOBAL.AP_VAL_ALT);
 		altTape.draw(g, this);
 
 		indicatorAltitude.update("" + qnhAlt);
@@ -88,7 +88,7 @@ public class ArtificialHorizonPanel extends JPanel {
 
 		spdTape.setLocation(getWidth() - 70, 50);
 		spdTape.setSize(50, getHeight() / 100);
-		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
+		spdTape.update(FLUI_GLOBAL.indicatorSpeed, FLUI_GLOBAL.AP_VAL_SPD);
 		spdTape.draw(g, this);
 
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);

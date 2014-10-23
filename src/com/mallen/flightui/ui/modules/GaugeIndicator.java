@@ -16,6 +16,7 @@
 package com.mallen.flightui.ui.modules;
 
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -30,7 +31,8 @@ public class GaugeIndicator {
 	double minVal = 0, maxVal = 0, stepVal = 0;
 
 	public GaugeIndicator(int horizonX, int horizonY, int horizonWidth,
-			int horizonHeight, int min, int max, int step, boolean aeroOn) {
+
+	int horizonHeight, int min, int max, int step, boolean aeroOn) {
 		x = horizonX;
 		y = horizonY;
 		height = horizonHeight;
@@ -48,7 +50,7 @@ public class GaugeIndicator {
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height / 10);
+		f = new Font("Verdana", Font.PLAIN, height / 20);
 	}
 
 	public void setLocation(int w, int h) {
@@ -69,6 +71,7 @@ public class GaugeIndicator {
 	Font f;
 
 	public void draw(Graphics g, ImageObserver io) {
+		aero = false;
 		Graphics2D g2d = (Graphics2D) g;
 		RenderingHints rhints = g2d.getRenderingHints();
 		rhints.containsValue(RenderingHints.VALUE_ANTIALIAS_ON);
@@ -84,21 +87,16 @@ public class GaugeIndicator {
 		g.fillOval(x + 1, y + 1, width - 2, height - 2);
 
 		g.setColor(Theme.gForeground);
-		if (value > maxVal)
+		if (value > maxVal) {
 			g.setColor(Theme.gFalse);
+		}
 
 		g.setColor(Theme.gTrue);
 		g.fillArc(x + 1, y + 1, width - 2, height - 2, 90,
 				(int) -(360.0 / maxVal * value));
 
-		/*
-		 * int radius = width/2; int angle = 0; int midX = x + width/2; int midY
-		 * = y + height/2;
-		 * 
-		 * int x1 = (int) (midX + radius * Math.cos((angle-90) * (Math.PI /
-		 * 180))); int y1 = (int) (midY + radius * Math.sin((angle-90) *
-		 * (Math.PI / 180)));
-		 */
+		FontMetrics fm = g.getFontMetrics();
+		f.getStringBounds("000", fm.getFontRenderContext());
 
 	}
 }

@@ -78,6 +78,13 @@ public class FLUI_GLOBAL {
 					if (hdg < 0) {
 						hdg = 360 + hdg;
 					}
+
+					int vari = FLUI_READER.getInt(0x02A0) * 360 / 65536;
+					hdg = hdg - vari;
+
+					// System.out.println(+FLUI_READER.getDouble(0x6010) + " "
+					// + FLUI_READER.getDouble(0x6018));
+
 					gps_waypoint = (int) Math.toDegrees(FLUI_READER
 							.getDouble(FLUI_MEMORY.FSUIPC_LOOKUP
 									.get("GPS_WAYPOINT_HEADING")));

@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import com.mallen.flightui.ui.modules.ArtificialHorizon;
 import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalRect;
 import com.mallen.flightui.ui.modules.NumberIndicatorVerticalTape;
+import com.mallen.flightui.ui.modules.RoundedIndicator;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.TextIndicator;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
@@ -38,27 +39,27 @@ public class ProdigyPrimaryPanel extends JPanel {
 	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth());
 
 	TextFieldIndicator apSpeed = new TextFieldIndicator(20, 120, 200, 30, "",
-			false);
+			false, false);
 
 	TextFieldIndicator apAltitude = new TextFieldIndicator(getWidth() - 120,
-			120, 200, 30, "", false);
+			120, 200, 30, "", false, false);
 
 	TextFieldIndicator acQNH = new TextFieldIndicator(getWidth() - 120,
-			150 + 800, 200, 30, "IN", false);
+			150 + 800, 200, 30, "IN", false, false);
 
 	TextFieldIndicator acGroundSpeed = new TextFieldIndicator(20, 150 + 800,
-			200, 30, "", false);
+			200, 30, "", false, false);
 	TextFieldIndicator acMach = new TextFieldIndicator(220, 150 + 800, 200, 30,
-			"", false);
+			"", false, false);
 
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(
-			getWidth() - 100, 900, 200, 30, "ft", false);
+			getWidth() - 100, 900, 200, 30, "ft", false, false);
 	TextFieldIndicator indicatorSpeed = new TextFieldIndicator(10, 900, 200,
-			30, "kias", false);
+			30, "kias", false, false);
 	NumberIndicatorVerticalTape altTape = new NumberIndicatorVerticalTape(
-			getWidth() - 140, 150, 200, 800, 100, true);
+			getWidth() - 140, 150, 200, 800, 100, 48000, true);
 	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20,
-			150, 200, 800, 20, true);
+			150, 200, 800, 20, 280, true);
 
 	TextIndicator tiCom1 = new TextIndicator(getWidth() - 430, 5, 100, 30,
 			"COM1", 2, false);
@@ -82,19 +83,19 @@ public class ProdigyPrimaryPanel extends JPanel {
 			260, 10, 105, 20, "AP MASTER", false, false);
 
 	TextFieldIndicator indicatorAPAltitude = new TextFieldIndicator(235 + 260,
-			10, 100, 20, "ft", false);
+			10, 100, 20, "ft", false, false);
 	TextFieldIndicator indicatorVertSpeed = new TextFieldIndicator(345 + 260,
-			10, 100, 20, "ft/m", false);
+			10, 100, 20, "ft/m", false, false);
 	BooleanIndicatorTextDigitalRect indicatorBooleanAltitude = new BooleanIndicatorTextDigitalRect(
 			125 + 260, 10, 100, 20, "ALTITUDE", false, false);
 
 	TextFieldIndicator indicatorHeading = new TextFieldIndicator(565 + 260, 10,
-			100, 20, "hdg", false);
+			100, 20, "hdg", false, false);
 	BooleanIndicatorTextDigitalRect indicatorBooleanHeading = new BooleanIndicatorTextDigitalRect(
 			455 + 260, 10, 100, 20, "HEADING", false, false);
 
 	TextFieldIndicator indicatorAThrottle = new TextFieldIndicator(835 + 260,
-			10, 100, 20, "kias", false);
+			10, 100, 20, "kias", false, false);
 	BooleanIndicatorTextDigitalRect indicatorBooleanAThrottle = new BooleanIndicatorTextDigitalRect(
 			675 + 260, 10, 150, 20, "AUTOTHROTTLE", false, false);
 
@@ -113,6 +114,14 @@ public class ProdigyPrimaryPanel extends JPanel {
 			260 + 835, 40, 100, 20, "LOGO", false, false);
 	BooleanIndicatorTextDigitalRect tiStrobe = new BooleanIndicatorTextDigitalRect(
 			260 + 675, 40, 150, 20, "STROBE", false, false);
+
+	TextFieldIndicator tiHdg = new TextFieldIndicator(getWidth() / 2
+			- getWidth() / 8, getHeight() / 2 + getWidth() / 8 - getWidth()
+			/ 16 - 10, getWidth() / 8, getWidth() / 36, "", false, true);
+
+	RoundedIndicator riHdg = new RoundedIndicator(getWidth() / 2 - getWidth()
+			/ 4, getHeight() / 2, getWidth() / 4, getWidth() / 4, 0, 360, 30,
+			true);
 
 	// /////////////////////////////////
 
@@ -136,7 +145,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 
 		altTape.setLocation(getWidth() - 220, 150);
 		altTape.setSize(100, 800);
-		altTape.update(FLUI_GLOBAL.qnhAlt);
+		altTape.update(FLUI_GLOBAL.qnhAlt, FLUI_GLOBAL.AP_VAL_ALT);
 		altTape.draw(g, this);
 
 		indicatorAltitude.update("" + qnhAlt);
@@ -146,7 +155,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 
 		spdTape.setLocation(120, 150);
 		spdTape.setSize(100, 800);
-		spdTape.update(FLUI_GLOBAL.indicatorSpeed);
+		spdTape.update(FLUI_GLOBAL.indicatorSpeed, FLUI_GLOBAL.AP_VAL_SPD);
 		spdTape.draw(g, this);
 
 		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
@@ -184,6 +193,26 @@ public class ProdigyPrimaryPanel extends JPanel {
 		acGroundSpeed.setLocation(20, 950);
 		acGroundSpeed.draw(g);
 
+		String hdg = FLUI_GLOBAL.hdg + "";
+		if (hdg.length() == 1) {
+			hdg = "00" + hdg;
+		}
+		if (hdg.length() == 2) {
+			hdg = "0" + hdg;
+		}
+
+		riHdg.update(FLUI_GLOBAL.hdg);
+		riHdg.setSize(getWidth() / 4 - getWidth() / 32, getWidth() / 4
+				- getWidth() / 32);
+		riHdg.setLocation(getWidth() / 2 - (getWidth() / 4 - getWidth() / 32)
+				/ 2, getHeight() / 2 + getWidth() / 8 - getWidth() / 16 - 10);
+		riHdg.draw(g, this);
+
+		tiHdg.update(hdg);
+		tiHdg.setSize(getWidth() / 32, getWidth() / 48);
+		tiHdg.setLocation(getWidth() / 2 - getWidth() / 32 / 2, getHeight() / 2
+				+ getWidth() / 8 - getWidth() / 16 - 10 - getWidth() / 48);
+		tiHdg.draw(g);
 		// DRAWING RADIO
 		// ////////////////////////////////////////////
 

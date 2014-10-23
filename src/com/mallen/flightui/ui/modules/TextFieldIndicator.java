@@ -31,9 +31,10 @@ public class TextFieldIndicator {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
 	private boolean aero = false;
+	private boolean aligned = false;
 
 	public TextFieldIndicator(int labelX, int labelY, int labelWidth,
-			int labelHeight, String labelUnit, boolean aeroOn) {
+			int labelHeight, String labelUnit, boolean aeroOn, boolean alignedOn) {
 		x = labelX;
 		y = labelY;
 
@@ -42,6 +43,7 @@ public class TextFieldIndicator {
 		unit = labelUnit;
 
 		aero = aeroOn;
+		aligned = alignedOn;
 		TextFont = new Font("Verdana", Font.BOLD, height / 2);
 	}
 
@@ -82,10 +84,18 @@ public class TextFieldIndicator {
 		g.fillRect(x, y, width, height);
 
 		g.setColor(Theme.gForeground);
-		g.drawString(value, x + 5, y + fm.getHeight());
 
-		Rectangle2D stringRect = TextFont.getStringBounds(unit,
+		Rectangle2D stringRect = TextFont.getStringBounds(value,
 				fm.getFontRenderContext());
+
+		if (aligned) {
+			g.drawString(value,
+					(int) (x + (width - stringRect.getWidth()) / 2),
+					y + fm.getHeight());
+		} else {
+			g.drawString(value, x + 5, y + fm.getHeight());
+		}
+
 		g.drawString(unit.toLowerCase(),
 				x + width - (int) stringRect.getWidth(), y + fm.getHeight());
 	}

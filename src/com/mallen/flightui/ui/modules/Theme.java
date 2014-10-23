@@ -90,7 +90,7 @@ public class Theme {
 		} else if (theme.toLowerCase().trim().equals("embraer")) {
 			// EMBRAER THEME
 			Theme.setTheme(new Color(70, 130, 200), new Color(130, 50, 0),
-					new Color(255, 255, 255), new Color(5, 5, 5, 50),
+					new Color(255, 255, 255), new Color(5, 5, 5, 100),
 					new Color(0, 0, 0), new Color(35, 35, 35), new Color(130,
 							200, 90), new Color(5, 190, 205), new Color(200, 0,
 							0));

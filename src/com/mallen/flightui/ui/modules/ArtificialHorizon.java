@@ -92,10 +92,10 @@ public class ArtificialHorizon {
 		double uiScaleWidth = 0.5;
 		double uiScaleHeight = 1;
 
-		int uiIndicatorMin = -20;
+		int uiIndicatorMin = -10;
 		int uiIndicatorMax = 40;
 
-		int uiIndicatorSmallMin = -25;
+		int uiIndicatorSmallMin = -10;
 		int uiIndicatorSmallMax = 45;
 
 		int uiIndicatorInterval = 20;

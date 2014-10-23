@@ -32,24 +32,24 @@ public class AutopilotPanel extends JPanel {
 			10, 10, 105, 20, "AP MASTER", false, false);
 
 	TextFieldIndicator indicatorAltitude = new TextFieldIndicator(235, 10, 100,
-			20, "ft", false);
+			20, "ft", false, false);
 	TextFieldIndicator indicatorVertSpeed = new TextFieldIndicator(345, 10,
-			100, 20, "ft/m", false);
+			100, 20, "ft/m", false, false);
 	BooleanIndicatorTextDigitalRect indicatorBooleanAltitude = new BooleanIndicatorTextDigitalRect(
 			125, 10, 100, 20, "ALTITUDE", false, false);
 
 	TextFieldIndicator indicatorHeading = new TextFieldIndicator(565, 10, 100,
-			20, "hdg", false);
+			20, "hdg", false, false);
 	BooleanIndicatorTextDigitalRect indicatorBooleanHeading = new BooleanIndicatorTextDigitalRect(
 			455, 10, 100, 20, "HEADING", false, false);
 
 	TextFieldIndicator indicatorAThrottle = new TextFieldIndicator(835, 10,
-			100, 20, "kias", false);
+			100, 20, "kias", false, false);
 	BooleanIndicatorTextDigitalRect indicatorBooleanAThrottle = new BooleanIndicatorTextDigitalRect(
 			675, 10, 150, 20, "AUTOTHROTTLE", false, false);
 
 	public AutopilotPanel() {
-		FLUI_MEMORY ad = new FLUI_MEMORY();
+		new FLUI_MEMORY();
 		FLUI_MEMORY.initMem();
 	}
 
