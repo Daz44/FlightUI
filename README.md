@@ -21,12 +21,15 @@ FlightUI makes use of technolegies *including* the following:
 ---
 Screenshots
 ---
-#####BUILD FROM 7TH OCTOBER 2014
-######MAJOR FLIGHT DISPLAY
-![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot.PNG)
+#####BUILD FROM 23RD OCTOBER 2014
+######PRODIGY FLIGHT PANEL
+![FlightUI Screenshot as of 23/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/ScreenshotProdigyPanel-23-10-14.PNG)
 #####BUILD FROM 21ST OCTOBER 2014
 ######PRODIGY FLIGHT PANEL
 ![FlightUI Screenshot as of 21/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/ScreenshotProdigyPanel.PNG)
+#####BUILD FROM 7TH OCTOBER 2014 - GENERIC
+######MAJOR FLIGHT DISPLAY
+![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot.PNG)
 #####OTHER INSTRUMENTS
 ![FlightUI Screenshot as of 7/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/Screenshot2.PNG)
 #####THEMES
