@@ -15,7 +15,9 @@
 
 package com.mallen.flightui.wrapper;
 
-public class FLUI_READER extends FLUI_MEMORY {
+import com.flightsim.fsuipc.FSUIPC;
+
+public class FLUI_READER {
 
 	/**
 	 * char : 1 byte short : 2 bytes int : 4 bytes long : 4 bytes float : 4
@@ -29,6 +31,8 @@ public class FLUI_READER extends FLUI_MEMORY {
 	 *            - Memory location for FSUIPC (or use FSUIPC_MEMORY.get();
 	 * @return
 	 */
+	static FSUIPC fs = new FSUIPC();
+
 	public static int getInt(Object param) {
 		int i = fs.getInt((int) param);
 		return i;

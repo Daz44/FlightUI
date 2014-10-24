@@ -15,6 +15,8 @@
 
 package com.mallen.flightui.wrapper;
 
+import java.text.DecimalFormat;
+
 import com.mallen.flightui.utils.Converter;
 import com.mallen.flightui.wrapper.flui.FLUIAircraft;
 import com.mallen.flightui.wrapper.flui.FLUILights;
@@ -30,9 +32,7 @@ public class FLUI_GLOBAL {
 
 	public static int indicatorSpeed;
 	public static int trueSpeed;
-
 	public static int hdg;
-	public static int gps_waypoint;
 
 	public static int flaps;
 	public static boolean gear;
@@ -52,12 +52,13 @@ public class FLUI_GLOBAL {
 			LIGHT_STROBE, LIGHT_WING, LIGHT_LOGO;
 	public static boolean AP_HDG, AP_MASTER, AP_THR, AP_ALT;
 	public static int AP_VAL_ALT, AP_VAL_HDG, AP_VAL_VS, AP_VAL_SPD;
+	public static int NAV_GPS_HDG, NAV_GPS_DISTANCE;
+
+	public static String WAYPOINT_HDG, WAYPOINT_DISTANCE;
 
 	public static void init() {
 		System.out.println("INIT");
 
-		// TODO: COMPLETE MOVING RUNTIME RETRIEVAL OF AIRCRAFT DATA TO THIS
-		// METHOD
 		Thread globalValueFetcher = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -66,11 +67,8 @@ public class FLUI_GLOBAL {
 					pitch = FLUI_READER.getDouble(12144) + 90;
 					roll = FLUI_READER.getDouble(12152);
 
-					qnhAlt = FLUI_READER.getInt(FLUI_MEMORY.FSUIPC_LOOKUP
-							.get("QNH_ALTITUDE"));
-					radAlt = (int) Math.round(FLUI_READER
-							.getInt(FLUI_MEMORY.FSUIPC_LOOKUP
-									.get("RADIO_ALTITUDE")) / 65536 * 3.28);
+					qnhAlt = FLUI_READER.getInt(0x3324);
+					radAlt = (int) Math.round(FLUI_READER.getInt(0x31E4) / 65536 * 3.28);
 
 					hdg = (int) Math.round(360.0 * FLUI_READER.getInt(0x0580)
 							/ (65536.0 * 65536.0));// Correcting the Heading
@@ -84,10 +82,6 @@ public class FLUI_GLOBAL {
 
 					// System.out.println(+FLUI_READER.getDouble(0x6010) + " "
 					// + FLUI_READER.getDouble(0x6018));
-
-					gps_waypoint = (int) Math.toDegrees(FLUI_READER
-							.getDouble(FLUI_MEMORY.FSUIPC_LOOKUP
-									.get("GPS_WAYPOINT_HEADING")));
 
 					indicatorSpeed = FLUI_READER.getInt(0x02BC) / 128;
 					trueSpeed = FLUI_READER.getInt(0x02B8) / 128;
@@ -180,6 +174,15 @@ public class FLUI_GLOBAL {
 					AP_VAL_ALT = (int) Math.round(FLUI_READER.getInt(0x07D4) / 65536 * 3.3) / 100 * 100;
 					QNH = Converter.roundDecimal(
 							FLUI_READER.getShort(0x0330) / 16.0 * 0.02953, 2);
+
+					NAV_GPS_DISTANCE = (int) FLUI_READER.getDouble(0x6048);
+					NAV_GPS_HDG = (int) FLUI_READER.getDouble(0x6060);
+
+					DecimalFormat df = new DecimalFormat("#.0");
+					WAYPOINT_DISTANCE = df.format(FLUI_READER.getDouble(0x6048) * 0.000539956803);
+					WAYPOINT_HDG = ""
+							+ Math.round(Math.toDegrees(FLUI_READER
+									.getDouble(0x6060)));
 
 					try {
 						Thread.sleep(5);
