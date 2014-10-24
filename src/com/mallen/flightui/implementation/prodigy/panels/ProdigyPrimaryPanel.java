@@ -18,11 +18,12 @@ package com.mallen.flightui.implementation.prodigy.panels;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
+import com.flightsim.fsuipc.FSUIPC;
 import com.mallen.flightui.ui.modules.ArtificialHorizon;
-import com.mallen.flightui.ui.modules.BooleanIndicatorTextDigitalRect;
 import com.mallen.flightui.ui.modules.NumberIndicatorVerticalTape;
 import com.mallen.flightui.ui.modules.RoundedIndicator;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
@@ -31,7 +32,6 @@ import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.utils.Converter;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_MEMORY;
 
 @SuppressWarnings("serial")
 public class ProdigyPrimaryPanel extends JPanel {
@@ -77,44 +77,6 @@ public class ProdigyPrimaryPanel extends JPanel {
 	TextIndicatorRGB tiNav2_S = new TextIndicatorRGB(130, 30, 100, 30, "", 1,
 			false);
 
-	// RIP OFF GENERIC AUTOPILOT
-	// ///////////////////////////////////
-	BooleanIndicatorTextDigitalRect indicatorBooleanAPMaster = new BooleanIndicatorTextDigitalRect(
-			260, 10, 105, 20, "AP MASTER", false, false);
-
-	TextFieldIndicator indicatorAPAltitude = new TextFieldIndicator(235 + 260,
-			10, 100, 20, "ft", false, false);
-	TextFieldIndicator indicatorVertSpeed = new TextFieldIndicator(345 + 260,
-			10, 100, 20, "ft/m", false, false);
-	BooleanIndicatorTextDigitalRect indicatorBooleanAltitude = new BooleanIndicatorTextDigitalRect(
-			125 + 260, 10, 100, 20, "ALTITUDE", false, false);
-
-	TextFieldIndicator indicatorHeading = new TextFieldIndicator(565 + 260, 10,
-			100, 20, "hdg", false, false);
-	BooleanIndicatorTextDigitalRect indicatorBooleanHeading = new BooleanIndicatorTextDigitalRect(
-			455 + 260, 10, 100, 20, "HEADING", false, false);
-
-	TextFieldIndicator indicatorAThrottle = new TextFieldIndicator(835 + 260,
-			10, 100, 20, "kias", false, false);
-	BooleanIndicatorTextDigitalRect indicatorBooleanAThrottle = new BooleanIndicatorTextDigitalRect(
-			675 + 260, 10, 150, 20, "AUTOTHROTTLE", false, false);
-
-	// RIP OFF GENERIC LIGHT PANEL
-	BooleanIndicatorTextDigitalRect tiNav = new BooleanIndicatorTextDigitalRect(
-			260 + 235, 40, 100, 20, "NAV", false, false);
-	BooleanIndicatorTextDigitalRect tiBeacon = new BooleanIndicatorTextDigitalRect(
-			260 + 345, 40, 100, 20, "BEACON", false, false);
-	BooleanIndicatorTextDigitalRect tiLanding = new BooleanIndicatorTextDigitalRect(
-			260 + 125, 40, 100, 20, "LAND", false, false);
-	BooleanIndicatorTextDigitalRect tiTaxi = new BooleanIndicatorTextDigitalRect(
-			260 + 565, 40, 100, 20, "TAXI", false, false);
-	BooleanIndicatorTextDigitalRect tiWing = new BooleanIndicatorTextDigitalRect(
-			260 + 455, 40, 100, 20, "WING", false, false);
-	BooleanIndicatorTextDigitalRect tiLogo = new BooleanIndicatorTextDigitalRect(
-			260 + 835, 40, 100, 20, "LOGO", false, false);
-	BooleanIndicatorTextDigitalRect tiStrobe = new BooleanIndicatorTextDigitalRect(
-			260 + 675, 40, 150, 20, "STROBE", false, false);
-
 	TextFieldIndicator tiHdg = new TextFieldIndicator(getWidth() / 2
 			- getWidth() / 8, getHeight() / 2 + getWidth() / 8 - getWidth()
 			/ 16 - 10, getWidth() / 8, getWidth() / 36, "", false, true);
@@ -126,8 +88,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 	// /////////////////////////////////
 
 	public ProdigyPrimaryPanel() {
-		new FLUI_MEMORY();
-		FLUI_MEMORY.initMem();
+		FLUI_GLOBAL.init();
 	};
 
 	@Override
@@ -195,7 +156,6 @@ public class ProdigyPrimaryPanel extends JPanel {
 
 		String hdg = FLUI_GLOBAL.hdg + "";
 		if (hdg.length() == 1) {
-			hdg = "00" + hdg;
 		}
 		if (hdg.length() == 2) {
 			hdg = "0" + hdg;
@@ -316,56 +276,6 @@ public class ProdigyPrimaryPanel extends JPanel {
 			e.printStackTrace();
 		}
 
-		// /////////////////////////////////////////////
-
-		// AUTOPILOT
-		indicatorAPAltitude.update(FLUI_GLOBAL.AP_VAL_ALT + "");
-		indicatorAPAltitude.draw(g);
-
-		indicatorBooleanAltitude.update(FLUI_GLOBAL.AP_ALT);
-		indicatorBooleanAltitude.draw(g);
-
-		indicatorVertSpeed.update("" + FLUI_GLOBAL.AP_VAL_VS);
-		indicatorVertSpeed.draw(g);
-
-		indicatorHeading.update(FLUI_GLOBAL.AP_VAL_HDG + "");
-		indicatorHeading.draw(g);
-
-		indicatorBooleanHeading.update(FLUI_GLOBAL.AP_HDG);
-		indicatorBooleanHeading.draw(g);
-
-		indicatorBooleanAPMaster.update(FLUI_GLOBAL.AP_MASTER);
-		indicatorBooleanAPMaster.draw(g);
-
-		indicatorBooleanAThrottle.update(FLUI_GLOBAL.AP_THR);
-		indicatorBooleanAThrottle.draw(g);
-
-		indicatorAThrottle.update(FLUI_GLOBAL.AP_VAL_SPD + "");
-		indicatorAThrottle.draw(g);
-
-		// LIGHT PANEL
-
-		tiNav.update(FLUI_GLOBAL.LIGHT_NAV);
-		tiNav.draw(g);
-
-		tiBeacon.update(FLUI_GLOBAL.LIGHT_BEACON);
-		tiBeacon.draw(g);
-
-		tiLanding.update(FLUI_GLOBAL.LIGHT_LANDING);
-		tiLanding.draw(g);
-
-		tiTaxi.update(FLUI_GLOBAL.LIGHT_TAXI);
-		tiTaxi.draw(g);
-
-		tiWing.update(FLUI_GLOBAL.LIGHT_WING);
-		tiWing.draw(g);
-
-		tiLogo.update(FLUI_GLOBAL.LIGHT_LOGO);
-		tiLogo.draw(g);
-
-		tiStrobe.update(FLUI_GLOBAL.LIGHT_STROBE);
-		tiStrobe.draw(g);
-
 		try {
 			long sleepTime = 1000 / 120 - (System.currentTimeMillis() - delta);
 			if (sleepTime < 0) {
@@ -383,6 +293,14 @@ public class ProdigyPrimaryPanel extends JPanel {
 				g.setColor(Color.YELLOW);
 				g.drawString("FPS: " + fps, 10, 32);
 			}
+
+			new FSUIPC();
+			new DecimalFormat("#.0");
+			System.out.println("WAYPOINT! " + FLUI_GLOBAL.WAYPOINT_DISTANCE
+					+ " @ " + FLUI_GLOBAL.WAYPOINT_HDG);
+
+			g.setColor(new Color(235, 0, 255));
+			g.drawString(FLUI_GLOBAL.WAYPOINT_HDG, getWidth() - 400, 30);
 
 		} catch (Exception e) {
 			e.printStackTrace();
