@@ -81,8 +81,6 @@ public class FLUIProdigy {
 	}
 
 	public void configFrame() {
-		boolean textType = true;
-
 		int xVal = 0;
 		int yVal = 0;
 		int widthVal = 0;
@@ -90,7 +88,7 @@ public class FLUIProdigy {
 
 		boolean resizable = false, decorated = false;
 
-		if (textType) {
+		if (ConsoleFormatting.getInputBool(System.out, "Custom Config?")) {
 			ConsoleFormatting.lineBreak(System.out);
 			ConsoleFormatting.drawHeader(System.out,
 					"FLIGHTUI CONFIGURATION PRODIGY");
@@ -114,7 +112,12 @@ public class FLUIProdigy {
 			ConsoleFormatting.drawHeader(System.out, "HVAL: " + heightVal);
 			ConsoleFormatting.lineBreak(System.out);
 		} else {
-			// TODO: Implement UI to handle launch
+			decorated = true;
+			resizable = false;
+			xVal = 1920;
+			yVal = 0;
+			widthVal = 1920;
+			heightVal = 1080;
 		}
 
 		drawFrame(decorated, resizable, true, xVal, yVal, widthVal, heightVal);
