@@ -24,6 +24,8 @@ import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 
+import com.mallen.flightui.wrapper.FLUI_GLOBAL;
+
 public class RoundedIndicator {
 	int x = 0, y = 0;
 	int height = 0, width = 0;
@@ -158,7 +160,7 @@ public class RoundedIndicator {
 
 		// DRAWING MEDIUM MARKERS
 		g.setColor(Color.white);
-		for (int i = 0; i < 360; i += 10) {
+		for (int i = 0; i < 360; i += 1) {
 			FontMetrics fm = g.getFontMetrics();
 			f.getStringBounds("" + i, fm.getFontRenderContext());
 
@@ -173,10 +175,18 @@ public class RoundedIndicator {
 			g.setColor(Theme.gForeground);
 
 			g2d.rotate(Math.toRadians(i), x1, y1);
-			g.fillRect(x1 - 1, y1, 2, 20);
+
+			if (i / 10 * 10 == i) {
+				g.fillRect(x1 - 1, y1, 2, 20);
+			}
+
+			if (i == FLUI_GLOBAL.AP_VAL_HDG) {
+				g.setColor(Theme.gNeutral);
+				g.fillRect(x1 - 8, y1 - 2, 16, 4);
+			}
+
 			g2d.rotate(Math.toRadians(-i), x1, y1);
 		}
-
 		g2d.rotate(Math.toRadians(value), x + width / 2, y + height / 2);
 	}
 }

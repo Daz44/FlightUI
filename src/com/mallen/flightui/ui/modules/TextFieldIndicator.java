@@ -96,6 +96,7 @@ public class TextFieldIndicator {
 			g.drawString(value, x + 5, y + fm.getHeight());
 		}
 
+		stringRect = TextFont.getStringBounds(unit, fm.getFontRenderContext());
 		g.drawString(unit.toLowerCase(),
 				x + width - (int) stringRect.getWidth(), y + fm.getHeight());
 	}

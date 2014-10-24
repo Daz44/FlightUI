@@ -116,14 +116,11 @@ public class ArtificialHorizon {
 		height = 1010 * (vertScale + 1);
 
 		int widthRef = (int) (width * uiScaleWidth);
-
-		// TODO: Add vertical scaling eg. Show 20 degrees on screen instead of a
-		// full 180 across the height of the monitor
 		int heightRef = height;
 
-		drawOffset = height / 180.0 * (180.0 - pitch);
 		pitch = FLUI_GLOBAL.pitch;
 		roll = FLUI_GLOBAL.roll;
+		drawOffset = height / 180.0 * (180.0 - pitch);
 
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
