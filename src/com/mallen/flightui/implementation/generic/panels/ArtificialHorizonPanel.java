@@ -30,7 +30,6 @@ import com.mallen.flightui.ui.modules.NumberIndicatorVerticalTape;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_MEMORY;
 
 @SuppressWarnings("serial")
 public class ArtificialHorizonPanel extends JPanel {
@@ -59,7 +58,6 @@ public class ArtificialHorizonPanel extends JPanel {
 			getWidth() - 130, 10, 100, 20, "AUTOPILOT", true, true);
 
 	public ArtificialHorizonPanel() {
-		FLUI_MEMORY.initMem();
 	};
 
 	boolean drawFPS = true;

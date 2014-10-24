@@ -25,7 +25,6 @@ import com.mallen.flightui.ui.modules.GaugeIndicator;
 import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
-import com.mallen.flightui.wrapper.FLUI_MEMORY;
 
 public class EnginePanelGuage extends JPanel {
 	GaugeIndicator guageIndEng1N1 = new GaugeIndicator(10, 10, 50, 50, 0, 100,
@@ -70,8 +69,6 @@ public class EnginePanelGuage extends JPanel {
 			16384, 1, true);
 
 	public EnginePanelGuage() {
-		new FLUI_MEMORY();
-		FLUI_MEMORY.initMem();
 	}
 
 	BufferedImage bf;
