@@ -69,14 +69,15 @@ public class ArtificialHorizonPanel extends JPanel {
 		setDoubleBuffered(true);
 
 		long delta = System.currentTimeMillis();
-		int qnhAlt = FLUI_GLOBAL.qnhAlt;
+		int qnhAlt = FLUI_GLOBAL.AIRCRAFT_ALTITUDE_QNH;
 
 		ah.setSize(getWidth(), getHeight());
 		ah.draw(g, this);
 
 		altTape.setLocation(getWidth() - 70, 50);
 		altTape.setSize(50, getHeight() / 100);
-		altTape.update(FLUI_GLOBAL.qnhAlt, FLUI_GLOBAL.AP_VAL_ALT);
+		altTape.update(FLUI_GLOBAL.AIRCRAFT_ALTITUDE_QNH,
+				FLUI_GLOBAL.AP_VAL_ALT);
 		altTape.draw(g, this);
 
 		indicatorAltitude.update("" + qnhAlt);
@@ -86,35 +87,36 @@ public class ArtificialHorizonPanel extends JPanel {
 
 		spdTape.setLocation(getWidth() - 70, 50);
 		spdTape.setSize(50, getHeight() / 100);
-		spdTape.update(FLUI_GLOBAL.indicatorSpeed, FLUI_GLOBAL.AP_VAL_SPD);
+		spdTape.update(FLUI_GLOBAL.AIRCRAFT_SPEED_INDICATED,
+				FLUI_GLOBAL.AP_VAL_SPD);
 		spdTape.draw(g, this);
 
-		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
+		indicatorSpeed.update("" + FLUI_GLOBAL.AIRCRAFT_SPEED_INDICATED);
 		indicatorSpeed.setLocation(10, 470);
 		indicatorSpeed.draw(g);
 
 		// ////HEADING DISPLAY//////////////////////////////////////
-		int hdg = FLUI_GLOBAL.hdg;
-		int gps_waypoint = FLUI_GLOBAL.gps_waypoint;
+		int hdg = FLUI_GLOBAL.AIRCRAFT_HEADING;
+		int waypointHdg = FLUI_GLOBAL.WAYPOINT_HDG;
 
 		numIndHeading.draw(g, this);
 		numIndHeading.setLocation(this.getSize().width / 2 - 180, 10);
-		numIndHeading.update(hdg, gps_waypoint);
+		numIndHeading.update(hdg, waypointHdg);
 
 		hdgTape.draw(g, this);
 		hdgTape.setLocation(100, 40);
 		hdgTape.update(hdg);
 		// /////////////////////////////////////////////////////////
 
-		boolIndGear.update(FLUI_GLOBAL.gear);
+		boolIndGear.update(FLUI_GLOBAL.AIRCRAFT_GEAR);
 		boolIndGear.draw(g);
 
-		boolIndAP.update(FLUI_GLOBAL.ap);
+		boolIndAP.update(FLUI_GLOBAL.AP_MASTER);
 		boolIndAP.setLocation(this.getSize().width - 130, 10);
 		boolIndAP.draw(g);
 
 		g.setColor(Theme.gForeground);
-		g.drawString("FLAPS: " + FLUI_GLOBAL.flaps, 10, 50);
+		g.drawString("FLAPS: " + FLUI_GLOBAL.AIRCRAFT_FLAPS, 10, 50);
 
 		try {
 			long sleepTime = 1000 / 120 - (System.currentTimeMillis() - delta);

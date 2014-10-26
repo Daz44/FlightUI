@@ -15,7 +15,6 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
@@ -66,7 +65,6 @@ public class NumberIndicatorVerticalTape {
 	// //////////////////////////////
 
 	public void draw(Graphics g, ImageObserver io) {
-		Font TextFont = new Font("Verdana", Font.BOLD, 12);
 
 		g.setColor(Theme.gForeground);
 		g.drawRect(x, y, width, height);
@@ -74,7 +72,7 @@ public class NumberIndicatorVerticalTape {
 		Theme.setAero(aero, g);
 		g.fillRect(x + 1, y + 1, width - 1, height - 1);
 
-		g.setFont(TextFont);
+		g.setFont(Theme.indicatorFont);
 		FontMetrics fm = g.getFontMetrics();
 
 		g.setColor(Theme.gForeground);
@@ -91,7 +89,7 @@ public class NumberIndicatorVerticalTape {
 				s = "0" + s;
 			}
 
-			Rectangle2D stringRect = TextFont.getStringBounds(s,
+			Rectangle2D stringRect = Theme.indicatorFont.getStringBounds(s,
 					fm.getFontRenderContext());
 			int numberFromNextStep = valueRef - valueRef / 100 * 100;
 			int offset = (int) (numberFromNextStep

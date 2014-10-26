@@ -16,7 +16,6 @@
 package com.mallen.flightui.ui.modules;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -47,8 +46,6 @@ public class ArtificialHorizon {
 		y = 0 - horizonHeight;
 		height = horizonHeight * 3;
 		width = horizonWidth;
-		f = new Font("Verdana", Font.PLAIN, height / 50);
-
 	}
 
 	/**
@@ -62,8 +59,6 @@ public class ArtificialHorizon {
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height / 50);
-
 	}
 
 	public void setLocation(int xLoc, int yLoc) {
@@ -71,7 +66,6 @@ public class ArtificialHorizon {
 		y = yLoc;
 	}
 
-	Font f;
 	Color colSky = new Color(25, 110, 255);
 	Color colGround = new Color(155, 90, 0);
 	Color colInd = new Color(0, 0, 0);
@@ -118,14 +112,14 @@ public class ArtificialHorizon {
 		int widthRef = (int) (width * uiScaleWidth);
 		int heightRef = height;
 
-		pitch = FLUI_GLOBAL.pitch;
-		roll = FLUI_GLOBAL.roll;
+		pitch = FLUI_GLOBAL.AIRCRAFT_PITCH;
+		roll = FLUI_GLOBAL.AIRCRAFT_ROLL;
 		drawOffset = height / 180.0 * (180.0 - pitch);
 
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setFont(f);
+		g.setFont(Theme.indicatorFont);
 
 		Rectangle vhGround = new Rectangle(x - width, y - height, width * 3,
 				height * 3);
@@ -141,11 +135,11 @@ public class ArtificialHorizon {
 		g2d.fill(vhSky);
 
 		// Drawing UI Markers for pitch
-		g.setColor(colInd);
+		g.setColor(Theme.gForeground);
 
 		FontMetrics fm = g.getFontMetrics();
-		Rectangle2D stringRect = f.getStringBounds("" + pitch,
-				fm.getFontRenderContext());
+		Rectangle2D stringRect = Theme.indicatorFont.getStringBounds(
+				"" + pitch, fm.getFontRenderContext());
 
 		for (int i = uiIndicatorMin; i <= uiIndicatorMax; i += uiIndicatorInterval) {
 			g.fillRect(x + width / 2 - widthRef / 8, (int) (y + (drawOffset

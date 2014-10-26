@@ -15,7 +15,6 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -42,15 +41,12 @@ public class GaugeIndicator {
 		maxVal = max;
 		stepVal = step;
 		aero = aeroOn;
-
-		f = new Font("Verdana", Font.PLAIN, height / 20);
 	}
 
 	// DEFAULT METHODS FOR INDICATORS
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height / 20);
 	}
 
 	public void setLocation(int w, int h) {
@@ -67,9 +63,6 @@ public class GaugeIndicator {
 	}
 
 	// //////////////////////////////
-
-	Font f;
-
 	public void draw(Graphics g, ImageObserver io) {
 		aero = false;
 		Graphics2D g2d = (Graphics2D) g;
@@ -78,7 +71,7 @@ public class GaugeIndicator {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g.setFont(f);
+		g.setFont(Theme.indicatorFont);
 
 		g.setColor(Theme.gMidground);
 		g.drawOval(x, y, width, height);
@@ -96,7 +89,7 @@ public class GaugeIndicator {
 				(int) -(360.0 / maxVal * value));
 
 		FontMetrics fm = g.getFontMetrics();
-		f.getStringBounds("000", fm.getFontRenderContext());
+		Theme.indicatorFont.getStringBounds("000", fm.getFontRenderContext());
 
 	}
 }

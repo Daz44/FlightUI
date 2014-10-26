@@ -21,7 +21,8 @@ public class FLUIWarning {
 
 	// FLUI MasterCaution
 	public static boolean MasterCaution() {
-		return !FLUI_GLOBAL.gear && FLUI_GLOBAL.qnhAlt < 1000;
+		return !FLUI_GLOBAL.AIRCRAFT_GEAR
+				&& FLUI_GLOBAL.AIRCRAFT_ALTITUDE_QNH < 1000;
 	}
 
 	// FLUI MasterWarning

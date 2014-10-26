@@ -16,6 +16,7 @@
 package com.mallen.flightui.ui.modules;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import com.mallen.flightui.core.exceptions.FLUIException;
@@ -35,6 +36,10 @@ public class Theme {
 	public static Color gTrue;
 	public static Color gNeutral;
 	public static Color gFalse;
+
+	public static Font indicatorFont;
+	public static Font dialogSmall;
+	public static Font dialogLarge;
 
 	// ////////////////
 
@@ -73,6 +78,10 @@ public class Theme {
 	 * @exception FLUIException
 	 */
 	public static void setTheme(String theme) {
+		indicatorFont = new Font("Arial", Font.PLAIN, 12);
+		dialogSmall = new Font("Dialog", Font.PLAIN, 14);
+		dialogLarge = new Font("Dialog", Font.PLAIN, 28);
+
 		if (theme.toLowerCase().trim().equals("airliner")) {
 			// AIRLINER THEME
 			Theme.setTheme(new Color(0, 102, 253), new Color(126, 92, 52),

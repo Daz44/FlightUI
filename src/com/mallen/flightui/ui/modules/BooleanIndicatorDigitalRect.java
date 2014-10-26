@@ -15,7 +15,6 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.Font;
 import java.awt.Graphics;
 
 public class BooleanIndicatorDigitalRect {
@@ -35,15 +34,12 @@ public class BooleanIndicatorDigitalRect {
 		height = horizonHeight;
 		width = horizonWidth;
 		value = val;
-
-		f = new Font("Verdana", Font.PLAIN, height / 2);
 	}
 
 	// DEFAULT METHODS FOR INDICATORS
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height);
 	}
 
 	public void setLocation(int w, int h) {
@@ -55,19 +51,19 @@ public class BooleanIndicatorDigitalRect {
 		value = b;
 	}
 
-	// //////////////////////////////
-
-	Font f;
+	// //////////////////////////////;
 
 	public void draw(Graphics g) {
-
+		g.setFont(Theme.indicatorFont);
 		g.setColor(Theme.gForeground);
 		g.drawRect(x, y, width, height);
 
-		if (value)
+		if (value) {
 			g.setColor(Theme.gTrue);
-		if (!value)
+		}
+		if (!value) {
 			g.setColor(Theme.gFalse);
+		}
 		g.fillRect(x + 1, y + 1, width - 2, height - 2);
 
 	}

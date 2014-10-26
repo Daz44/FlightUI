@@ -15,7 +15,6 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -41,8 +40,6 @@ public class BooleanIndicatorTextDigitalRect {
 		title = text;
 		value = val;
 		aero = aeroOn;
-
-		f = new Font("Verdana", Font.PLAIN, height / 2);
 	}
 
 	public void setAero(boolean b) {
@@ -53,7 +50,6 @@ public class BooleanIndicatorTextDigitalRect {
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height);
 	}
 
 	public void setLocation(int w, int h) {
@@ -67,14 +63,12 @@ public class BooleanIndicatorTextDigitalRect {
 
 	// //////////////////////////////
 
-	Font f;
-
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-		g.setFont(f);
+		g.setFont(Theme.indicatorFont);
 		FontMetrics fm = g.getFontMetrics();
 
 		g.setColor(Theme.gForeground);
@@ -87,10 +81,12 @@ public class BooleanIndicatorTextDigitalRect {
 		g.setColor(Theme.gForeground);
 		g.drawString(title, x + 5, y + fm.getHeight());
 
-		if (value)
+		if (value) {
 			g.setColor(Theme.gTrue);
-		if (!value)
+		}
+		if (!value) {
 			g.setColor(Theme.gFalse);
+		}
 		g.fillRect(x + width - height + 1, y, height, height);
 
 	}

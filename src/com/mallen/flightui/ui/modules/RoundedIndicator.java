@@ -16,7 +16,6 @@
 package com.mallen.flightui.ui.modules;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -46,15 +45,12 @@ public class RoundedIndicator {
 		maxVal = max;
 		stepVal = step;
 		aero = aeroOn;
-
-		f = new Font("Verdana", Font.PLAIN, height / 40);
 	}
 
 	// DEFAULT METHODS FOR INDICATORS
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height / 20);
 	}
 
 	public void setLocation(int w, int h) {
@@ -72,8 +68,6 @@ public class RoundedIndicator {
 
 	// //////////////////////////////
 
-	Font f;
-
 	public void draw(Graphics g, ImageObserver io) {
 		aero = false;
 		Graphics2D g2d = (Graphics2D) g;
@@ -87,7 +81,7 @@ public class RoundedIndicator {
 				x + width / 2 }, new int[] { y, y, y + 20 }, 3);
 
 		g.setColor(Theme.gAero);
-		g.setFont(f);
+		g.setFont(Theme.dialogLarge);
 
 		g2d.rotate(Math.toRadians(-value), x + width / 2, y + height / 2);
 
@@ -109,7 +103,7 @@ public class RoundedIndicator {
 			String s = "" + i / 10;
 
 			FontMetrics fm = g.getFontMetrics();
-			Rectangle2D stringRect = f.getStringBounds("" + s,
+			Rectangle2D stringRect = Theme.dialogLarge.getStringBounds("" + s,
 					fm.getFontRenderContext());
 
 			int x1 = (int) (midX + radius * Math.cos(angle * (Math.PI / 180)));
@@ -141,7 +135,8 @@ public class RoundedIndicator {
 		g.setColor(Theme.gForeground);
 		for (int i = 0; i < 360; i += 5) {
 			FontMetrics fm = g.getFontMetrics();
-			f.getStringBounds("" + i, fm.getFontRenderContext());
+			Theme.dialogLarge
+					.getStringBounds("" + i, fm.getFontRenderContext());
 
 			int radius = width / 2;
 			int angle = i - 90;
@@ -162,7 +157,8 @@ public class RoundedIndicator {
 		g.setColor(Color.white);
 		for (int i = 0; i < 360; i += 1) {
 			FontMetrics fm = g.getFontMetrics();
-			f.getStringBounds("" + i, fm.getFontRenderContext());
+			Theme.dialogLarge
+					.getStringBounds("" + i, fm.getFontRenderContext());
 
 			int radius = width / 2;
 			int angle = i - 90;

@@ -15,7 +15,6 @@
 
 package com.mallen.flightui.ui.modules;
 
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -42,14 +41,12 @@ public class BooleanIndicatorTextDigitalCompact {
 		value = val;
 
 		aero = aeroOn;
-		f = new Font("Verdana", Font.PLAIN, height / 2);
 	}
 
 	// DEFAULT METHODS FOR INDICATORS
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;
-		f = new Font("Verdana", Font.PLAIN, height);
 	}
 
 	public void setLocation(int w, int h) {
@@ -67,14 +64,12 @@ public class BooleanIndicatorTextDigitalCompact {
 
 	// //////////////////////////////
 
-	Font f;
-
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-		g.setFont(f);
+		g.setFont(Theme.indicatorFont);
 		FontMetrics fm = g.getFontMetrics();
 
 		g.setColor(Theme.gForeground);
@@ -86,15 +81,12 @@ public class BooleanIndicatorTextDigitalCompact {
 		g.setColor(Theme.gForeground);
 		g.drawString(title, x + 5, y + fm.getHeight());
 
-		if (value)
+		if (value) {
 			g.setColor(Theme.gTrue);
-		if (!value)
+		}
+		if (!value) {
 			g.setColor(Theme.gFalse);
+		}
 		g.fillRect(x + width - width / 10, y + 1, width / 10 - 1, height - 2);
-
-		// Rectangle2D stringRect = TextFont.getStringBounds(unit,
-		// fm.getFontRenderContext());
-		// g.drawString(unit.toLowerCase(), x+width- (int)
-		// stringRect.getWidth(), y+fm.getHeight());
 	}
 }

@@ -18,17 +18,14 @@ package com.mallen.flightui.implementation.prodigy.panels;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
-import com.flightsim.fsuipc.FSUIPC;
+import com.mallen.flightui.implementation.prodigy.modules.ProdigyAutopilotPanel;
 import com.mallen.flightui.ui.modules.ArtificialHorizon;
 import com.mallen.flightui.ui.modules.NumberIndicatorVerticalTape;
 import com.mallen.flightui.ui.modules.RoundedIndicator;
 import com.mallen.flightui.ui.modules.TextFieldIndicator;
-import com.mallen.flightui.ui.modules.TextIndicator;
-import com.mallen.flightui.ui.modules.TextIndicatorRGB;
 import com.mallen.flightui.ui.modules.Theme;
 import com.mallen.flightui.utils.Converter;
 import com.mallen.flightui.wrapper.FLUI_GLOBAL;
@@ -61,22 +58,6 @@ public class ProdigyPrimaryPanel extends JPanel {
 	NumberIndicatorVerticalTape spdTape = new NumberIndicatorVerticalTape(20,
 			150, 200, 800, 20, 280, true);
 
-	TextIndicator tiCom1 = new TextIndicator(getWidth() - 430, 5, 100, 30,
-			"COM1", 2, false);
-	TextIndicator tiCom2 = new TextIndicator(getWidth() - 430, 30, 100, 30,
-			"COM2", 2, false);
-	TextIndicator tiNav1 = new TextIndicator(5, 5, 100, 30, "NAV1", 2, false);
-	TextIndicator tiNav2 = new TextIndicator(5, 30, 100, 30, "NAV2", 2, false);
-
-	TextIndicatorRGB tiCom1_S = new TextIndicatorRGB(getWidth() - 405, 5, 100,
-			30, "", 1, false);
-	TextIndicatorRGB tiCom2_S = new TextIndicatorRGB(getWidth() - 405, 30, 100,
-			30, "", 1, false);
-	TextIndicatorRGB tiNav1_S = new TextIndicatorRGB(130, 5, 100, 30, "", 1,
-			false);
-	TextIndicatorRGB tiNav2_S = new TextIndicatorRGB(130, 30, 100, 30, "", 1,
-			false);
-
 	TextFieldIndicator tiHdg = new TextFieldIndicator(getWidth() / 2
 			- getWidth() / 8, getHeight() / 2 + getWidth() / 8 - getWidth()
 			/ 16 - 10, getWidth() / 8, getWidth() / 36, "", false, true);
@@ -84,6 +65,8 @@ public class ProdigyPrimaryPanel extends JPanel {
 	RoundedIndicator riHdg = new RoundedIndicator(getWidth() / 2 - getWidth()
 			/ 4, getHeight() / 2, getWidth() / 4, getWidth() / 4, 0, 360, 30,
 			true);
+
+	ProdigyAutopilotPanel pap = new ProdigyAutopilotPanel(250, 0, 800, 200);
 
 	// /////////////////////////////////
 
@@ -96,8 +79,11 @@ public class ProdigyPrimaryPanel extends JPanel {
 		super.paintComponent(g);
 		setDoubleBuffered(true);
 
+		Theme.indicatorFont = new Font("Arial", Font.BOLD, 12);
+		g.setFont(Theme.indicatorFont);
+
 		long delta = System.currentTimeMillis();
-		int qnhAlt = FLUI_GLOBAL.qnhAlt;
+		int qnhAlt = FLUI_GLOBAL.AIRCRAFT_ALTITUDE_QNH;
 		boolean drawFPS = false;
 
 		ah.setSize(this.getSize().width, this.getSize().height - 70);
@@ -105,21 +91,24 @@ public class ProdigyPrimaryPanel extends JPanel {
 		ah.draw(g, this);
 
 		altTape.setLocation(getWidth() - 220, 150);
-		altTape.setSize(100, 800);
-		altTape.update(FLUI_GLOBAL.qnhAlt, FLUI_GLOBAL.AP_VAL_ALT);
+		altTape.setSize(100, getHeight() - getHeight() / 4);
+		altTape.update(FLUI_GLOBAL.AIRCRAFT_ALTITUDE_QNH,
+				FLUI_GLOBAL.AP_VAL_ALT);
 		altTape.draw(g, this);
 
 		indicatorAltitude.update("" + qnhAlt);
-		indicatorAltitude.setLocation(this.getSize().width - 200, 540);
+		indicatorAltitude.setLocation(this.getSize().width - 200,
+				150 + (getHeight() - getHeight() / 4) / 2 - 15);
 		indicatorAltitude.setSize(80, 30);
 		indicatorAltitude.draw(g);
 
 		spdTape.setLocation(120, 150);
-		spdTape.setSize(100, 800);
-		spdTape.update(FLUI_GLOBAL.indicatorSpeed, FLUI_GLOBAL.AP_VAL_SPD);
+		spdTape.setSize(100, getHeight() - getHeight() / 4);
+		spdTape.update(FLUI_GLOBAL.AIRCRAFT_SPEED_INDICATED,
+				FLUI_GLOBAL.AP_VAL_SPD);
 		spdTape.draw(g, this);
 
-		indicatorSpeed.update("" + FLUI_GLOBAL.indicatorSpeed);
+		indicatorSpeed.update("" + FLUI_GLOBAL.AIRCRAFT_SPEED_INDICATED);
 		indicatorSpeed.setLocation(120, 540);
 		indicatorSpeed.setSize(80, 30);
 		indicatorSpeed.draw(g);
@@ -143,29 +132,28 @@ public class ProdigyPrimaryPanel extends JPanel {
 		acQNH.draw(g);
 
 		acMach.update("M "
-				+ Converter
-						.roundDecimal(FLUI_GLOBAL.indicatorSpeed / 661.47, 3));
+				+ Converter.roundDecimal(
+						FLUI_GLOBAL.AIRCRAFT_SPEED_INDICATED / 661.47, 3));
 		acMach.setSize(100, 30);
 		acMach.setLocation(120, 950);
 		acMach.draw(g);
 
-		acGroundSpeed.update("GS " + FLUI_GLOBAL.trueSpeed);
+		acGroundSpeed.update("GS " + FLUI_GLOBAL.AIRCRAFT_SPEED_GROUND);
 		acGroundSpeed.setSize(100, 30);
 		acGroundSpeed.setLocation(20, 950);
 		acGroundSpeed.draw(g);
 
-		String hdg = FLUI_GLOBAL.hdg + "";
+		String hdg = FLUI_GLOBAL.AIRCRAFT_HEADING + "";
 		if (hdg.length() == 1) {
 		}
 		if (hdg.length() == 2) {
 			hdg = "0" + hdg;
 		}
 
-		riHdg.update(FLUI_GLOBAL.hdg);
-		riHdg.setSize(getWidth() / 4 - getWidth() / 32, getWidth() / 4
-				- getWidth() / 32);
-		riHdg.setLocation(getWidth() / 2 - (getWidth() / 4 - getWidth() / 32)
-				/ 2, getHeight() / 2 + getWidth() / 8 - getWidth() / 16 - 10);
+		riHdg.update(FLUI_GLOBAL.AIRCRAFT_HEADING);
+		riHdg.setSize(getWidth() / 4, getWidth() / 4);
+		riHdg.setLocation(getWidth() / 2 - getWidth() / 4 / 2, getHeight() / 2
+				+ getWidth() / 8);
 		riHdg.draw(g, this);
 
 		tiHdg.update(hdg);
@@ -173,108 +161,9 @@ public class ProdigyPrimaryPanel extends JPanel {
 		tiHdg.setLocation(getWidth() / 2 - getWidth() / 32 / 2, getHeight() / 2
 				+ getWidth() / 8 - getWidth() / 16 - 10 - getWidth() / 48);
 		tiHdg.draw(g);
-		// DRAWING RADIO
-		// ////////////////////////////////////////////
 
-		g.setColor(Theme.gBackground);
-		g.fillRect(0, 0, getWidth(), 70);
-
-		g.setColor(Theme.gForeground);
-		g.fillRect(0, 68, getWidth(), 2);
-
-		try {
-			String commString;
-
-			commString = Integer.toHexString(FLUI_GLOBAL.NAV1);
-			if (commString.length() >= 4) {
-				tiNav1.text = "NAV1: 1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-			} else {
-				tiNav1.text = "NAV1: OFF";
-			}
-			tiNav1.draw(g);
-
-			commString = Integer.toHexString(FLUI_GLOBAL.NAV2);
-			if (commString.length() >= 4) {
-				tiNav2.text = "NAV2: 1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-
-			} else {
-				tiNav2.text = "NAV2: OFF";
-			}
-			tiNav2.draw(g);
-
-			// STANDBY RADIO PANEL
-			commString = Integer.toHexString(FLUI_GLOBAL.COM1_S);
-			if (commString.length() >= 4) {
-				tiCom1_S.text = "<-->  1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-			} else {
-				tiCom1_S.text = "";
-			}
-			tiCom1_S.setLocation(getWidth() - 150, 5);
-			tiCom1_S.setSize(100, 35);
-			tiCom1_S.draw(g);
-
-			commString = Integer.toHexString(FLUI_GLOBAL.COM2_S);
-			if (commString.length() >= 4) {
-				tiCom2_S.text = "<-->  1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-			} else {
-				tiCom2_S.text = "";
-			}
-			tiCom2_S.setLocation(getWidth() - 150, 30);
-			tiCom2_S.setSize(100, 35);
-			tiCom2_S.draw(g);
-
-			commString = Integer.toHexString(FLUI_GLOBAL.NAV1_S);
-			if (commString.length() >= 4) {
-				tiNav1_S.text = "<--> 1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-			} else {
-				tiNav1_S.text = "";
-			}
-			tiNav1_S.draw(g);
-
-			commString = Integer.toHexString(FLUI_GLOBAL.NAV2_S);
-			if (commString.length() >= 4) {
-				tiNav2_S.text = "<--> 1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-
-			} else {
-				tiNav2_S.text = "";
-			}
-			tiNav2_S.draw(g);
-
-			commString = Integer.toHexString(FLUI_GLOBAL.COM1);
-			// PRIMARY RADIO PANEL
-			if (commString.length() >= 4) {
-				tiCom1.text = "COM1: 1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-			} else {
-				tiCom1.text = "COM1: OFF";
-			}
-			tiCom1.setSize(100, 35);
-			tiCom1.setLocation(getWidth() - 300, 5);
-			tiCom1.draw(g);
-
-			commString = Integer.toHexString(FLUI_GLOBAL.COM2);
-			if (commString.length() >= 4) {
-				tiCom2.text = "COM2: 1" + commString.substring(0, 2) + "."
-						+ commString.substring(2, 4);
-			} else {
-				tiCom2.text = "COM2: OFF";
-			}
-			tiCom2.setLocation(getWidth() - 300, 30);
-			tiCom2.setSize(100, 35);
-			tiCom2.draw(g);
-
-			g.fillRect(250, 0, 2, 70);
-			g.fillRect(getWidth() - 315, 0, 2, 70);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		pap.setSize(getWidth(), 140);
+		pap.draw(g, this);
 
 		try {
 			long sleepTime = 1000 / 120 - (System.currentTimeMillis() - delta);
@@ -288,20 +177,9 @@ public class ProdigyPrimaryPanel extends JPanel {
 			int fps = Math.round(1000 - (System.currentTimeMillis() - delta));
 
 			if (drawFPS) {
-
-				g.setFont(new Font("Verdana", Font.BOLD, 26));
 				g.setColor(Color.YELLOW);
 				g.drawString("FPS: " + fps, 10, 32);
 			}
-
-			new FSUIPC();
-			new DecimalFormat("#.0");
-			System.out.println("WAYPOINT! " + FLUI_GLOBAL.WAYPOINT_DISTANCE
-					+ " @ " + FLUI_GLOBAL.WAYPOINT_HDG);
-
-			g.setColor(new Color(235, 0, 255));
-			g.drawString(FLUI_GLOBAL.WAYPOINT_HDG, getWidth() - 400, 30);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
