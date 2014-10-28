@@ -33,7 +33,7 @@ import com.mallen.flightui.wrapper.FLUI_GLOBAL;
 @SuppressWarnings("serial")
 public class ProdigyPrimaryPanel extends JPanel {
 
-	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getWidth(), getWidth());
+	ArtificialHorizon ah = new ArtificialHorizon(0, 0, getHeight(), getWidth());
 
 	TextFieldIndicator apSpeed = new TextFieldIndicator(20, 120, 200, 30, "",
 			false, false);
@@ -66,6 +66,13 @@ public class ProdigyPrimaryPanel extends JPanel {
 			/ 4, getHeight() / 2, getWidth() / 4, getWidth() / 4, 0, 360, 30,
 			true);
 
+	TextFieldIndicator tiHdgField = new TextFieldIndicator(getWidth() / 2
+			- getWidth() / 4, getHeight() / 2, getWidth() / 8, getWidth() / 4,
+			"", false, true);
+
+	TextFieldIndicator tiCrsField = new TextFieldIndicator(getWidth() / 2,
+			getHeight() / 2, getWidth() / 8, getWidth() / 4, "", false, true);
+
 	ProdigyAutopilotPanel pap = new ProdigyAutopilotPanel(250, 0, 800, 200);
 
 	// /////////////////////////////////
@@ -91,7 +98,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 		ah.draw(g, this);
 
 		altTape.setLocation(getWidth() - 220, 150);
-		altTape.setSize(100, getHeight() - getHeight() / 4);
+		altTape.setSize(100, getHeight() - getHeight() / 4 + 10);
 		altTape.update(FLUI_GLOBAL.AIRCRAFT_ALTITUDE_QNH,
 				FLUI_GLOBAL.AP_VAL_ALT);
 		altTape.draw(g, this);
@@ -103,7 +110,7 @@ public class ProdigyPrimaryPanel extends JPanel {
 		indicatorAltitude.draw(g);
 
 		spdTape.setLocation(120, 150);
-		spdTape.setSize(100, getHeight() - getHeight() / 4);
+		spdTape.setSize(100, getHeight() - getHeight() / 4 + 10);
 		spdTape.update(FLUI_GLOBAL.AIRCRAFT_SPEED_INDICATED,
 				FLUI_GLOBAL.AP_VAL_SPD);
 		spdTape.draw(g, this);
@@ -144,17 +151,35 @@ public class ProdigyPrimaryPanel extends JPanel {
 		acGroundSpeed.draw(g);
 
 		String hdg = FLUI_GLOBAL.AIRCRAFT_HEADING + "";
-		if (hdg.length() == 1) {
-		}
 		if (hdg.length() == 2) {
 			hdg = "0" + hdg;
 		}
 
 		riHdg.update(FLUI_GLOBAL.AIRCRAFT_HEADING);
-		riHdg.setSize(getWidth() / 4, getWidth() / 4);
-		riHdg.setLocation(getWidth() / 2 - getWidth() / 4 / 2, getHeight() / 2
-				+ getWidth() / 8);
+
+		double riScale = 2.75;
+		int refValue = (int) (getWidth() / riScale);
+
+		if (getHeight() / riScale < refValue) {
+			refValue = (int) (getHeight() / riScale);
+		}
+
+		riHdg.setSize(refValue, refValue);
+		riHdg.setLocation(getWidth() / 2 - refValue / 2, getHeight() - refValue
+				- refValue / 32);
 		riHdg.draw(g, this);
+
+		tiHdgField.update("HDG " + FLUI_GLOBAL.AP_VAL_HDG + "°");
+		tiHdgField.setLocation(getWidth() / 2 - getWidth() / 16 - getWidth()
+				/ 20, getHeight() - refValue - refValue / 12);
+		tiHdgField.setSize(getWidth() / 20, getWidth() / 64);
+		tiHdgField.draw(g);
+
+		tiCrsField.update("CRS " + FLUI_GLOBAL.AP_VAL_CRS + "°");
+		tiCrsField.setLocation(getWidth() / 2 + getWidth() / 20, getHeight()
+				- refValue - refValue / 12);
+		tiCrsField.setSize(getWidth() / 20, getWidth() / 64);
+		tiCrsField.draw(g);
 
 		tiHdg.update(hdg);
 		tiHdg.setSize(getWidth() / 32, getWidth() / 48);

@@ -83,6 +83,7 @@ public class ArtificialHorizon {
 	 *            Image Observer for painting from parent class (JFrame)
 	 */
 	public void draw(Graphics g, ImageObserver io) {
+
 		double uiScaleWidth = 0.5;
 		double uiScaleHeight = 1;
 
@@ -105,9 +106,9 @@ public class ArtificialHorizon {
 		int vertScale = (int) ((uiScaleHeight - 1) * 2);
 
 		x = 0;
-		y = 70 - 1010 * (vertScale / 2);
+		y = 70 - height * (vertScale / 2);
 
-		height = 1010 * (vertScale + 1);
+		height = height * (vertScale + 1);
 
 		int widthRef = (int) (width * uiScaleWidth);
 		int heightRef = height;

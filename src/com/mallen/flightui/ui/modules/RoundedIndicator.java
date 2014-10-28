@@ -155,7 +155,7 @@ public class RoundedIndicator {
 
 		// DRAWING MEDIUM MARKERS
 		g.setColor(Color.white);
-		for (int i = 0; i < 360; i += 1) {
+		for (int i = 0; i < 360; i += 20) {
 			FontMetrics fm = g.getFontMetrics();
 			Theme.dialogLarge
 					.getStringBounds("" + i, fm.getFontRenderContext());
@@ -171,18 +171,32 @@ public class RoundedIndicator {
 			g.setColor(Theme.gForeground);
 
 			g2d.rotate(Math.toRadians(i), x1, y1);
-
-			if (i / 10 * 10 == i) {
-				g.fillRect(x1 - 1, y1, 2, 20);
-			}
-
-			if (i == FLUI_GLOBAL.AP_VAL_HDG) {
-				g.setColor(Theme.gNeutral);
-				g.fillRect(x1 - 8, y1 - 2, 16, 4);
-			}
-
+			g.fillRect(x1 - 1, y1, 2, 20);
 			g2d.rotate(Math.toRadians(-i), x1, y1);
 		}
+
+		// ////////////////////
+		int i = FLUI_GLOBAL.AP_VAL_HDG;
+
+		int radius = width / 2;
+		int angle = i - 90;
+		int midX = x + width / 2;
+		int midY = y + height / 2;
+
+		int x1 = (int) (midX + radius * Math.cos(angle * (Math.PI / 180)));
+		int y1 = (int) (midY + radius * Math.sin(angle * (Math.PI / 180)));
+
+		g.setColor(Theme.gForeground);
+
+		g2d.rotate(Math.toRadians(i), x1, y1);
+
+		if (i == FLUI_GLOBAL.AP_VAL_HDG) {
+			g.setColor(Theme.gNeutral);
+			g.fillRect(x1 - 8, y1 - 2, 16, 4);
+		}
+		g2d.rotate(Math.toRadians(-i), x1, y1);
+		// /////////////////////////////////////////
+
 		g2d.rotate(Math.toRadians(value), x + width / 2, y + height / 2);
 	}
 }

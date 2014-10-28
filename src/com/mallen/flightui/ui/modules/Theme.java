@@ -65,6 +65,8 @@ public class Theme {
 			g.setColor(Theme.gBackground);
 		}
 
+		indicatorFont = new Font("Seirf", Font.PLAIN, 12);
+
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class Theme {
 	 * @exception FLUIException
 	 */
 	public static void setTheme(String theme) {
-		indicatorFont = new Font("Arial", Font.PLAIN, 12);
+		indicatorFont = new Font("Dialog", Font.BOLD, 12);
 		dialogSmall = new Font("Dialog", Font.PLAIN, 14);
 		dialogLarge = new Font("Dialog", Font.PLAIN, 28);
 

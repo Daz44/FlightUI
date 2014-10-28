@@ -51,7 +51,8 @@ public class FLUI_GLOBAL {
 	public static boolean LIGHT_NAV, LIGHT_BEACON, LIGHT_LANDING, LIGHT_TAXI,
 			LIGHT_STROBE, LIGHT_WING, LIGHT_LOGO;
 	public static boolean AP_HDG, AP_MASTER, AP_THR, AP_ALT;
-	public static int AP_VAL_ALT, AP_VAL_HDG, AP_VAL_VS, AP_VAL_SPD;
+	public static int AP_VAL_ALT, AP_VAL_HDG, AP_VAL_VS, AP_VAL_SPD,
+			AP_VAL_CRS;
 	public static int NAV_GPS_HDG, NAV_GPS_DISTANCE;
 
 	public static int WAYPOINT_HDG;
@@ -153,6 +154,7 @@ public class FLUI_GLOBAL {
 
 					AP_VAL_SPD = FLUI_READER.getInt(0x07E2);
 					AP_VAL_HDG = (int) Math.round(FLUI_READER.getInt(0x07CC) / 65536.0 * 360.0);
+					AP_VAL_CRS = Math.round(FLUI_READER.getShort(0x0C4E));
 
 					AP_VAL_VS = FLUI_READER.getInt(0x07F2);
 					if (AP_VAL_VS > 50000) {
@@ -173,7 +175,6 @@ public class FLUI_GLOBAL {
 							.getDouble(0x6050)));
 
 					try {
-						Thread.sleep(5);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
