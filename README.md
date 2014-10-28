@@ -21,6 +21,9 @@ FlightUI makes use of technolegies *including* the following:
 ---
 Screenshots
 ---
+#####BUILD FROM 28TH OCTOBER 2014
+######PRODIGY FLIGHT PANEL
+![FlightUI Screenshot as of 28/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/ScreenshotProdigyPanel-28-10-14.PNG)
 #####BUILD FROM 23RD OCTOBER 2014
 ######PRODIGY FLIGHT PANEL
 ![FlightUI Screenshot as of 23/10/2014](https://raw.githubusercontent.com/Daz44/FlightUI/master/other/ScreenshotProdigyPanel-23-10-14.PNG)
